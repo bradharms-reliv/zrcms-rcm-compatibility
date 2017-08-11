@@ -6,6 +6,7 @@ use Zrcms\ContentCountry\Model\CountryCmsResource;
 use Zrcms\ContentCountry\Model\CountryVersion;
 
 /**
+ * @deprecated BC ONLY
  * @author James Jervis - https://github.com/jerv13
  */
 class Country extends \Rcm\Entity\Country

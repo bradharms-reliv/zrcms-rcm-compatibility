@@ -2,6 +2,8 @@
 
 namespace ZrcmsRcmCompatibility\RcmDisabler;
 
+use Doctrine\Common\Persistence\Mapping\Driver\PHPDriver;
+
 /**
  * @author James Jervis - https://github.com/jerv13
  */
@@ -14,6 +16,14 @@ class ModuleConfig
      */
     public function __invoke()
     {
-        return [];
+        return [
+            'doctrine' => [
+                'driver' => [
+                    'relivContentManager' => [
+                        'class' => PHPDriver::class,
+                    ]
+                ]
+            ]
+        ];
     }
 }

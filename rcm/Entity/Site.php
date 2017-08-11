@@ -7,6 +7,7 @@ use Zrcms\ContentCore\Site\Model\SiteCmsResource;
 use Zrcms\ContentCore\Site\Model\SiteVersion;
 
 /**
+ * @deprecated BC ONLY
  * @author James Jervis - https://github.com/jerv13
  */
 class Site extends \Rcm\Entity\Site

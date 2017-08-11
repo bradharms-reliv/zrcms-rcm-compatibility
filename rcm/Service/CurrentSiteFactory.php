@@ -14,6 +14,7 @@ use ZrcmsRcmCompatibility\Rcm\Entity\Language;
 use ZrcmsRcmCompatibility\Rcm\Entity\Site;
 
 /**
+ * @deprecated BC ONLY
  * @author James Jervis - https://github.com/jerv13
  */
 class CurrentSiteFactory

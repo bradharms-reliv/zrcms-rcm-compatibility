@@ -6,6 +6,7 @@ use Zrcms\ContentLanguage\Model\LanguageCmsResource;
 use Zrcms\ContentLanguage\Model\LanguageVersion;
 
 /**
+ * @deprecated BC ONLY
  * @author James Jervis - https://github.com/jerv13
  */
 class Language extends \Rcm\Entity\Language
