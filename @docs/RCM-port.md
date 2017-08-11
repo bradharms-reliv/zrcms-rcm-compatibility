@@ -9,3 +9,10 @@ RCM Port
 - EventManger and events ported to Middleware
     - Logout
     - 
+    
+- Need GetViewLayoutTags (port or wrap from ZF view helpers):
+    - rcmGoogleAnalytics
+    - browser-warning.html
+    - rcmAdminPanel
+    - rcmHtmlEditorOptions
+    - basePath?
