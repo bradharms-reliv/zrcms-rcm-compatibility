@@ -38,6 +38,7 @@
   },
   "autoload": {
     "psr-4": {
+      "ZrcmsRcmCompatibility\\": "/",
       "ZrcmsRcmCompatibility\\Compatibility\\": "compatibility/",
       "ZrcmsRcmCompatibility\\RcmDisabler\\": "rcm-disabler/"
     }
