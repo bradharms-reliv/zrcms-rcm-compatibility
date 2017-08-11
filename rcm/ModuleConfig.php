@@ -2,6 +2,8 @@
 
 namespace ZrcmsRcmCompatibility\Rcm;
 
+use ZrcmsRcmCompatibility\Rcm\Service\CurrentSiteFactory;
+
 /**
  * @author James Jervis - https://github.com/jerv13
  */
@@ -14,6 +16,12 @@ class ModuleConfig
      */
     public function __invoke()
     {
-        return [];
+        return [
+            'service_manager' => [
+                'factories' => [
+                    \Rcm\Service\CurrentSite::class => CurrentSiteFactory::class,
+                ],
+            ],
+        ];
     }
 }
