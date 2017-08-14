@@ -3,19 +3,20 @@
 namespace ZrcmsRcmCompatibility\Rcm\Service;
 
 use Zend\Diactoros\ServerRequestFactory;
+use Zrcms\ContentCore\Basic\Api\Repository\FindBasicComponent;
 use Zrcms\ContentCore\Site\Model\PropertiesSiteVersion;
 use Zrcms\ContentCore\View\Api\Repository\FindViewByRequest;
 use Zrcms\ContentCountry\Api\Repository\FindCountryCmsResourceByIso3;
 use Zrcms\ContentCountry\Api\Repository\FindCountryVersion;
-use Zrcms\ContentLanguage\Api\Repository\FindLanguageCmsResourceByIso6392t;
-use Zrcms\ContentLanguage\Api\Repository\FindLanguageVersion;
+use Zrcms\ContentCountry\Model\CountriesComponent;
+use Zrcms\ContentLanguage\Model\LanguagesComponent;
 use ZrcmsRcmCompatibility\Rcm\Entity\Country;
 use ZrcmsRcmCompatibility\Rcm\Entity\Language;
 use ZrcmsRcmCompatibility\Rcm\Entity\Site;
 
 /**
  * @deprecated BC ONLY
- * @author James Jervis - https://github.com/jerv13
+ * @author     James Jervis - https://github.com/jerv13
  */
 class CurrentSiteFactory
 {
@@ -32,17 +33,8 @@ class CurrentSiteFactory
         /** @var FindViewByRequest $findViewByRequest */
         $findViewByRequest = $serviceContainer->get(FindViewByRequest::class);
 
-        /** @var FindCountryCmsResourceByIso3 $findCountryCmsResourceByIso3 */
-        $findCountryCmsResourceByIso3 = $serviceContainer->get(FindCountryCmsResourceByIso3::class);
-
-        /** @var FindCountryVersion $findCountryVersion */
-        $findCountryVersion = $serviceContainer->get(FindCountryVersion::class);
-
-        /** @var FindLanguageCmsResourceByIso6392t $findLanguageCmsResourceByIso6392t */
-        $findLanguageCmsResourceByIso6392t = $serviceContainer->get(FindLanguageCmsResourceByIso6392t::class);
-
-        /** @var FindLanguageVersion $findLanguageVersion */
-        $findLanguageVersion = $serviceContainer->get(FindLanguageVersion::class);
+        /** @var FindBasicComponent $findBasicComponent */
+        $findBasicComponent = $serviceContainer->get(FindBasicComponent::class);
 
         $view = $findViewByRequest->__invoke(
             $request
@@ -51,34 +43,38 @@ class CurrentSiteFactory
         $zrSiteResource = $view->getSiteCmsResource();
         $zrSiteVersion = $view->getSite();
 
-        $zrCountryResource = $findCountryCmsResourceByIso3->__invoke(
-            $zrSiteVersion->getProperty(
-                PropertiesSiteVersion::COUNTRY_ISO3
-            )
+        $countryIso3 = $zrSiteVersion->getProperty(
+            PropertiesSiteVersion::COUNTRY_ISO3
         );
 
-        $zrCountryVersion = $findCountryVersion->__invoke(
-            $zrCountryResource->getContentVersionId()
+        /** @var CountriesComponent $countriesComponent */
+        $countriesComponent = $findBasicComponent->__invoke(
+            'zrcms-countries'
         );
+
+        $zrCountry = $countriesComponent->getCountry($countryIso3);
 
         $country = new Country(
-            $zrCountryResource,
-            $zrCountryVersion
+            $zrCountry,
+            $countriesComponent->getCreatedByUserId(),
+            $countriesComponent->getCreatedReason()
         );
 
-        $zrLanguageResource = $findLanguageCmsResourceByIso6392t->__invoke(
-            $zrSiteVersion->getProperty(
-                PropertiesSiteVersion::LANGUAGE_ISO_939_2T
-            )
+        $languageIso6392t = $zrSiteVersion->getProperty(
+            PropertiesSiteVersion::LANGUAGE_ISO_939_2T
         );
 
-        $zrLanguage = $findLanguageVersion->__invoke(
-            $zrLanguageResource->getContentVersionId()
+        /** @var LanguagesComponent $languagesComponent */
+        $languagesComponent = $findBasicComponent->__invoke(
+            'zrcms-languages'
         );
+
+        $zrLanguage = $languagesComponent->getLanguage($languageIso6392t);
 
         $language = new Language(
-            $zrLanguageResource,
-            $zrLanguage
+            $zrLanguage,
+            $languagesComponent->getCreatedByUserId(),
+            $languagesComponent->getCreatedReason()
         );
 
         return new Site(

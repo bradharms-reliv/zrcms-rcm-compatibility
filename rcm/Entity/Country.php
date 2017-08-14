@@ -2,32 +2,27 @@
 
 namespace ZrcmsRcmCompatibility\Rcm\Entity;
 
-use Zrcms\ContentCountry\Model\CountryCmsResource;
-use Zrcms\ContentCountry\Model\CountryVersion;
-
 /**
  * @deprecated BC ONLY
- * @author James Jervis - https://github.com/jerv13
+ * @author     James Jervis - https://github.com/jerv13
  */
 class Country extends \Rcm\Entity\Country
 {
     public function __construct(
-        CountryCmsResource $countryCmsResource,
-        CountryVersion $countryVersion
+        \Zrcms\ContentCountry\Model\Country $country,
+        string $createdByUserId,
+        string $createdReason
     ) {
-        $createdByUserId = $countryVersion->getCreatedByUserId();
-        $createdReason = $countryVersion->getCreatedReason();
-
         $this->setCountryName(
-            $countryVersion->getName()
+            $country->getName()
         );
 
         $this->setIso2(
-            $countryVersion->getIso2()
+            $country->getIso2()
         );
 
         $this->setIso3(
-            $countryVersion->getIso3()
+            $country->getIso3()
         );
 
         parent::__construct($createdByUserId, $createdReason);

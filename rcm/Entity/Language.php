@@ -2,44 +2,41 @@
 
 namespace ZrcmsRcmCompatibility\Rcm\Entity;
 
-use Zrcms\ContentLanguage\Model\LanguageCmsResource;
-use Zrcms\ContentLanguage\Model\LanguageVersion;
-
 /**
  * @deprecated BC ONLY
- * @author James Jervis - https://github.com/jerv13
+ * @author     James Jervis - https://github.com/jerv13
  */
 class Language extends \Rcm\Entity\Language
 {
     /**
-     * @param LanguageCmsResource $languageCmsResource
-     * @param LanguageVersion     $languageVersion
+     * @param \Zrcms\ContentLanguage\Model\Language $language
+     * @param string                                $createdByUserId
+     * @param string                                $createdReason
      */
     public function __construct(
-        LanguageCmsResource $languageCmsResource,
-        LanguageVersion $languageVersion
+        \Zrcms\ContentLanguage\Model\Language $language,
+        string $createdByUserId,
+        string $createdReason
     ) {
-        $createdByUserId = $languageVersion->getCreatedByUserId();
-        $createdReason = $languageVersion->getCreatedReason();
 
         $this->setIso6391(
-            $languageVersion->getIso6391()
+            $language->getIso6391()
         );
 
         $this->setIso6392b(
-            $languageVersion->getIso6392b()
+            $language->getIso6392b()
         );
 
         $this->setIso6392t(
-            $languageVersion->getIso6392t()
+            $language->getIso6392t()
         );
 
         $this->setLanguageId(
-            $languageCmsResource->getId()
+            $language->getIso6392t()
         );
 
         $this->setLanguageName(
-            $languageVersion->getName()
+            $language->getName()
         );
 
         parent::__construct($createdByUserId, $createdReason);

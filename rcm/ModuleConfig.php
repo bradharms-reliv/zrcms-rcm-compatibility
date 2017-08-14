@@ -17,7 +17,7 @@ class ModuleConfig
     public function __invoke()
     {
         return [
-            'service_manager' => [
+            'dependencies' => [
                 'factories' => [
                     \Rcm\Service\CurrentSite::class => CurrentSiteFactory::class,
                 ],
