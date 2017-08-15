@@ -8,7 +8,7 @@ RCM Port
     
 - EventManger and events ported to Middleware
     - Logout
-    - 
+    - issue with RcmUser\Acl\Service\AuthorizeService (416) $this->getEventManager()->trigger(
     
 - Need GetViewLayoutTags (port or wrap from ZF view helpers):
     - rcmGoogleAnalytics
