@@ -15,8 +15,8 @@ class ModulesConfig
     {
         $zrcmsModules = [
             // Low level
-            new \ZrcmsRcmCompatibility\Rcm\ModuleConfig(),
-            new \ZrcmsRcmCompatibility\RcmDisabler\ModuleConfig(),
+            //new \ZrcmsRcmCompatibility\Rcm\ModuleConfig(),
+            //new \ZrcmsRcmCompatibility\RcmDisabler\ModuleConfig(),
         ];
 
         $configManager = new \Zend\ConfigAggregator\ConfigAggregator(
