@@ -1,7 +1,6 @@
 RCM Port
 ========
 
-- Cannot override ZF2 services because the config merge
 - Create common service BC layer
     -x Current Request
     -x CurrentSite
@@ -16,3 +15,6 @@ RCM Port
     - rcmAdminPanel
     - rcmHtmlEditorOptions
     - basePath?
+
+- RCM page-types from RCM
+    - How to handle page types = product pages

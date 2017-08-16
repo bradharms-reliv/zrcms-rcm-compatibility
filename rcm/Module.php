@@ -16,7 +16,6 @@ class Module
      */
     public function getConfig()
     {
-        return [];
         $newConfigObject = new ModuleConfig();
 
         $newConfig = $newConfigObject->__invoke();
