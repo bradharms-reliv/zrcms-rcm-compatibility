@@ -11,10 +11,15 @@ RCM Port
     
 - Need GetViewLayoutTags (port or wrap from ZF view helpers):
     - rcmGoogleAnalytics
-    - browser-warning.html
+    -x browser-warning.html
     - rcmAdminPanel
     - rcmHtmlEditorOptions
     - basePath?
 
 - RCM page-types from RCM
     - How to handle page types = product pages
+
+- RCM User needs PSR7 request interface
+    - Get user from request
+    - IsAllowed from request PHP API 
+    -
