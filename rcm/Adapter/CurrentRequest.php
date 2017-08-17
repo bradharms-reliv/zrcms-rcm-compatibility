@@ -1,6 +1,6 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Rcm\Http;
+namespace ZrcmsRcmCompatibility\Rcm\Adapter;
 
 use Psr\Http\Message\ServerRequestInterface;
 
