@@ -2,12 +2,17 @@
 
 namespace ZrcmsRcmCompatibility\Rcm;
 
+use ZrcmsRcmCompatibility\Rcm\Acl\ResourceNameZrcmsFactory;
 use ZrcmsRcmCompatibility\Rcm\Adapter\CurrentRequest;
 use ZrcmsRcmCompatibility\Rcm\Adapter\CurrentRequestFactory;
+use ZrcmsRcmCompatibility\Rcm\Adapter\GetRcmConfig;
+use ZrcmsRcmCompatibility\Rcm\Adapter\GetRcmConfigFactory;
 use ZrcmsRcmCompatibility\Rcm\Adapter\RcmSiteFromHost;
 use ZrcmsRcmCompatibility\Rcm\Adapter\RcmSiteFromHostFactory;
 use ZrcmsRcmCompatibility\Rcm\Adapter\RcmSiteFromRequest;
 use ZrcmsRcmCompatibility\Rcm\Adapter\RcmSiteFromRequestFactory;
+use ZrcmsRcmCompatibility\Rcm\Factory\CmsPermissionsChecksFactory;
+use ZrcmsRcmCompatibility\Rcm\Factory\SessionManagerFactory;
 use ZrcmsRcmCompatibility\Rcm\Service\CurrentSiteFactory;
 use ZrcmsRcmCompatibility\Rcm\Service\SiteServiceFactory;
 
@@ -23,11 +28,23 @@ class ModuleConfig
      */
     public function __invoke()
     {
+
         return [
             'dependencies' => [
                 'factories' => [
+                    /* Acl ============================= */
+                    \Rcm\Acl\CmsPermissionChecks::class
+                    => CmsPermissionsChecksFactory::class,
+
+                    \Rcm\Acl\ResourceName::class
+                    => ResourceNameZrcmsFactory::class,
+
+                    /* Adapter ============================= */
                     CurrentRequest::class
                     => CurrentRequestFactory::class,
+
+                    GetRcmConfig::class
+                    => GetRcmConfigFactory::class,
 
                     RcmSiteFromHost::class
                     => RcmSiteFromHostFactory::class,
@@ -35,8 +52,12 @@ class ModuleConfig
                     RcmSiteFromRequest::class
                     => RcmSiteFromRequestFactory::class,
 
+                    /* Service ============================= */
                     \Rcm\Service\CurrentSite::class
                     => CurrentSiteFactory::class,
+
+                    \Rcm\Service\SessionManager::class
+                    => SessionManagerFactory::class,
 
                     \Rcm\Service\SiteService::class
                     => SiteServiceFactory::class,

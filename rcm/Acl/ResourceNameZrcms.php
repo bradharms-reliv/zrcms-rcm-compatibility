@@ -5,6 +5,7 @@ namespace ZrcmsRcmCompatibility\Rcm\Acl;
 use Rcm\Acl\ResourceName;
 
 /**
+ * @deprecated BC ONLY
  * @todo Page types do not exist anymore and pageNames contain slashes
  *
  * @author James Jervis - https://github.com/jerv13
