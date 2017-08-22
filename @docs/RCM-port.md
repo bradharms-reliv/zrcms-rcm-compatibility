@@ -4,32 +4,32 @@ RCM Port
 - Add Expressive ModuleConfigs to each RCM module and prepare for 
   FORK (xxx-static (JS and CSS) xxx (server))
   
-    - action-button 1.2.0
-    - admin 1.21.0 FORK to new ZRCMS module
+    - action-button tagged-1.2.0
+    - admin tagged-1.21.0 FORK to new ZRCMS module
         - Port controllers and routes (adapter to new APIs)
         - deal with form elements?
         - Deal with includeFileManager?
         - Deal with navigation (new navigation GetViewLayoutTags)
         - Deal with event (always middleware?) (new rcmAdminPanel GetViewLayoutTags)
-    - call-to-action-box 1.2.0
-    - config 1.1.0
-    - core-js 1.1.0
-    - dynamic-navigation 1.21.0
+    - call-to-action-box tagged-1.2.0
+    - config tagged-1.1.0
+    - core-js tagged-1.1.0
+    - dynamic-navigation tagged-1.21.0
         - Port to zrcms
         - PluginController need to be ported
         - 
-    - google-analytics 1.21.0
+    - google-analytics tagged-1.21.0
         - 3 controllers need to be ported
         - View helper RcmGoogleAnalyticsJsHelper
-    - google-search-box 1.2.0
+    - google-search-box tagged-1.2.0
         - View helpers
-    - html-area 1.2.0
-    - html-purifier 1.2.0
-    - i18n (no change)
+    - html-area tagged-1.2.0
+    - html-purifier tagged-1.2.0
+    - i18n (no change yet)
         - Remove ZF2 config values from ModuleConfig
         - View helpers
         - Controllers and controller plugins
-    - image-with-thumbnail 1.1.0
+    - image-with-thumbnail tagged-1.1.0
     
      - PLUS MORE
     
