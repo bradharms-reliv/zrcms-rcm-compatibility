@@ -48,7 +48,6 @@ class GetRcmPluginController
         }
 
         if (!$serviceManager->has($pluginName)) {
-
             return new BaseController(
                 $this->serviceManager->get('Config'),
                 $pluginName,
