@@ -7,6 +7,10 @@ use ZrcmsRcmCompatibility\Rcm\Adapter\CurrentRequest;
 use ZrcmsRcmCompatibility\Rcm\Adapter\CurrentRequestFactory;
 use ZrcmsRcmCompatibility\Rcm\Adapter\GetRcmConfig;
 use ZrcmsRcmCompatibility\Rcm\Adapter\GetRcmConfigFactory;
+use ZrcmsRcmCompatibility\Rcm\Adapter\GetRcmPluginController;
+use ZrcmsRcmCompatibility\Rcm\Adapter\GetRcmPluginControllerFactory;
+use ZrcmsRcmCompatibility\Rcm\Adapter\GetRcmViewRenderer;
+use ZrcmsRcmCompatibility\Rcm\Adapter\GetRcmViewRendererFactory;
 use ZrcmsRcmCompatibility\Rcm\Adapter\RcmSiteFromHost;
 use ZrcmsRcmCompatibility\Rcm\Adapter\RcmSiteFromHostFactory;
 use ZrcmsRcmCompatibility\Rcm\Adapter\RcmSiteFromRequest;
@@ -28,7 +32,6 @@ class ModuleConfig
      */
     public function __invoke()
     {
-
         return [
             'dependencies' => [
                 'factories' => [
@@ -45,6 +48,12 @@ class ModuleConfig
 
                     GetRcmConfig::class
                     => GetRcmConfigFactory::class,
+
+                    GetRcmPluginController::class
+                    => GetRcmPluginControllerFactory::class,
+
+                    GetRcmViewRenderer::class
+                    => GetRcmViewRendererFactory::class,
 
                     RcmSiteFromHost::class
                     => RcmSiteFromHostFactory::class,

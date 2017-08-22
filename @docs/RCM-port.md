@@ -18,12 +18,20 @@ RCM Port
         - Port to zrcms
         - PluginController need to be ported
         - 
-    
-    
+    - google-analytics 1.21.0
+        - 3 controllers need to be ported
+        - View helper RcmGoogleAnalyticsJsHelper
+    - google-search-box 1.2.0
+        - View helpers
     - html-area 1.2.0
     - html-purifier 1.2.0
+    - i18n (no change)
+        - Remove ZF2 config values from ModuleConfig
+        - View helpers
+        - Controllers and controller plugins
+    - image-with-thumbnail 1.1.0
     
-    
+     - PLUS MORE
     
     "phpunit/phpunit": "5.*",
     "squizlabs/php_codesniffer": "3.*"
