@@ -88,6 +88,8 @@ Milestones
     -
 
 - asset_manager
-    - Build PSR service like: AssetManager\Service\AssetManager
-    - Build ModuleConfig 
-    - Build middleware
+    -x Build PSR service like: AssetManager\Service\AssetManager
+    -x Build ModuleConfig 
+    -x Build middleware
+
+- Cache break urls
