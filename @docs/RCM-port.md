@@ -68,3 +68,6 @@ RCM Port
     -
 
 - asset_manager
+    - Build PSR service like: AssetManager\Service\AssetManager
+    - Build ModuleConfig 
+    - Build middleware
