@@ -35,7 +35,7 @@ class GetRcmConfig
 
         $rcmConfig = $module->getConfig();
 
-        $this->mergeConfig = array_merge_recursive(
+        $this->mergeConfig = \Zend\Stdlib\ArrayUtils::merge(
             $rcmConfig,
             $this->config
         );

@@ -2,6 +2,8 @@
 
 namespace ZrcmsRcmCompatibility\Rcm;
 
+use Doctrine\Common\Util\Debug;
+use Rcm\Module;
 use ZrcmsRcmCompatibility\Rcm\Acl\ResourceNameZrcmsFactory;
 use ZrcmsRcmCompatibility\Rcm\Adapter\CurrentRequest;
 use ZrcmsRcmCompatibility\Rcm\Adapter\CurrentRequestFactory;
@@ -32,46 +34,62 @@ class ModuleConfig
      */
     public function __invoke()
     {
+        $rcmModule = new Module();
+        $rcmConfig = $rcmModule->getConfig();
+
+        $dependencies = [
+            'factories' => [
+                /* Acl ============================= */
+                \Rcm\Acl\CmsPermissionChecks::class
+                => CmsPermissionsChecksFactory::class,
+
+                \Rcm\Acl\ResourceName::class
+                => ResourceNameZrcmsFactory::class,
+
+                /* Adapter ============================= */
+                CurrentRequest::class
+                => CurrentRequestFactory::class,
+
+                GetRcmConfig::class
+                => GetRcmConfigFactory::class,
+
+                GetRcmPluginController::class
+                => GetRcmPluginControllerFactory::class,
+
+                GetRcmViewRenderer::class
+                => GetRcmViewRendererFactory::class,
+
+                RcmSiteFromHost::class
+                => RcmSiteFromHostFactory::class,
+
+                RcmSiteFromRequest::class
+                => RcmSiteFromRequestFactory::class,
+
+                /* Service ============================= */
+                \Rcm\Service\CurrentSite::class
+                => CurrentSiteFactory::class,
+
+                \Rcm\Service\SessionManager::class
+                => SessionManagerFactory::class,
+
+                \Rcm\Service\SiteService::class
+                => SiteServiceFactory::class,
+            ]
+        ];
+
+        $dependencies = \Zend\Stdlib\ArrayUtils::merge(
+            $rcmConfig['service_manager'],
+            $dependencies
+        );
+
         return [
-            'dependencies' => [
-                'factories' => [
-                    /* Acl ============================= */
-                    \Rcm\Acl\CmsPermissionChecks::class
-                    => CmsPermissionsChecksFactory::class,
-
-                    \Rcm\Acl\ResourceName::class
-                    => ResourceNameZrcmsFactory::class,
-
-                    /* Adapter ============================= */
-                    CurrentRequest::class
-                    => CurrentRequestFactory::class,
-
-                    GetRcmConfig::class
-                    => GetRcmConfigFactory::class,
-
-                    GetRcmPluginController::class
-                    => GetRcmPluginControllerFactory::class,
-
-                    GetRcmViewRenderer::class
-                    => GetRcmViewRendererFactory::class,
-
-                    RcmSiteFromHost::class
-                    => RcmSiteFromHostFactory::class,
-
-                    RcmSiteFromRequest::class
-                    => RcmSiteFromRequestFactory::class,
-
-                    /* Service ============================= */
-                    \Rcm\Service\CurrentSite::class
-                    => CurrentSiteFactory::class,
-
-                    \Rcm\Service\SessionManager::class
-                    => SessionManagerFactory::class,
-
-                    \Rcm\Service\SiteService::class
-                    => SiteServiceFactory::class,
-                ],
-            ],
+            'asset_manager' => $rcmConfig['asset_manager'],
+            'dependencies' => $dependencies,
+            // @todo THIS NEED TO BE KILLED
+            'Rcm' => $rcmConfig['Rcm'],
+            'rcmPlugin' => $rcmConfig['rcmPlugin'],
+            'rcmCache' => $rcmConfig['rcmCache'],
+            'RcmUser' => $rcmConfig['RcmUser'],
         ];
     }
 }

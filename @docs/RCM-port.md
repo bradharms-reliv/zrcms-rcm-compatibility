@@ -1,6 +1,29 @@
 RCM Port
 ========
 
+Milestones
+----------
+
+- Render main site with Rcm turned off
+    - Redirects working
+    - Product pages
+- Render all site with Rcm turned off
+    - Locales working
+    - Redirects working
+- Custom sites (PWS) with Rcm turned off
+- Admin plugins
+    - Edit and publish a page
+    - Edit properties
+- Misc admin stuff
+    - ?????
+- Migrate PROD
+- Port/convert old modules to expressive
+- Turn off ZF2 modules
+- Turn off ZF2
+
+@todo
+-----
+
 - Add Expressive ModuleConfigs to each RCM module and prepare for 
   FORK (xxx-static (JS and CSS) xxx (server))
   
@@ -31,11 +54,8 @@ RCM Port
         - Controllers and controller plugins
     - image-with-thumbnail tagged-1.1.0
     
-     - PLUS MORE
-    
-    "phpunit/phpunit": "5.*",
-    "squizlabs/php_codesniffer": "3.*"
-        
+    - PLUS MORE
+
 - Possible issue with sessions on BC layer
 
 - Create common service BC layer
