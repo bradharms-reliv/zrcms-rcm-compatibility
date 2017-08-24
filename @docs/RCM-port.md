@@ -55,6 +55,35 @@ Milestones
     - image-with-thumbnail tagged-1.1.0
     
     - PLUS MORE
+    
+- Remove direct usage of repositories
+    - 
+CountryRulesService
+LocaleBuilderCountryIso2Code
+LocaleBuilderCountryIso3Code
+LocaleBuilderLanguageIso6391Code
+LocaleBuilderLocale
+LocaleBuilderSite
+WhereBuilderCountryIso2Code
+WhereBuilderCountryIso3Code
+WhereBuilderLanguageIso6391Code
+WhereBuilderLocale
+CartStatusModel
+ProductModel
+FixProductPageRows
+SiteRcmBasicHydrator
+ApiCallToActionController
+PwsDomainController
+BaseSiteService
+PwsService
+RcmApi\Page\Middleware\PageController
+RcmExport\Api\Export
+InventorySyncService
+VistaCountryCodeService
+RcmI18n\Factory\ModelRcmSiteLocalesFactory
+RcmRedirectEditor\ApiController\RedirectController
+
+rcm-admin -bunches
 
 - Possible issue with sessions on BC layer
 
