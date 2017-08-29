@@ -59,7 +59,7 @@ Milestones
 - Remove direct usage of repositories (add specific APIs as possible)
     - tag:
         - core 1.21.0
-        - i18n 1.21.0
+        - i18n 1.21.0 ** Deal with event and use ModuleConfig
         - redirect-editor 1.21.0
         - admin 1.22.0
         - html-purify 1.2.1
@@ -67,7 +67,7 @@ Milestones
     - PwsService ***********
         --Site::find::siteId=FindSite
         --entityManager->createQuery=FindDomainsLike
-        --entityManager->createQuery=FindDomainByName
+        --etityManager->createQuery=FindDomainByName
         
     - RcmApi\Page\Middleware\PageController ************ PIPERAT LAYER
         --Page::sitePageExists::[]=PageExists
