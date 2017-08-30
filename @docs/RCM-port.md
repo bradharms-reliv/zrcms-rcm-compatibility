@@ -48,7 +48,7 @@ Milestones
 - View helpers
     - html-area tagged-1.2.0
     - html-purifier tagged-1.2.0
-    - i18n (no change yet)
+    - i18n
 - Remove ZF2 config values from ModuleConfig
 - View helpers
 - Controllers and controller plugins
@@ -58,11 +58,11 @@ Milestones
     
 - Remove direct usage of repositories (add specific APIs as possible)
     - tag:
-        - core 1.21.0
-        - i18n 1.21.0 ** Deal with event and use ModuleConfig
-        - redirect-editor 1.21.0
-        - admin 1.22.0
-        - html-purify 1.2.1
+        - core tagged-1.21.0
+        - i18n tagged-1.21.0 ** Deal with event and use ModuleConfig
+        - redirect-editor tagged-1.21.0
+        - admin tagged-1.22.0
+        - html-purify tagged-1.2.1
         
     - PwsService ***********
         --Site::find::siteId=FindSite
