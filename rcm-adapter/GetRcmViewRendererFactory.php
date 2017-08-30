@@ -1,6 +1,6 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Rcm\Adapter;
+namespace ZrcmsRcmCompatibility\RcmAdapter;
 
 use Psr\Container\ContainerInterface;
 
@@ -8,17 +8,18 @@ use Psr\Container\ContainerInterface;
  * @deprecated BC ONLY
  * @author James Jervis - https://github.com/jerv13
  */
-class GetRcmConfigFactory
+class GetRcmViewRendererFactory
 {
     /**
      * @param ContainerInterface $serviceContainer
      *
-     * @return GetRcmConfig
+     * @return GetRcmViewRenderer
      */
     public function __invoke(
         $serviceContainer
     ) {
-        $config = $serviceContainer->get('Config');
-        return new GetRcmConfig($config);
+        return new GetRcmViewRenderer(
+            $serviceContainer
+        );
     }
 }

@@ -16,6 +16,7 @@ class ModulesConfig
         $zrcmsModules = [
             // Low level
             new \ZrcmsRcmCompatibility\Rcm\ModuleConfig(),
+            new \ZrcmsRcmCompatibility\RcmAdapter\ModuleConfig(),
             //new \ZrcmsRcmCompatibility\RcmDisabler\ModuleConfig(),
         ];
 

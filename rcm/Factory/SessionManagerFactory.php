@@ -6,7 +6,7 @@ use Psr\Container\ContainerInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Session\Container;
 use Zend\Session\SessionManager;
-use ZrcmsRcmCompatibility\Rcm\Adapter\GetRcmConfig;
+use ZrcmsRcmCompatibility\RcmAdapter\GetRcmConfig;
 
 /**
  * @deprecated BC ONLY

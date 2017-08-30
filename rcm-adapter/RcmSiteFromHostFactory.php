@@ -1,6 +1,6 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Rcm\Adapter;
+namespace ZrcmsRcmCompatibility\RcmAdapter;
 
 use Psr\Container\ContainerInterface;
 use Zrcms\ContentCore\Basic\Api\Repository\FindBasicComponent;

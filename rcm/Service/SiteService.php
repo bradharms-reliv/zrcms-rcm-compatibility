@@ -7,7 +7,7 @@ use Rcm\Service\DomainService;
 use Rcm\Service\PhpServer;
 use Rcm\Tracking\Model\Tracking;
 use Zend\Validator\Ip;
-use ZrcmsRcmCompatibility\Rcm\Adapter\RcmSiteFromHost;
+use ZrcmsRcmCompatibility\RcmAdapter\RcmSiteFromHost;
 
 /**
  * @deprecated BC ONLY

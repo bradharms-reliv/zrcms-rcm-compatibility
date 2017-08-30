@@ -3,7 +3,7 @@
 namespace ZrcmsRcmCompatibility\Rcm\Service;
 
 use Rcm\Service\DomainService;
-use ZrcmsRcmCompatibility\Rcm\Adapter\RcmSiteFromHost;
+use ZrcmsRcmCompatibility\RcmAdapter\RcmSiteFromHost;
 
 /**
  * @deprecated BC ONLY

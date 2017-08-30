@@ -3,7 +3,7 @@
 namespace ZrcmsRcmCompatibility\Rcm\Service;
 
 use Zend\Diactoros\ServerRequestFactory;
-use ZrcmsRcmCompatibility\Rcm\Adapter\RcmSiteFromRequest;
+use ZrcmsRcmCompatibility\RcmAdapter\RcmSiteFromRequest;
 use ZrcmsRcmCompatibility\Rcm\Entity\Site;
 
 /**

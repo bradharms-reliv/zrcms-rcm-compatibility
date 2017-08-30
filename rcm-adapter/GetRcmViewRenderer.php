@@ -1,6 +1,6 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Rcm\Adapter;
+namespace ZrcmsRcmCompatibility\RcmAdapter;
 
 use Doctrine\Common\Util\Debug;
 use Psr\Container\ContainerInterface;

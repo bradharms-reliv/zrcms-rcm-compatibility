@@ -1,6 +1,6 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Rcm\Adapter;
+namespace ZrcmsRcmCompatibility\RcmAdapter;
 
 use Zrcms\ContentCore\Basic\Api\Repository\FindBasicComponent;
 use Zrcms\ContentCore\Site\Api\Repository\FindSiteCmsResourceVersionByHost;

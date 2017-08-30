@@ -1,24 +1,24 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Rcm\Adapter;
+namespace ZrcmsRcmCompatibility\RcmAdapter;
 
 use Psr\Container\ContainerInterface;
 
 /**
+ * @deprecated BC ONLY
  * @author James Jervis - https://github.com/jerv13
  */
-class RcmSiteFromRequestFactory
+class GetRcmConfigFactory
 {
     /**
      * @param ContainerInterface $serviceContainer
      *
-     * @return RcmSiteFromRequest
+     * @return GetRcmConfig
      */
     public function __invoke(
         $serviceContainer
     ) {
-        return new RcmSiteFromRequest(
-            $serviceContainer->get(RcmSiteFromHost::class)
-        );
+        $config = $serviceContainer->get('Config');
+        return new GetRcmConfig($config);
     }
 }
