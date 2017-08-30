@@ -147,10 +147,10 @@ Milestones
         ---Site::find::siteId=FindSite
         ---entityManager::persist($newPage)=SavePage
         
-    -x (lib)RcmI18n\Model\RcmSiteLocales RcmI18n\Factory\ModelRcmSiteLocalesFactory
+    -x (lib)RcmI18n\Model\RcmSiteLocales RcmI18n\Factory\ModelRcmSiteLocalesFactory TESTED
         ---Site::getSites::true=FindActiveSites
         
-    -x (lib)RcmRedirectEditor\ApiController\RedirectController
+    -x (lib)RcmRedirectEditor\ApiController\RedirectController TESTED
         --Redirect::find::id=FindRedirect
         --Redirect::save::Redirect=UpdateRedirect (change code)
         --Redirect::findBy::"null"=FindGlobalRedirects
