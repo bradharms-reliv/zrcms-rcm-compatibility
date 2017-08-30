@@ -25,7 +25,7 @@ class GetRcmViewRenderer
     /**
      * Constructor.
      *
-     * @param ServiceManager $serviceManager
+     * @param ContainerInterface|ServiceManager $serviceManager
      */
     public function __construct($serviceManager)
     {
