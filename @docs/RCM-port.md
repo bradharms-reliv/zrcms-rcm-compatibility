@@ -158,52 +158,52 @@ Milestones
         --Site::find::siteId=FindSite
     
     (lib)RCM ADMIN::::::::::::::::::::::::::::::::::::::::::
-    RcmAdmin\Service\SiteManager
+    - RcmAdmin\Service\SiteManager
         THIS SHOULD NOT BE NEEDED
         
-    RcmAdmin\Controller\ApiAdminCountryController
+    - RcmAdmin\Controller\ApiAdminCountryController
         Country::findBy::[[], ['countryName' => 'ASC']]
         
-    RcmAdmin\Controller\ApiAdminLanguageController
+    - RcmAdmin\Controller\ApiAdminLanguageController
         Language::findBy[[], ['languageName' => 'ASC']]
         
-    RcmAdmin\Controller\ApiAdminManageSitesController
+    - RcmAdmin\Controller\ApiAdminManageSitesController
         Site::createQueryBuilder::"search for sites with domain like"
         Site::find::siteId
         Site::isValidSiteId::siteId
         Domain::createDomain::"createSite"
         siteManager::createSite
         
-    RcmAdmin\Controller\ApiAdminSitePageController
+    - RcmAdmin\Controller\ApiAdminSitePageController
         Page::getSitePage::[site, pageId]
         Page::sitePageExists::[site, pageName, pageType]
         Page::updatePage::[page, data]
         Site::findOneBy::siteId (Site::find::siteId)
         
-    RcmAdmin\Controller\ApiAdminSitesCloneController
+    - RcmAdmin\Controller\ApiAdminSitesCloneController
         Domain::createDomain::"createSite"
         siteManager::copySiteAndPopulate
         Site::find::siteId
         
-    RcmAdmin\Controller\PageViewPermissionsController
+    - RcmAdmin\Controller\PageViewPermissionsController
         Page::isValid::[site, pageName, pageType]
         
-    RcmAdmin\Factory\AdminNavigationFactory
+    - RcmAdmin\Factory\AdminNavigationFactory
         Page::findOneBy::[pageName, pageType]
         Page::getRevisionList::[]
         
-    RcmAdmin\Form\CreateTemplateFromPageForm RcmAdmin\Factory\CreateTemplateFromPageFormFactory
+    - RcmAdmin\Form\CreateTemplateFromPageForm RcmAdmin\Factory\CreateTemplateFromPageFormFactory
         pageRepo::"not used!"
         
-    RcmAdmin\Form\NewPageForm RcmAdmin\Form\NewPageFormFactory
+    - RcmAdmin\Form\NewPageForm RcmAdmin\Form\NewPageFormFactory
         Page::getAllPageIdsAndNamesBySiteThenType::[siteId, pageType]
         
-    RcmAdmin\Controller\PageControllerRcmAdmin\Factory\PageControllerFactory
+    - RcmAdmin\Controller\PageControllerRcmAdmin\Factory\PageControllerFactory
         Page::createPage::[site, pageData]
         Page::findOneBy::[pageId, pageType]
         Page::copyPage::[site, page, pageData]
         
-    RcmAdmin\Service\SiteManager
+    - RcmAdmin\Service\SiteManager
         Page::createPages::[site,settings, ...]
         Country::find::id
         Language::getLanguageByString::[code, format]
