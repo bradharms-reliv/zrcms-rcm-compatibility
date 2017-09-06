@@ -5,6 +5,7 @@ namespace ZrcmsRcmCompatibility\RcmAdapter;
 use Psr\Http\Message\ServerRequestInterface;
 
 /**
+ * @todo Use Rcm\Api\GetSiteByRequest
  * @deprecated BC ONLY
  * @author James Jervis - https://github.com/jerv13
  */
