@@ -7,6 +7,8 @@ Milestones
 - Render main site with Rcm turned off
     - Redirects working
     - Product pages
+    - 404,401 page renders
+    - google analytics
 - Render all site with Rcm turned off
     - Locales working
     - Redirects working
@@ -43,20 +45,23 @@ Milestones
     
 - RcmApi\Site\Middleware\SiteController ************ PIPERAT LAYER
     --EntityManager
-    
-- RcmExport\Api\Export ************ this will still need the entity manager layer of MySql
-    --Site::findBy::[]=FindAllSites(with orderBy, limit)
-    --Container::findBy::['site']=FindContainers(with orderBy, limit)
-    --Page::findBy::['site']=FindPages(with orderBy, limit)
-    --Redirect::findBy::[]=FindRedirects(with orderBy, limit)
-    
+
 - InventorySyncService ************ remove foreign key
     --Country::findOneBy::iso3=FindCountryByIso3
     -- \App\Entity\VistaItem::country=remove foreign key?
     
 - VistaCountryCodeService ************ ????????
     --Country::findOneBy::iso3=FindCountryByIso3
+    - Fix VistaCountryCodeService and use in VistaCaller
     
+- Reliv\RcmGoogleAnalytics\EntityRcmGoogleAnalytics ************ remove foreign key
+    
+- [x] NO CHANGE - RcmExport\Api\Export ************ this will still need the entity manager layer of MySql
+    --Site::findBy::[]=FindAllSites(with orderBy, limit)
+    --Container::findBy::['site']=FindContainers(with orderBy, limit)
+    --Page::findBy::['site']=FindPages(with orderBy, limit)
+    --Redirect::findBy::[]=FindRedirects(with orderBy, limit)
+
 - [x] CountryRulesService TESTED
     ---Country::findOneBy::iso3=FindCountryByIso3
     

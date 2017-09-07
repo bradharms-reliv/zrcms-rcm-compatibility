@@ -4,6 +4,7 @@ namespace ZrcmsRcmCompatibility\Rcm;
 
 use Rcm\Module;
 use ZrcmsRcmCompatibility\Rcm\Acl\ResourceNameZrcmsFactory;
+use ZrcmsRcmCompatibility\Rcm\Api\GetSiteByRequestFactory;
 use ZrcmsRcmCompatibility\Rcm\Factory\CmsPermissionsChecksFactory;
 use ZrcmsRcmCompatibility\Rcm\Factory\SessionManagerFactory;
 use ZrcmsRcmCompatibility\Rcm\Service\CurrentSiteFactory;
@@ -29,6 +30,10 @@ class ModuleConfig
                 /* Acl ============================= */
                 \Rcm\Acl\CmsPermissionChecks::class
                 => CmsPermissionsChecksFactory::class,
+
+                /* Api ============================= */
+                \Rcm\Api\GetSiteByRequest::class
+                => GetSiteByRequestFactory::class,
 
                 \Rcm\Acl\ResourceName::class
                 => ResourceNameZrcmsFactory::class,
