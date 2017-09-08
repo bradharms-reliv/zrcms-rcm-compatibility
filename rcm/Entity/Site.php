@@ -32,13 +32,15 @@ class Site extends \Rcm\Entity\Site
             )
         );
         $this->setNotAuthorizedPage(
-            $siteVersion->getProperty(
-                PropertiesSiteVersion::NOT_AUTHORIZED_PAGE
+            $siteVersion->findStatusPage(
+                '401',
+                '/not-authorized'
             )
         );
         $this->setNotFoundPage(
-            $siteVersion->getProperty(
-                PropertiesSiteVersion::NOT_FOUND_PAGE
+            $siteVersion->findStatusPage(
+                '401',
+                'not-found'
             )
         );
         $this->setSiteId(
