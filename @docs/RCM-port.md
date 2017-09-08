@@ -28,12 +28,7 @@ Milestones
 
 ##### Remove direct usage of repositories (add specific APIs as possible) #####
 
--x tag:
-    -x core tagged-1.21.0
-    -x i18n tagged-1.21.0 ** Deal with event and use ModuleConfig
-    -x redirect-editor tagged-1.21.0
-    -x admin tagged-1.22.0
-    -x html-purify tagged-1.2.1
+- Check for DB relations to site or siteId
     
 - PwsService ***********
     --Site::find::siteId=FindSite
