@@ -4,11 +4,11 @@ namespace ZrcmsRcmCompatibility\RcmAdapter;
 
 use Psr\Container\ContainerInterface;
 use Zrcms\ContentCore\Basic\Api\Repository\FindBasicComponent;
-use Zrcms\ContentCore\Site\Api\Repository\FindSiteCmsResourceVersionByHost;
+use Zrcms\ContentCore\Site\Api\Repository\FindSiteCmsResourceByHost;
 
 /**
  * @deprecated BC ONLY
- * @author James Jervis - https://github.com/jerv13
+ * @author     James Jervis - https://github.com/jerv13
  */
 class RcmSiteFromHostFactory
 {
@@ -21,7 +21,7 @@ class RcmSiteFromHostFactory
         $serviceContainer
     ) {
         return new RcmSiteFromHost(
-            $serviceContainer->get(FindSiteCmsResourceVersionByHost::class),
+            $serviceContainer->get(FindSiteCmsResourceByHost::class),
             $serviceContainer->get(FindBasicComponent::class)
         );
     }

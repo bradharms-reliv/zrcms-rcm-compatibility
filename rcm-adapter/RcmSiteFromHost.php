@@ -3,7 +3,7 @@
 namespace ZrcmsRcmCompatibility\RcmAdapter;
 
 use Zrcms\ContentCore\Basic\Api\Repository\FindBasicComponent;
-use Zrcms\ContentCore\Site\Api\Repository\FindSiteCmsResourceVersionByHost;
+use Zrcms\ContentCore\Site\Api\Repository\FindSiteCmsResourceByHost;
 use Zrcms\ContentCore\Site\Model\PropertiesSiteVersion;
 use Zrcms\ContentCountry\Model\CountriesComponent;
 use Zrcms\ContentLanguage\Model\LanguagesComponent;
@@ -18,14 +18,14 @@ use ZrcmsRcmCompatibility\Rcm\Entity\Site;
 class RcmSiteFromHost
 {
     /**
-     * @param FindSiteCmsResourceVersionByHost $findSiteCmsResourceVersionByHost
+     * @param FindSiteCmsResourceByHost $findSiteCmsResourceByHost
      * @param FindBasicComponent               $findBasicComponent
      */
     public function __construct(
-        FindSiteCmsResourceVersionByHost $findSiteCmsResourceVersionByHost,
+        FindSiteCmsResourceByHost $findSiteCmsResourceByHost,
         FindBasicComponent $findBasicComponent
     ) {
-        $this->findSiteCmsResourceVersionByHost = $findSiteCmsResourceVersionByHost;
+        $this->findSiteCmsResourceByHost = $findSiteCmsResourceByHost;
 
         $this->findBasicComponent = $findBasicComponent;
     }
@@ -40,12 +40,11 @@ class RcmSiteFromHost
         string $host,
         array $options = []
     ) {
-        $siteCmsResourceVersion = $this->findSiteCmsResourceVersionByHost->__invoke(
+        $zrSiteResource = $this->findSiteCmsResourceByHost->__invoke(
             $host
         );
 
-        $zrSiteResource = $siteCmsResourceVersion->getCmsResource();
-        $zrSiteVersion = $siteCmsResourceVersion->getVersion();
+        $zrSiteVersion = $zrSiteResource->getContentVersion();
 
         $countryIso3 = $zrSiteVersion->getProperty(
             PropertiesSiteVersion::COUNTRY_ISO3
