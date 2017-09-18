@@ -2,7 +2,7 @@
 
 namespace ZrcmsRcmCompatibility\Rcm\Entity;
 
-use Zrcms\ContentCore\Site\Model\PropertiesSiteVersion;
+use Zrcms\ContentCore\Site\Fields\FieldsSiteVersion;
 use Zrcms\ContentCore\Site\Model\SiteCmsResource;
 use Zrcms\ContentCore\Site\Model\SiteVersion;
 
@@ -23,12 +23,12 @@ class Site extends \Rcm\Entity\Site
         $domain = $siteCmsResource->getHost();
         $this->setFavIcon(
             $siteVersion->getProperty(
-                PropertiesSiteVersion::FAVICON
+                FieldsSiteVersion::FAVICON
             )
         );
         $this->setLoginPage(
             $siteVersion->getProperty(
-                PropertiesSiteVersion::LOGIN_PAGE
+                FieldsSiteVersion::LOGIN_PAGE
             )
         );
         $this->setNotAuthorizedPage(
@@ -48,7 +48,7 @@ class Site extends \Rcm\Entity\Site
         );
         $this->setSiteTitle(
             $siteVersion->getProperty(
-                PropertiesSiteVersion::TITLE
+                FieldsSiteVersion::TITLE
             )
         );
 
@@ -56,7 +56,7 @@ class Site extends \Rcm\Entity\Site
 
         $this->setTheme(
             $siteVersion->getProperty(
-                PropertiesSiteVersion::TITLE
+                FieldsSiteVersion::TITLE
             )
         );
 

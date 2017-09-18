@@ -4,7 +4,7 @@ namespace ZrcmsRcmCompatibility\RcmAdapter;
 
 use Zrcms\ContentCore\Basic\Api\Repository\FindBasicComponent;
 use Zrcms\ContentCore\Site\Api\Repository\FindSiteCmsResourceByHost;
-use Zrcms\ContentCore\Site\Model\PropertiesSiteVersion;
+use Zrcms\ContentCore\Site\Fields\FieldsSiteVersion;
 use Zrcms\ContentCountry\Model\CountriesComponent;
 use Zrcms\ContentLanguage\Model\LanguagesComponent;
 use ZrcmsRcmCompatibility\Rcm\Entity\Country;
@@ -47,7 +47,7 @@ class RcmSiteFromHost
         $zrSiteVersion = $zrSiteResource->getContentVersion();
 
         $countryIso3 = $zrSiteVersion->getProperty(
-            PropertiesSiteVersion::COUNTRY_ISO3
+            FieldsSiteVersion::COUNTRY_ISO3
         );
 
         /** @var CountriesComponent $countriesComponent */
@@ -64,7 +64,7 @@ class RcmSiteFromHost
         );
 
         $languageIso6392t = $zrSiteVersion->getProperty(
-            PropertiesSiteVersion::LANGUAGE_ISO_939_2T
+            FieldsSiteVersion::LANGUAGE_ISO_939_2T
         );
 
         /** @var LanguagesComponent $languagesComponent */
