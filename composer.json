@@ -41,7 +41,8 @@
       "ZrcmsRcmCompatibility\\": "/",
       "ZrcmsRcmCompatibility\\RcmAdapter\\": "rcm-adapter/",
       "ZrcmsRcmCompatibility\\Compatibility\\": "compatibility/",
-      "ZrcmsRcmCompatibility\\RcmDisabler\\": "rcm-disabler/"
+      "ZrcmsRcmCompatibility\\RcmDisabler\\": "rcm-disabler/",
+      "ZrcmsRcmCompatibility\\Rcm\\": "rcm/"
     }
   },
   "suggest": {
