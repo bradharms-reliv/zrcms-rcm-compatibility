@@ -6,7 +6,7 @@ namespace ZrcmsRcmCompatibility\Rcm\Api\Repository;
  * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
-class Options extends \Rcm\Api\Repository\Options 
+class Options extends \Rcm\Api\Repository\Options
 {
     /**
      * @param array $options

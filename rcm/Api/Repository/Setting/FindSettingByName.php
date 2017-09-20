@@ -2,41 +2,26 @@
 
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Setting;
 
-use Doctrine\ORM\EntityManager;
-use Rcm\Entity\Setting;
-
 /**
- * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
 class FindSettingByName extends \Rcm\Api\Repository\Setting\FindSettingByName
 {
-    /**
-     * @var \Doctrine\ORM\EntityRepository
-     */
-    protected $repository;
-
-    /**
-     * @param EntityManager $entityManager
-     */
-    public function __construct(
-        EntityManager $entityManager
-    ) {
-        $this->repository = $entityManager->getRepository(
-            Setting::class
-        );
+    public function __construct()
+    {
     }
 
     /**
      * @param string $name
      * @param array  $options
      *
-     * @return null|object
+     * @return void
+     * @throws \Exception
      */
     public function __invoke(
         string $name,
         array $options = []
     ) {
-        return $this->repository->findOneBy(['name' => $name]);
+        throw new \Exception('ZRCMS does not support this feature:' . get_class($this));
     }
 }
