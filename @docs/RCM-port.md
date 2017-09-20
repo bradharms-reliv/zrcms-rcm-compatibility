@@ -5,10 +5,10 @@ Milestones
 ----------
 
 - Render main site with Rcm turned off
-    - Redirects working
-    - Product pages
-    - 404,401 page renders
-    - google analytics
+    - x Redirects working
+    - x Product pages
+    - x 404,401 page renders
+    - google analytics 
 - Render all site with Rcm turned off
     - Locales working
     - Redirects working

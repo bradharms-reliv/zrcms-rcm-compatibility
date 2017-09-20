@@ -1,0 +1,24 @@
+<?php
+
+namespace ZrcmsRcmCompatibility\Api\Repository\Domain;
+
+use Doctrine\ORM\EntityManager;
+use Interop\Container\ContainerInterface;
+
+/**
+ * @deprecated BC ONLY
+ */
+class FindDomainsLikeFactory
+{
+    /**
+     * @param ContainerInterface $serviceContainer
+     *
+     * @return FindDomainsLike
+     */
+    public function __invoke($serviceContainer)
+    {
+        return new FindDomainsLike(
+            $serviceContainer->get(EntityManager::class)
+        );
+    }
+}

@@ -7,6 +7,7 @@ use ZrcmsRcmCompatibility\Rcm\Entity\Site;
 use ZrcmsRcmCompatibility\RcmAdapter\RcmSiteFromHost;
 
 /**
+ * @deprecated BC ONLY
  * @author James Jervis - https://github.com/jerv13
  */
 class GetSiteByRequest extends \Rcm\Api\GetSiteByRequest

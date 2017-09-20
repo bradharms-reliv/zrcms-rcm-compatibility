@@ -6,6 +6,7 @@ use Psr\Container\ContainerInterface;
 use ZrcmsRcmCompatibility\RcmAdapter\RcmSiteFromHost;
 
 /**
+ * @deprecated BC ONLY
  * @author James Jervis - https://github.com/jerv13
  */
 class GetSiteByRequestFactory
