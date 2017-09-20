@@ -35,6 +35,9 @@ class ModuleConfig
 
                     RcmSiteFromRequest::class
                     => RcmSiteFromRequestFactory::class,
+
+                    RcmSiteFromZrcmsSiteCmsResource::class
+                    => RcmSiteFromZrcmsSiteCmsResourceFactory::class
                 ]
             ],
         ];

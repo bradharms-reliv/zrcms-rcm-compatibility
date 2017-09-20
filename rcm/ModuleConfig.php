@@ -3,6 +3,10 @@
 namespace ZrcmsRcmCompatibility\Rcm;
 
 use Rcm\Module;
+use ZrcmsRcmCompatibility\Api\Repository\Country\FindCountryByIso3;
+use ZrcmsRcmCompatibility\Api\Repository\Country\FindCountryByIso3Factory;
+use ZrcmsRcmCompatibility\Api\Repository\Site\FindSite;
+use ZrcmsRcmCompatibility\Api\Repository\Site\FindSiteFactory;
 use ZrcmsRcmCompatibility\Rcm\Acl\ResourceNameZrcmsFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\GetSiteByRequestFactory;
 use ZrcmsRcmCompatibility\Rcm\Factory\CmsPermissionsChecksFactory;
@@ -32,6 +36,12 @@ class ModuleConfig
                 => CmsPermissionsChecksFactory::class,
 
                 /* Api ============================= */
+                FindCountryByIso3::class
+                => FindCountryByIso3Factory::class,
+
+                FindSite::class
+                => FindSiteFactory::class,
+                
                 \Rcm\Api\GetSiteByRequest::class
                 => GetSiteByRequestFactory::class,
 

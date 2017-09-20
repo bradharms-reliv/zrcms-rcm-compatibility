@@ -18,16 +18,15 @@ use ZrcmsRcmCompatibility\Rcm\Entity\Site;
 class RcmSiteFromHost
 {
     /**
-     * @param FindSiteCmsResourceByHost $findSiteCmsResourceByHost
-     * @param FindBasicComponent               $findBasicComponent
+     * @param FindSiteCmsResourceByHost       $findSiteCmsResourceByHost
+     * @param RcmSiteFromZrcmsSiteCmsResource $rcmSiteFromZrcmsSiteCmsResource
      */
     public function __construct(
         FindSiteCmsResourceByHost $findSiteCmsResourceByHost,
-        FindBasicComponent $findBasicComponent
+        RcmSiteFromZrcmsSiteCmsResource $rcmSiteFromZrcmsSiteCmsResource
     ) {
         $this->findSiteCmsResourceByHost = $findSiteCmsResourceByHost;
-
-        $this->findBasicComponent = $findBasicComponent;
+        $this->rcmSiteFromZrcmsSiteCmsResource = $rcmSiteFromZrcmsSiteCmsResource;
     }
 
     /**
@@ -40,51 +39,10 @@ class RcmSiteFromHost
         string $host,
         array $options = []
     ) {
-        $zrSiteResource = $this->findSiteCmsResourceByHost->__invoke(
+        $siteCmsResource = $this->findSiteCmsResourceByHost->__invoke(
             $host
         );
 
-        $zrSiteVersion = $zrSiteResource->getContentVersion();
-
-        $countryIso3 = $zrSiteVersion->getProperty(
-            FieldsSiteVersion::COUNTRY_ISO3
-        );
-
-        /** @var CountriesComponent $countriesComponent */
-        $countriesComponent = $this->findBasicComponent->__invoke(
-            'zrcms-countries'
-        );
-
-        $zrCountry = $countriesComponent->getCountry($countryIso3);
-
-        $country = new Country(
-            $zrCountry,
-            $countriesComponent->getCreatedByUserId(),
-            $countriesComponent->getCreatedReason()
-        );
-
-        $languageIso6392t = $zrSiteVersion->getProperty(
-            FieldsSiteVersion::LANGUAGE_ISO_939_2T
-        );
-
-        /** @var LanguagesComponent $languagesComponent */
-        $languagesComponent = $this->findBasicComponent->__invoke(
-            'zrcms-languages'
-        );
-
-        $zrLanguage = $languagesComponent->getLanguage($languageIso6392t);
-
-        $language = new Language(
-            $zrLanguage,
-            $languagesComponent->getCreatedByUserId(),
-            $languagesComponent->getCreatedReason()
-        );
-
-        return new Site(
-            $zrSiteResource,
-            $zrSiteVersion,
-            $country,
-            $language
-        );
+        return $this->rcmSiteFromZrcmsSiteCmsResource->__invoke($siteCmsResource);
     }
 }

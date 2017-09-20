@@ -2,11 +2,11 @@
 
 namespace ZrcmsRcmCompatibility\Api\Repository\Site;
 
-use Doctrine\ORM\EntityManager;
 use Interop\Container\ContainerInterface;
+use Zrcms\ContentCore\Site\Api\Repository\FindSiteCmsResource;
+use ZrcmsRcmCompatibility\RcmAdapter\RcmSiteFromZrcmsSiteCmsResource;
 
 /**
- * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
 class FindSiteFactory
@@ -19,7 +19,8 @@ class FindSiteFactory
     public function __invoke($serviceContainer)
     {
         return new FindSite(
-            $serviceContainer->get(EntityManager::class)
+            $serviceContainer->get(FindSiteCmsResource::class),
+            $serviceContainer->get(RcmSiteFromZrcmsSiteCmsResource::class)
         );
     }
 }

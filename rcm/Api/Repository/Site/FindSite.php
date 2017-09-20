@@ -2,29 +2,25 @@
 
 namespace ZrcmsRcmCompatibility\Api\Repository\Site;
 
-use Doctrine\ORM\EntityManager;
 use Rcm\Entity\Site;
+use Zrcms\ContentCore\Site\Api\Repository\FindSiteCmsResource;
+use ZrcmsRcmCompatibility\RcmAdapter\RcmSiteFromZrcmsSiteCmsResource;
 
 /**
- * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
 class FindSite
 {
     /**
-     * @var \Rcm\Repository\Site
-     */
-    protected $repository;
-
-    /**
-     * @param EntityManager $entityManager
+     * @param FindSiteCmsResource             $findSiteCmsResource
+     * @param RcmSiteFromZrcmsSiteCmsResource $rcmSiteFromZrcmsSiteCmsResource
      */
     public function __construct(
-        EntityManager $entityManager
+        FindSiteCmsResource $findSiteCmsResource,
+        RcmSiteFromZrcmsSiteCmsResource $rcmSiteFromZrcmsSiteCmsResource
     ) {
-        $this->repository = $entityManager->getRepository(
-            Site::class
-        );
+        $this->findSiteCmsResource = $findSiteCmsResource;
+        $this->rcmSiteFromZrcmsSiteCmsResource = $rcmSiteFromZrcmsSiteCmsResource;
     }
 
     /**
@@ -37,6 +33,10 @@ class FindSite
         int $id,
         array $options = []
     ) {
-        return $this->repository->find($id);
+        $siteCmsResource = $this->findSiteCmsResource->__invoke(
+            $id
+        );
+
+        return $this->rcmSiteFromZrcmsSiteCmsResource->__invoke($siteCmsResource);
     }
 }

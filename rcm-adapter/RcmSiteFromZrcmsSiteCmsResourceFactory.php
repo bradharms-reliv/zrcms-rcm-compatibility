@@ -3,23 +3,24 @@
 namespace ZrcmsRcmCompatibility\RcmAdapter;
 
 use Psr\Container\ContainerInterface;
+use Zrcms\ContentCore\Basic\Api\Repository\FindBasicComponent;
 
 /**
- * @deprecated BC ONLY
+ * @deprecated
  * @author James Jervis - https://github.com/jerv13
  */
-class RcmSiteFromRequestFactory
+class RcmSiteFromZrcmsSiteCmsResourceFactory
 {
     /**
      * @param ContainerInterface $serviceContainer
      *
-     * @return RcmSiteFromRequest
+     * @return RcmSiteFromZrcmsSiteCmsResource
      */
     public function __invoke(
         $serviceContainer
     ) {
-        return new RcmSiteFromRequest(
-            $serviceContainer->get(RcmSiteFromHost::class)
+        return new RcmSiteFromZrcmsSiteCmsResource(
+            $serviceContainer->get(FindBasicComponent::class)
         );
     }
 }

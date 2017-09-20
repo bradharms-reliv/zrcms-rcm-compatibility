@@ -22,7 +22,7 @@ class RcmSiteFromHostFactory
     ) {
         return new RcmSiteFromHost(
             $serviceContainer->get(FindSiteCmsResourceByHost::class),
-            $serviceContainer->get(FindBasicComponent::class)
+            $serviceContainer->get(RcmSiteFromZrcmsSiteCmsResource::class)
         );
     }
 }
