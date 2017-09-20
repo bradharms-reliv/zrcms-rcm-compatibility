@@ -2,10 +2,10 @@
 
 namespace ZrcmsRcmCompatibility\Rcm;
 
+use Rcm\Api\Repository\Country\FindCountryByIso3;
+use Rcm\Api\Repository\Site\FindSite;
 use Rcm\Module;
-use ZrcmsRcmCompatibility\Api\Repository\Country\FindCountryByIso3;
 use ZrcmsRcmCompatibility\Api\Repository\Country\FindCountryByIso3Factory;
-use ZrcmsRcmCompatibility\Api\Repository\Site\FindSite;
 use ZrcmsRcmCompatibility\Api\Repository\Site\FindSiteFactory;
 use ZrcmsRcmCompatibility\Rcm\Acl\ResourceNameZrcmsFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\GetSiteByRequestFactory;
@@ -41,7 +41,7 @@ class ModuleConfig
 
                 FindSite::class
                 => FindSiteFactory::class,
-                
+
                 \Rcm\Api\GetSiteByRequest::class
                 => GetSiteByRequestFactory::class,
 
