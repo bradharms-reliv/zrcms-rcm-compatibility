@@ -1,6 +1,6 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Api\Repository\Redirect;
+namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Redirect;
 
 use Doctrine\ORM\EntityManager;
 use Rcm\Entity\Redirect;
@@ -10,7 +10,7 @@ use Rcm\Api\Repository\Options;
  * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
-class FindGlobalRedirects
+class FindGlobalRedirects extends \Rcm\Api\Repository\Redirect\FindGlobalRedirects
 {
     const OPTION_ORDER_BY = 'orderBy';
     const OPTION_LIMIT = 'limit';

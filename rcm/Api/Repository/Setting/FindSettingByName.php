@@ -1,6 +1,6 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Api\Repository\Setting;
+namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Setting;
 
 use Doctrine\ORM\EntityManager;
 use Rcm\Entity\Setting;
@@ -9,7 +9,7 @@ use Rcm\Entity\Setting;
  * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
-class FindSettingByName
+class FindSettingByName extends \Rcm\Api\Repository\Setting\FindSettingByName
 {
     /**
      * @var \Doctrine\ORM\EntityRepository

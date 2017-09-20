@@ -1,6 +1,6 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Api\Repository\Site;
+namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Site;
 
 use Interop\Container\ContainerInterface;
 use Zrcms\ContentCore\Site\Api\Repository\FindSiteCmsResource;

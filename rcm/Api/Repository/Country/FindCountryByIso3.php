@@ -1,8 +1,7 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Api\Repository\Country;
+namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Country;
 
-use Doctrine\ORM\EntityManager;
 use Rcm\Entity\Country;
 use Zrcms\ContentCore\Basic\Api\Repository\FindBasicComponent;
 use Zrcms\ContentCountry\Model\CountriesComponent;
@@ -10,7 +9,7 @@ use Zrcms\ContentCountry\Model\CountriesComponent;
 /**
  * @deprecated BC ONLY
  */
-class FindCountryByIso3
+class FindCountryByIso3 extends \Rcm\Api\Repository\Country\FindCountryByIso3
 {
     /**
      * @var FindBasicComponent

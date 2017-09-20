@@ -1,6 +1,6 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Api\Repository\Page;
+namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Page;
 
 use Doctrine\ORM\EntityManager;
 use Rcm\Entity\Page;
@@ -10,7 +10,7 @@ use Rcm\Api\Repository\Options;
  * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
-class FindPages
+class FindPages extends \Rcm\Api\Repository\Page\FindPages
 {
     const OPTION_ORDER_BY = 'orderBy';
     const OPTION_LIMIT = 'limit';

@@ -1,6 +1,6 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Api\Repository\Site;
+namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Site;
 
 use Doctrine\ORM\EntityManager;
 use Rcm\Entity\Site;
@@ -10,7 +10,7 @@ use Rcm\Api\Repository\Options;
  * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
-class FindAllSites
+class FindAllSites extends \Rcm\Api\Repository\Site\FindAllSites
 {
     const OPTION_ORDER_BY = 'orderBy';
     const OPTION_LIMIT = 'limit';

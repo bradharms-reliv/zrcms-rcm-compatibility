@@ -2,13 +2,11 @@
 
 namespace ZrcmsRcmCompatibility\Rcm;
 
-use Rcm\Api\Repository\Country\FindCountryByIso3;
-use Rcm\Api\Repository\Site\FindSite;
 use Rcm\Module;
-use ZrcmsRcmCompatibility\Api\Repository\Country\FindCountryByIso3Factory;
-use ZrcmsRcmCompatibility\Api\Repository\Site\FindSiteFactory;
 use ZrcmsRcmCompatibility\Rcm\Acl\ResourceNameZrcmsFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\GetSiteByRequestFactory;
+use ZrcmsRcmCompatibility\Rcm\Api\Repository\Country\FindCountryByIso3Factory;
+use ZrcmsRcmCompatibility\Rcm\Api\Repository\Site\FindSiteFactory;
 use ZrcmsRcmCompatibility\Rcm\Factory\CmsPermissionsChecksFactory;
 use ZrcmsRcmCompatibility\Rcm\Factory\SessionManagerFactory;
 use ZrcmsRcmCompatibility\Rcm\Service\CurrentSiteFactory;
@@ -36,10 +34,10 @@ class ModuleConfig
                 => CmsPermissionsChecksFactory::class,
 
                 /* Api ============================= */
-                FindCountryByIso3::class
+                \Rcm\Api\Repository\Country\FindCountryByIso3::class
                 => FindCountryByIso3Factory::class,
 
-                FindSite::class
+                \Rcm\Api\Repository\Site\FindSite::class
                 => FindSiteFactory::class,
 
                 \Rcm\Api\GetSiteByRequest::class

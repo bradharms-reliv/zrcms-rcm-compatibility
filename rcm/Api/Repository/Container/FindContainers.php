@@ -1,6 +1,6 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Api\Repository\Container;
+namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Container;
 
 use Doctrine\ORM\EntityManager;
 use Rcm\Entity\Container;
@@ -10,7 +10,7 @@ use Rcm\Api\Repository\Options;
  * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
-class FindContainers
+class FindContainers extends \Rcm\Api\Repository\Container\FindContainers
 {
     const OPTION_ORDER_BY = 'orderBy';
     const OPTION_LIMIT = 'limit';

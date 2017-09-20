@@ -1,6 +1,6 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Api\Repository\Site;
+namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Site;
 
 use Doctrine\ORM\EntityManager;
 use Rcm\Entity\Country;
@@ -18,7 +18,7 @@ use Rcm\Tracking\Model\Tracking;
  * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
-class CreateSite
+class CreateSite extends \Rcm\Api\Repository\Site\CreateSite
 {
     const OPTION_AUTHOR = 'author';
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Api\Repository\Domain;
+namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Domain;
 
 use Doctrine\ORM\EntityManager;
 use Rcm\Entity\Domain;
@@ -9,7 +9,7 @@ use Rcm\Entity\Domain;
  * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
-class FindDomainByName
+class FindDomainByName extends \Rcm\Api\Repository\Domain\FindDomainByName
 {
     /**
      * @var \Rcm\Repository\Domain

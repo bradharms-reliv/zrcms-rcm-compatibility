@@ -1,6 +1,6 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Api\Repository\Country;
+namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Country;
 
 use Doctrine\ORM\EntityManager;
 use Rcm\Entity\Country;
@@ -9,7 +9,7 @@ use Rcm\Entity\Country;
  * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
-class FindCountryByIso2
+class FindCountryByIso2 extends \Rcm\Api\Repository\Country\FindCountryByIso2
 {
     /**
      * @var \Rcm\Repository\Country

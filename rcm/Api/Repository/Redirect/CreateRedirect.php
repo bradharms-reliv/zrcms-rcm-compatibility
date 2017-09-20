@@ -1,6 +1,6 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Api\Repository\Redirect;
+namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Redirect;
 
 use Doctrine\ORM\EntityManager;
 use Rcm\Entity\Redirect;
@@ -10,7 +10,7 @@ use Rcm\Exception\RedirectException;
  * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
-class CreateRedirect
+class CreateRedirect extends \Rcm\Api\Repository\Redirect\CreateRedirect
 {
     /**
      * @var \Rcm\Repository\Redirect

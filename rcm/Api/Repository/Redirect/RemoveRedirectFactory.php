@@ -1,6 +1,6 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Api\Repository\Redirect;
+namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Redirect;
 
 use Doctrine\ORM\EntityManager;
 use Interop\Container\ContainerInterface;

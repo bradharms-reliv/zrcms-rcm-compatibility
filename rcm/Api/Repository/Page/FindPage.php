@@ -1,6 +1,6 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Api\Repository\Page;
+namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Page;
 
 use Doctrine\ORM\EntityManager;
 use Rcm\Entity\Page;
@@ -10,7 +10,7 @@ use Rcm\Page\PageTypes\PageTypes;
  * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
-class FindPage
+class FindPage extends \Rcm\Api\Repository\Page\FindPage
 {
     /**
      * @var \Rcm\Repository\Page

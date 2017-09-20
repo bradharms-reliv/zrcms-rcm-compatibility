@@ -1,6 +1,6 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Api\Repository\Redirect;
+namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Redirect;
 
 use Doctrine\ORM\EntityManager;
 use Rcm\Entity\Redirect;
@@ -9,7 +9,7 @@ use Rcm\Entity\Redirect;
  * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
-class FindAllSiteRedirects
+class FindAllSiteRedirects extends \Rcm\Api\Repository\Redirect\FindAllSiteRedirects
 {
     /**
      * @var EntityManager

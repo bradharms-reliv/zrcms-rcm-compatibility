@@ -1,6 +1,6 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Api\Repository\Container;
+namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Container;
 
 use Doctrine\ORM\EntityManager;
 use Interop\Container\ContainerInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Api\Repository\Country;
+namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Country;
 
 use Interop\Container\ContainerInterface;
 use Zrcms\ContentCore\Basic\Api\Repository\FindBasicComponent;

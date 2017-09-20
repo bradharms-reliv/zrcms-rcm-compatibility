@@ -1,6 +1,6 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Api\Repository\Site;
+namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Site;
 
 use Doctrine\ORM\EntityManager;
 use Rcm\Entity\Container;
@@ -13,7 +13,7 @@ use Rcm\Tracking\Model\Tracking;
  * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
-class CopySite
+class CopySite extends \Rcm\Api\Repository\Site\CopySite
 {
     const OPTION_DO_FLUSH = 'doFlush';
     /**

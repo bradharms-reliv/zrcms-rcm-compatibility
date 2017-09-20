@@ -1,6 +1,6 @@
 <?php
 
-namespace ZrcmsRcmCompatibility\Api\Repository\Language;
+namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Language;
 
 use Doctrine\ORM\EntityManager;
 use Rcm\Entity\Language;
@@ -9,7 +9,7 @@ use Rcm\Entity\Language;
  * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
-class FindLanguageByIso6391
+class FindLanguageByIso6391 extends \Rcm\Api\Repository\Language\FindLanguageByIso6391
 {
     /**
      * @var \Rcm\Repository\Language
