@@ -3,6 +3,7 @@
 namespace ZrcmsRcmCompatibility\Api\Repository;
 
 /**
+ * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
 class Options

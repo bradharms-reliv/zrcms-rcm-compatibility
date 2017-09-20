@@ -7,6 +7,7 @@ use Rcm\Entity\Redirect;
 use Rcm\Exception\RedirectException;
 
 /**
+ * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
 class UpdateRedirect

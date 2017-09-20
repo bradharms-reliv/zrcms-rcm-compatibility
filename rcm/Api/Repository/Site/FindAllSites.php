@@ -7,6 +7,7 @@ use Rcm\Entity\Site;
 use Rcm\Api\Repository\Options;
 
 /**
+ * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
 class FindAllSites

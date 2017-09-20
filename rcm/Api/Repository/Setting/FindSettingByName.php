@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManager;
 use Rcm\Entity\Setting;
 
 /**
+ * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
 class FindSettingByName

@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManager;
 use Interop\Container\ContainerInterface;
 
 /**
+ * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
 class RemoveRedirectFactory

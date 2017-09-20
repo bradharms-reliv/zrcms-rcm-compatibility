@@ -10,6 +10,7 @@ use Rcm\Entity\Site;
 use Rcm\Tracking\Model\Tracking;
 
 /**
+ * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
 class CopySite

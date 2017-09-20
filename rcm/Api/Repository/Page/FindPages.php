@@ -7,6 +7,7 @@ use Rcm\Entity\Page;
 use Rcm\Api\Repository\Options;
 
 /**
+ * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
 class FindPages

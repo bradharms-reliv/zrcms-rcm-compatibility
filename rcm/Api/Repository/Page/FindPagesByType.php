@@ -7,6 +7,7 @@ use Rcm\Entity\Page;
 use Rcm\Page\PageTypes\PageTypes;
 
 /**
+ * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
 class FindPagesByType

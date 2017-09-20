@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManager;
 use Rcm\Entity\Domain;
 
 /**
+ * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
 class FindDomainByName

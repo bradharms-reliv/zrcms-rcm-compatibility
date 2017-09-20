@@ -7,6 +7,7 @@ use Rcm\Entity\Redirect;
 use Rcm\Api\Repository\Options;
 
 /**
+ * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
 class FindRedirects
