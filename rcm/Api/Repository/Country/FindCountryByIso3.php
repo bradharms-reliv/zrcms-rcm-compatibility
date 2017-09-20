@@ -4,6 +4,8 @@ namespace ZrcmsRcmCompatibility\Api\Repository\Country;
 
 use Doctrine\ORM\EntityManager;
 use Rcm\Entity\Country;
+use Zrcms\ContentCore\Basic\Api\Repository\FindBasicComponent;
+use Zrcms\ContentCountry\Model\CountriesComponent;
 
 /**
  * @deprecated BC ONLY
@@ -11,19 +13,17 @@ use Rcm\Entity\Country;
 class FindCountryByIso3
 {
     /**
-     * @var \Rcm\Repository\Country
+     * @var FindBasicComponent
      */
-    protected $repository;
+    protected $findBasicComponent;
 
     /**
-     * @param EntityManager $entityManager
+     * @param FindBasicComponent $findBasicComponent
      */
     public function __construct(
-        EntityManager $entityManager
+        FindBasicComponent $findBasicComponent
     ) {
-        $this->repository = $entityManager->getRepository(
-            Country::class
-        );
+        $this->findBasicComponent = $findBasicComponent;
     }
 
     /**
@@ -36,6 +36,17 @@ class FindCountryByIso3
         string $iso3,
         array $options = []
     ) {
-        return $this->repository->findOneBy(['iso3' => $iso3]);
+        /** @var CountriesComponent $countriesComponent */
+        $countriesComponent = $this->findBasicComponent->__invoke(
+            'zrcms-countries'
+        );
+
+        $zrCountry = $countriesComponent->getCountry($iso3);
+
+        return new Country(
+            $zrCountry,
+            $countriesComponent->getCreatedByUserId(),
+            $countriesComponent->getCreatedReason()
+        );
     }
 }
