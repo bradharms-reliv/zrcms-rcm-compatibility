@@ -8,11 +8,13 @@ Milestones
     - x Redirects working
     - x Product pages
     - x 404,401 page renders
-    - google analytics 
+    - x google analytics 
 - Render all site with Rcm turned off
     - Locales working
     - Redirects working
 - Custom sites (PWS) with Rcm turned off
+    - google-analytics working and editable
+    
 - Admin plugins
     - Edit and publish a page
     - Edit properties

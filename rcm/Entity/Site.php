@@ -2,25 +2,24 @@
 
 namespace ZrcmsRcmCompatibility\Rcm\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Rcm\Entity\Domain;
 use Zrcms\ContentCore\Site\Fields\FieldsSiteVersion;
 use Zrcms\ContentCore\Site\Model\SiteCmsResource;
-use Zrcms\ContentCore\Site\Model\SiteVersion;
 
 /**
  * @deprecated BC ONLY
- * @author James Jervis - https://github.com/jerv13
+ * @author     James Jervis - https://github.com/jerv13
  */
 class Site extends \Rcm\Entity\Site
 {
     public function __construct(
         SiteCmsResource $siteCmsResource,
-        SiteVersion $siteVersion,
         Country $country,
         Language $language
     ) {
-        $createdByUserId = $siteVersion->getCreatedByUserId();
-        $createdReason = $siteVersion->getCreatedReason();
-        $domain = $siteCmsResource->getHost();
+        $siteVersion = $siteCmsResource->getContentVersion();
+
         $this->setFavIcon(
             $siteVersion->getProperty(
                 FieldsSiteVersion::FAVICON
@@ -31,17 +30,25 @@ class Site extends \Rcm\Entity\Site
                 FieldsSiteVersion::LOGIN_PAGE
             )
         );
-        $this->setNotAuthorizedPage(
-            $siteVersion->findStatusPage(
-                '401',
-                '/not-authorized'
-            )
+        $notAuthorized = $siteVersion->findStatusPage(
+            '401',
+            [
+                'path' => '/not-authorized',
+                'type' => 'render',
+            ]
         );
+        $notAuthorizedPath = (array_key_exists('path', $notAuthorized) ? $notAuthorized['path'] : '/not-authorized');
+        $this->setNotAuthorizedPage($notAuthorizedPath);
+        $notFound = $siteVersion->findStatusPage(
+            '401',
+            [
+                'path' => '/not-found',
+                'type' => 'render',
+            ]
+        );
+        $notFoundPath = (array_key_exists('path', $notFound) ? ltrim($notFound['path'], "/") : '/not-found');
         $this->setNotFoundPage(
-            $siteVersion->findStatusPage(
-                '401',
-                'not-found'
-            )
+            $notFoundPath
         );
         $this->setSiteId(
             $siteCmsResource->getId()
@@ -60,12 +67,40 @@ class Site extends \Rcm\Entity\Site
             )
         );
 
-        parent::__construct(
-            $createdByUserId,
-            $createdReason,
-            $domain,
-            $country,
-            $language
+        $domain = new \ZrcmsRcmCompatibility\Rcm\Entity\Domain(
+            $siteCmsResource,
+            $this
         );
+
+        $this->pages = new ArrayCollection();
+        $this->sitePlugins = new ArrayCollection();
+        $this->containers = new ArrayCollection();
+
+        // Removed this because it is dangerous
+        if ($domain instanceof Domain) {
+            $this->setDomain($domain);
+        }
+
+        // Removed this because it is dangerous
+        if ($country instanceof Country) {
+            $this->setCountry($country);
+        }
+
+        // Removed this because it is dangerous
+        if ($language instanceof Language) {
+            $this->setLanguage($language);
+        }
+
+        $this->createdDate = $siteVersion->getCreatedDateObject();
+
+        $this->createdByUserId = $siteVersion->getCreatedByUserId();
+
+        $this->createdReason = $siteVersion->getCreatedReason();
+
+        $this->modifiedDate = $siteVersion->getCreatedDateObject();
+
+        $this->modifiedByUserId = $siteVersion->getCreatedByUserId();
+
+        $this->modifiedReason = $siteVersion->getCreatedReason();
     }
 }

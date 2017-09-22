@@ -2,30 +2,40 @@
 
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Page;
 
-use Doctrine\ORM\EntityManager;
 use Rcm\Entity\Page;
 use Rcm\Page\PageTypes\PageTypes;
+use Zrcms\ContentCore\Page\Api\Repository\FindPageContainerCmsResourceBySitePath;
+use Zrcms\ContentCore\Page\Api\Repository\FindPageTemplateCmsResourceBySitePath;
+use ZrcmsRcmCompatibility\RcmAdapter\PreparePath;
+use ZrcmsRcmCompatibility\RcmAdapter\RcmPageFromZrcmsPageContainerCmsResource;
 
 /**
- * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
 class FindPage extends \Rcm\Api\Repository\Page\FindPage
 {
     /**
-     * @var \Rcm\Repository\Page
+     * @var FindPageContainerCmsResourceBySitePath
      */
-    protected $repository;
+    protected $findPageContainerCmsResourceBySitePath;
+
+    protected $findPageTemplateCmsResourceBySitePath;
+
+    protected $rcmPageFromZrcmsPageContainerCmsResource;
 
     /**
-     * @param EntityManager $entityManager
+     * @param FindPageContainerCmsResourceBySitePath   $findPageContainerCmsResourceBySitePath
+     * @param FindPageTemplateCmsResourceBySitePath    $findPageTemplateCmsResourceBySitePath
+     * @param RcmPageFromZrcmsPageContainerCmsResource $rcmPageFromZrcmsPageContainerCmsResource
      */
     public function __construct(
-        EntityManager $entityManager
+        FindPageContainerCmsResourceBySitePath $findPageContainerCmsResourceBySitePath,
+        FindPageTemplateCmsResourceBySitePath $findPageTemplateCmsResourceBySitePath,
+        RcmPageFromZrcmsPageContainerCmsResource $rcmPageFromZrcmsPageContainerCmsResource
     ) {
-        $this->repository = $entityManager->getRepository(
-            Page::class
-        );
+        $this->findPageContainerCmsResourceBySitePath = $findPageContainerCmsResourceBySitePath;
+        $this->findPageTemplateCmsResourceBySitePath = $findPageTemplateCmsResourceBySitePath;
+        $this->rcmPageFromZrcmsPageContainerCmsResource = $rcmPageFromZrcmsPageContainerCmsResource;
     }
 
     /**
@@ -42,12 +52,22 @@ class FindPage extends \Rcm\Api\Repository\Page\FindPage
         string $pageType = PageTypes::NORMAL,
         array $options = []
     ) {
-        return $this->repository->findOneBy(
-            [
-                'siteId' => $siteId,
-                'name' => $pageName,
-                'pageType' => $pageType
-            ]
+        $pagePath = PreparePath::invoke($pageName);
+
+        if ($pageType == PageTypes::TEMPLATE) {
+            $pageCmsResource = $this->findPageTemplateCmsResourceBySitePath->__invoke(
+                $siteId,
+                $pagePath
+            );
+        } else {
+            $pageCmsResource = $this->findPageContainerCmsResourceBySitePath->__invoke(
+                $siteId,
+                $pagePath
+            );
+        }
+
+        return $this->rcmPageFromZrcmsPageContainerCmsResource->__invoke(
+            $pageCmsResource
         );
     }
 }

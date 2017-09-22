@@ -3,7 +3,6 @@
 namespace ZrcmsRcmCompatibility\RcmAdapter;
 
 use Zrcms\ContentCore\Basic\Api\Repository\FindBasicComponent;
-use Zrcms\ContentCore\Site\Api\Repository\FindSiteCmsResourceByHost;
 use Zrcms\ContentCore\Site\Fields\FieldsSiteVersion;
 use Zrcms\ContentCore\Site\Model\SiteCmsResource;
 use Zrcms\ContentCountry\Model\CountriesComponent;
@@ -14,12 +13,12 @@ use ZrcmsRcmCompatibility\Rcm\Entity\Site;
 
 /**
  * @deprecated BC ONLY
- * @author James Jervis - https://github.com/jerv13
+ * @author     James Jervis - https://github.com/jerv13
  */
 class RcmSiteFromZrcmsSiteCmsResource
 {
     /**
-     * @param FindBasicComponent               $findBasicComponent
+     * @param FindBasicComponent $findBasicComponent
      */
     public function __construct(
         FindBasicComponent $findBasicComponent
@@ -75,7 +74,6 @@ class RcmSiteFromZrcmsSiteCmsResource
 
         return new Site(
             $siteCmsResource,
-            $zrSiteVersion,
             $country,
             $language
         );
