@@ -194,6 +194,9 @@ Milestones
 #####  deal with form elements?
 #####  Deal with includeFileManager?
 #####  Deal with navigation (new navigation GetViewLayoutTags)
+##### Deal with ViewHelpers
+    - rcmHtmlIncludes missing after RCM disabled
+    
 #####  Deal with event (always middleware?) (new rcmAdminPanel GetViewLayoutTags)
 
 - call-to-action-box tagged-1.2.0
