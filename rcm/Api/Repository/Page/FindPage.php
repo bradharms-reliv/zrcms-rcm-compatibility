@@ -5,7 +5,9 @@ namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Page;
 use Rcm\Entity\Page;
 use Rcm\Page\PageTypes\PageTypes;
 use Zrcms\ContentCore\Page\Api\Repository\FindPageContainerCmsResourceBySitePath;
+use Zrcms\ContentCore\Page\Api\Repository\FindPageContainerCmsResourcesBy;
 use Zrcms\ContentCore\Page\Api\Repository\FindPageTemplateCmsResourceBySitePath;
+use Zrcms\ContentCore\Page\Api\Repository\FindPageTemplateCmsResourcesBy;
 use ZrcmsRcmCompatibility\RcmAdapter\PreparePath;
 use ZrcmsRcmCompatibility\RcmAdapter\RcmPageFromZrcmsPageContainerCmsResource;
 
@@ -15,26 +17,32 @@ use ZrcmsRcmCompatibility\RcmAdapter\RcmPageFromZrcmsPageContainerCmsResource;
 class FindPage extends \Rcm\Api\Repository\Page\FindPage
 {
     /**
-     * @var FindPageContainerCmsResourceBySitePath
+     * @var FindPageContainerCmsResourcesBy
      */
-    protected $findPageContainerCmsResourceBySitePath;
+    protected $findPageContainerCmsResourcesBy;
 
-    protected $findPageTemplateCmsResourceBySitePath;
+    /**
+     * @var FindPageTemplateCmsResourcesBy
+     */
+    protected $findPageTemplateCmsResourcesBy;
 
+    /**
+     * @var RcmPageFromZrcmsPageContainerCmsResource
+     */
     protected $rcmPageFromZrcmsPageContainerCmsResource;
 
     /**
-     * @param FindPageContainerCmsResourceBySitePath   $findPageContainerCmsResourceBySitePath
-     * @param FindPageTemplateCmsResourceBySitePath    $findPageTemplateCmsResourceBySitePath
+     * @param FindPageContainerCmsResourcesBy          $findPageContainerCmsResourcesBy
+     * @param FindPageTemplateCmsResourcesBy           $findPageTemplateCmsResourcesBy
      * @param RcmPageFromZrcmsPageContainerCmsResource $rcmPageFromZrcmsPageContainerCmsResource
      */
     public function __construct(
-        FindPageContainerCmsResourceBySitePath $findPageContainerCmsResourceBySitePath,
-        FindPageTemplateCmsResourceBySitePath $findPageTemplateCmsResourceBySitePath,
+        FindPageContainerCmsResourcesBy $findPageContainerCmsResourcesBy,
+        FindPageTemplateCmsResourcesBy $findPageTemplateCmsResourcesBy,
         RcmPageFromZrcmsPageContainerCmsResource $rcmPageFromZrcmsPageContainerCmsResource
     ) {
-        $this->findPageContainerCmsResourceBySitePath = $findPageContainerCmsResourceBySitePath;
-        $this->findPageTemplateCmsResourceBySitePath = $findPageTemplateCmsResourceBySitePath;
+        $this->findPageContainerCmsResourcesBy = $findPageContainerCmsResourcesBy;
+        $this->findPageTemplateCmsResourcesBy = $findPageTemplateCmsResourcesBy;
         $this->rcmPageFromZrcmsPageContainerCmsResource = $rcmPageFromZrcmsPageContainerCmsResource;
     }
 
@@ -45,6 +53,7 @@ class FindPage extends \Rcm\Api\Repository\Page\FindPage
      * @param array  $options
      *
      * @return null|Page
+     * @throws \Exception
      */
     public function __invoke(
         int $siteId,
@@ -55,20 +64,30 @@ class FindPage extends \Rcm\Api\Repository\Page\FindPage
         $pagePath = PreparePath::invoke($pageName, $pageType);
 
         if ($pageType == PageTypes::TEMPLATE) {
-            $pageCmsResource = $this->findPageTemplateCmsResourceBySitePath->__invoke(
-                $siteId,
-                $pagePath
+            $pageCmsResources = $this->findPageTemplateCmsResourcesBy->__invoke(
+                ['siteCmsResourceId' => $siteId, 'path' => $pagePath],
+                null,
+                1
             );
         } else {
-            $pageCmsResource = $this->findPageContainerCmsResourceBySitePath->__invoke(
-                $siteId,
-                $pagePath
+            $pageCmsResources = $this->findPageContainerCmsResourcesBy->__invoke(
+                ['siteCmsResourceId' => $siteId, 'path' => $pagePath],
+                null,
+                1
             );
         }
 
-        if (empty($pageCmsResource)) {
+        if (empty($pageCmsResources)) {
             return null;
         }
+
+        if (count($pageCmsResources) > 2) {
+            throw new \Exception(
+                "Duplicate pages found for siteId: {$siteId} page: {$pageName} path: {$pagePath} type: {$pageType}"
+            );
+        }
+
+        $pageCmsResource = $pageCmsResources[0];
 
         return $this->rcmPageFromZrcmsPageContainerCmsResource->__invoke(
             $pageCmsResource
