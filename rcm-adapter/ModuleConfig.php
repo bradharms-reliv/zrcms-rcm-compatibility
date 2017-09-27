@@ -30,6 +30,9 @@ class ModuleConfig
                     GetRcmViewRenderer::class
                     => GetRcmViewRendererFactory::class,
 
+                    RcmPageFromZrcmsPageContainerCmsResource::class
+                    => RcmPageFromZrcmsPageContainerCmsResourceFactory::class,
+
                     RcmSiteFromHost::class
                     => RcmSiteFromHostFactory::class,
 

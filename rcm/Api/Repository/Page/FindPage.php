@@ -52,7 +52,7 @@ class FindPage extends \Rcm\Api\Repository\Page\FindPage
         string $pageType = PageTypes::NORMAL,
         array $options = []
     ) {
-        $pagePath = PreparePath::invoke($pageName);
+        $pagePath = PreparePath::invoke($pageName, $pageType);
 
         if ($pageType == PageTypes::TEMPLATE) {
             $pageCmsResource = $this->findPageTemplateCmsResourceBySitePath->__invoke(
@@ -64,6 +64,10 @@ class FindPage extends \Rcm\Api\Repository\Page\FindPage
                 $siteId,
                 $pagePath
             );
+        }
+
+        if (empty($pageCmsResource)) {
+            return null;
         }
 
         return $this->rcmPageFromZrcmsPageContainerCmsResource->__invoke(

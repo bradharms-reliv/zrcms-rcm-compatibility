@@ -2,9 +2,9 @@
 
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Country;
 
-use Rcm\Entity\Country;
 use Zrcms\ContentCore\Basic\Api\Repository\FindBasicComponent;
 use Zrcms\ContentCountry\Model\CountriesComponent;
+use ZrcmsRcmCompatibility\Rcm\Entity\Country;
 
 /**
  * @deprecated BC ONLY

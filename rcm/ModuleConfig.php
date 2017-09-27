@@ -6,6 +6,7 @@ use Rcm\Module;
 use ZrcmsRcmCompatibility\Rcm\Acl\ResourceNameZrcmsFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\GetSiteByRequestFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Country\FindCountryByIso3Factory;
+use ZrcmsRcmCompatibility\Rcm\Api\Repository\Page\FindPageFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Setting\FindSettingByNameFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Site\FindSiteFactory;
 use ZrcmsRcmCompatibility\Rcm\Factory\CmsPermissionsChecksFactory;
@@ -34,6 +35,9 @@ class ModuleConfig
                 \Rcm\Acl\CmsPermissionChecks::class
                 => CmsPermissionsChecksFactory::class,
 
+                \Rcm\Acl\ResourceName::class
+                => ResourceNameZrcmsFactory::class,
+
                 /* Api ============================= */
                 \Rcm\Api\Repository\Country\FindCountryByIso3::class
                 => FindCountryByIso3Factory::class,
@@ -47,8 +51,8 @@ class ModuleConfig
                 \Rcm\Api\GetSiteByRequest::class
                 => GetSiteByRequestFactory::class,
 
-                \Rcm\Acl\ResourceName::class
-                => ResourceNameZrcmsFactory::class,
+                \Rcm\Api\Repository\Page\FindPage::class
+                => FindPageFactory::class,
 
                 /* Service ============================= */
                 \Rcm\Service\CurrentSite::class

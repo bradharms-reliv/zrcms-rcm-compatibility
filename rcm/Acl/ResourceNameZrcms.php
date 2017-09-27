@@ -134,6 +134,6 @@ class ResourceNameZrcms implements ResourceName
      * @return string
      */
     protected function preparePageName($pageName) {
-        return str_replace($pageName, '.', '/');
+        return str_replace('/', '.', $pageName);
     }
 }
