@@ -10,6 +10,7 @@ use ZrcmsRcmCompatibility\Rcm\Api\Repository\Page\FindPageFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Setting\FindSettingByNameFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Site\FindSiteFactory;
 use ZrcmsRcmCompatibility\Rcm\Factory\CmsPermissionsChecksFactory;
+use ZrcmsRcmCompatibility\Rcm\Factory\IndexControllerFactory;
 use ZrcmsRcmCompatibility\Rcm\Factory\SessionManagerFactory;
 use ZrcmsRcmCompatibility\Rcm\Service\CurrentSiteFactory;
 use ZrcmsRcmCompatibility\Rcm\Service\SiteServiceFactory;
@@ -71,6 +72,13 @@ class ModuleConfig
             $dependencies
         );
 
+        $viewManager = [
+            'template_map' => [
+                'layout/layout'
+                => __DIR__ . '/../rcm-view/layout/none.phtml',
+            ],
+        ];
+
         return [
             'asset_manager' => $rcmConfig['asset_manager'],
             'dependencies' => $dependencies,
@@ -79,6 +87,7 @@ class ModuleConfig
             'rcmPlugin' => $rcmConfig['rcmPlugin'],
             'rcmCache' => $rcmConfig['rcmCache'],
             'RcmUser' => $rcmConfig['RcmUser'],
+            'view_manager' => $viewManager,
         ];
     }
 }
