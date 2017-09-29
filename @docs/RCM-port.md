@@ -9,12 +9,13 @@ Milestones
     - x Product pages
     - x 404,401 page renders
     - x google analytics 
+    - /forgot-password is broken in ZRCMS
 - Render all site with Rcm turned off
     - Locales working
     - Redirects working
 - Custom sites (PWS) with Rcm turned off
     - google-analytics working and editable
-    
+    - ZF2 events to middleware (onBootstrap, etc..)
 - Admin plugins
     - Edit and publish a page
     - Edit properties
@@ -233,7 +234,7 @@ Milestones
     
 ##### EventManger and events ported to Middleware
 
-- [x] Logout -> Zrcms\HttpExpressive1\Middleware\LogOut
+- [x] Logout -> Zrcms\HttpExpressive\Middleware\LogOut
 
 - issue with RcmUser\Acl\Service\AuthorizeService (416) $this->getEventManager()->trigger(
     
