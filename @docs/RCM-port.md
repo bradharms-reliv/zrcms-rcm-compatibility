@@ -9,30 +9,12 @@ Milestones
     - x Product pages
     - x 404,401 page renders
     - x google analytics 
-    - /forgot-password is broken in ZRCMS
-    - load-balancer-health-check
-    - Fix pipe-rat issues
+    - x /forgot-password is broken in ZRCMS
+    - x load-balancer-health-check
+    - x Fix pipe-rat issues
         -x /api/resource/rcm-country
         -x /api/resource/rcm-site
         -x /api/resource/rcm-page
-        
-        /api/resource/shipping-verification/{id}
-        /api/resource/country-rules
-        /api/resource/discount-rules
-        
-        /api/resource/cart-product
-        /api/resource/cart-sku
-        /api/resource/cart-option-group
-        /api/resource/cart-product-category
-        /api/resource/cart-option
-        
-        /api/resource/vista-item
-        /api/resource/ship-method-rules
-        /api/resource/user-profile
-        /api/resource/discount-rules
-        /api/resource/geo-code
-        /api/resource/state
-        /api/resource/id-image
         
 - Render all site with Rcm turned off
     - Locales working
