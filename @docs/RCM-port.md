@@ -43,12 +43,6 @@ Milestones
     --Site::find::siteId=FindSite
     --entityManager->createQuery=FindDomainsLike
     --etityManager->createQuery=FindDomainByName
-    
-- RcmApi\Page\Middleware\PageController ************ PIPERAT LAYER
-    --Page::sitePageExists::[]=PageExists
-    
-- RcmApi\Site\Middleware\SiteController ************ PIPERAT LAYER
-    --EntityManager
 
 - InventorySyncService ************ remove foreign key
     --Country::findOneBy::iso3=FindCountryByIso3
