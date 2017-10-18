@@ -10,7 +10,6 @@ use ZrcmsRcmCompatibility\Rcm\Api\Repository\Page\FindPageFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Setting\FindSettingByNameFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Site\FindSiteFactory;
 use ZrcmsRcmCompatibility\Rcm\Factory\CmsPermissionsChecksFactory;
-use ZrcmsRcmCompatibility\Rcm\Factory\IndexControllerFactory;
 use ZrcmsRcmCompatibility\Rcm\Factory\SessionManagerFactory;
 use ZrcmsRcmCompatibility\Rcm\Service\CurrentSiteFactory;
 use ZrcmsRcmCompatibility\Rcm\Service\SiteServiceFactory;
