@@ -38,11 +38,6 @@ Milestones
 ##### Remove direct usage of repositories (add specific APIs as possible) #####
 
 - Check for DB relations to site or siteId
-    
-- PwsService ***********
-    --Site::find::siteId=FindSite
-    --entityManager->createQuery=FindDomainsLike
-    --etityManager->createQuery=FindDomainByName
 
 - InventorySyncService ************ remove foreign key
     --Country::findOneBy::iso3=FindCountryByIso3
@@ -52,7 +47,12 @@ Milestones
     --Country::findOneBy::iso3=FindCountryByIso3
     - Fix VistaCountryCodeService and use in VistaCaller
     
-- Reliv\RcmGoogleAnalytics\EntityRcmGoogleAnalytics ************ remove foreign key
+- [x] PwsService ***********
+    --Site::find::siteId=FindSite
+    --entityManager->createQuery=FindDomainsLike
+    --etityManager->createQuery=FindDomainByName
+    
+- [x] Reliv\RcmGoogleAnalytics\EntityRcmGoogleAnalytics ************ remove foreign key
     
 - [x] NO CHANGE - RcmExport\Api\Export ************ this will still need the entity manager layer of MySql
     --Site::findBy::[]=FindAllSites(with orderBy, limit)
