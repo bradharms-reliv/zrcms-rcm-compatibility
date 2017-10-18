@@ -52,7 +52,7 @@ Milestones
     --entityManager->createQuery=FindDomainsLike
     --etityManager->createQuery=FindDomainByName
     
-- [x] Reliv\RcmGoogleAnalytics\EntityRcmGoogleAnalytics ************ remove foreign key
+- [x] Reliv\RcmGoogleAnalytics\RcmGoogleAnalytics ************ remove foreign key
     
 - [x] NO CHANGE - RcmExport\Api\Export ************ this will still need the entity manager layer of MySql
     --Site::findBy::[]=FindAllSites(with orderBy, limit)
