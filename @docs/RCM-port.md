@@ -15,6 +15,7 @@ Milestones
         -x /api/resource/rcm-country
         -x /api/resource/rcm-site
         -x /api/resource/rcm-page
+    - PWS Theme name_color mapping
         
 - Render all site with Rcm turned off
     - Locales working
