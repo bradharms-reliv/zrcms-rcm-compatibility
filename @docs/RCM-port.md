@@ -40,6 +40,9 @@ Milestones
 
 - Check for DB relations to site or siteId
 
+- PwsCallToAction\Entity\CallToAction joins to site
+- Pws\Entity\Story joins to site (also look at toArray)
+
 - InventorySyncService ************ remove foreign key
     --Country::findOneBy::iso3=FindCountryByIso3
     -- \App\Entity\VistaItem::country=remove foreign key?
