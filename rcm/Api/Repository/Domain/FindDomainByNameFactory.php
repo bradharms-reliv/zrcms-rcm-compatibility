@@ -2,11 +2,11 @@
 
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Domain;
 
-use Doctrine\ORM\EntityManager;
 use Interop\Container\ContainerInterface;
+use Zrcms\ContentCore\Site\Api\Repository\FindSiteCmsResourceByHost;
+use ZrcmsRcmCompatibility\RcmAdapter\RcmSiteFromZrcmsSiteCmsResource;
 
 /**
- * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
 class FindDomainByNameFactory
@@ -19,7 +19,8 @@ class FindDomainByNameFactory
     public function __invoke($serviceContainer)
     {
         return new FindDomainByName(
-            $serviceContainer->get(EntityManager::class)
+            $serviceContainer->get(FindSiteCmsResourceByHost::class),
+            $serviceContainer->get(RcmSiteFromZrcmsSiteCmsResource::class)
         );
     }
 }

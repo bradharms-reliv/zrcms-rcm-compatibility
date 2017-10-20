@@ -6,6 +6,8 @@ use Rcm\Module;
 use ZrcmsRcmCompatibility\Rcm\Acl\ResourceNameZrcmsFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\GetSiteByRequestFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Country\FindCountryByIso3Factory;
+use ZrcmsRcmCompatibility\Rcm\Api\Repository\Domain\FindDomainByNameFactory;
+use ZrcmsRcmCompatibility\Rcm\Api\Repository\Language\FindLanguageByIso6392tFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Page\FindPageFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Setting\FindSettingByNameFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Site\FindSiteFactory;
@@ -41,6 +43,12 @@ class ModuleConfig
                 /* Api ============================= */
                 \Rcm\Api\Repository\Country\FindCountryByIso3::class
                 => FindCountryByIso3Factory::class,
+
+                \Rcm\Api\Repository\Domain\FindDomainByName::class
+                => FindDomainByNameFactory::class,
+
+                \Rcm\Api\Repository\Language\FindLanguageByIso6392t::class
+                => FindLanguageByIso6392tFactory::class,
 
                 \Rcm\Api\Repository\Setting\FindSettingByName::class
                 => FindSettingByNameFactory::class,
