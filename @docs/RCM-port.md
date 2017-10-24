@@ -16,6 +16,7 @@ Milestones
         -x /api/resource/rcm-site
         -x /api/resource/rcm-page
     - PWS Theme name_color mapping
+    - Deal with Rcm config Acl 'Rcm' => ['Acl' => ????? ]
         
 - Render all site with Rcm turned off
     - Locales working
