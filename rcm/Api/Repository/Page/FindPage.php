@@ -4,12 +4,12 @@ namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Page;
 
 use Rcm\Entity\Page;
 use Rcm\Page\PageTypes\PageTypes;
-use Zrcms\ContentCore\Page\Api\Repository\FindPageContainerCmsResourceBySitePath;
-use Zrcms\ContentCore\Page\Api\Repository\FindPageContainerCmsResourcesBy;
+use Zrcms\ContentCore\Page\Api\Repository\FindPageCmsResourceBySitePath;
+use Zrcms\ContentCore\Page\Api\Repository\FindPageCmsResourcesBy;
 use Zrcms\ContentCore\Page\Api\Repository\FindPageTemplateCmsResourceBySitePath;
 use Zrcms\ContentCore\Page\Api\Repository\FindPageTemplateCmsResourcesBy;
 use ZrcmsRcmCompatibility\RcmAdapter\PreparePath;
-use ZrcmsRcmCompatibility\RcmAdapter\RcmPageFromZrcmsPageContainerCmsResource;
+use ZrcmsRcmCompatibility\RcmAdapter\RcmPageFromZrcmsPageCmsResource;
 
 /**
  * @deprecated BC ONLY
@@ -17,9 +17,9 @@ use ZrcmsRcmCompatibility\RcmAdapter\RcmPageFromZrcmsPageContainerCmsResource;
 class FindPage extends \Rcm\Api\Repository\Page\FindPage
 {
     /**
-     * @var FindPageContainerCmsResourcesBy
+     * @var FindPageCmsResourcesBy
      */
-    protected $findPageContainerCmsResourcesBy;
+    protected $findPageCmsResourcesBy;
 
     /**
      * @var FindPageTemplateCmsResourcesBy
@@ -27,23 +27,23 @@ class FindPage extends \Rcm\Api\Repository\Page\FindPage
     protected $findPageTemplateCmsResourcesBy;
 
     /**
-     * @var RcmPageFromZrcmsPageContainerCmsResource
+     * @var RcmPageFromZrcmsPageCmsResource
      */
-    protected $rcmPageFromZrcmsPageContainerCmsResource;
+    protected $rcmPageFromZrcmsPageCmsResource;
 
     /**
-     * @param FindPageContainerCmsResourcesBy          $findPageContainerCmsResourcesBy
+     * @param FindPageCmsResourcesBy                   $findPageCmsResourcesBy
      * @param FindPageTemplateCmsResourcesBy           $findPageTemplateCmsResourcesBy
-     * @param RcmPageFromZrcmsPageContainerCmsResource $rcmPageFromZrcmsPageContainerCmsResource
+     * @param RcmPageFromZrcmsPageCmsResource $rcmPageFromZrcmsPageCmsResource
      */
     public function __construct(
-        FindPageContainerCmsResourcesBy $findPageContainerCmsResourcesBy,
+        FindPageCmsResourcesBy $findPageCmsResourcesBy,
         FindPageTemplateCmsResourcesBy $findPageTemplateCmsResourcesBy,
-        RcmPageFromZrcmsPageContainerCmsResource $rcmPageFromZrcmsPageContainerCmsResource
+        RcmPageFromZrcmsPageCmsResource $rcmPageFromZrcmsPageCmsResource
     ) {
-        $this->findPageContainerCmsResourcesBy = $findPageContainerCmsResourcesBy;
+        $this->findPageCmsResourcesBy = $findPageCmsResourcesBy;
         $this->findPageTemplateCmsResourcesBy = $findPageTemplateCmsResourcesBy;
-        $this->rcmPageFromZrcmsPageContainerCmsResource = $rcmPageFromZrcmsPageContainerCmsResource;
+        $this->rcmPageFromZrcmsPageCmsResource = $rcmPageFromZrcmsPageCmsResource;
     }
 
     /**
@@ -70,7 +70,7 @@ class FindPage extends \Rcm\Api\Repository\Page\FindPage
                 1
             );
         } else {
-            $pageCmsResources = $this->findPageContainerCmsResourcesBy->__invoke(
+            $pageCmsResources = $this->findPageCmsResourcesBy->__invoke(
                 ['siteCmsResourceId' => $siteId, 'path' => $pagePath],
                 null,
                 1
@@ -89,7 +89,7 @@ class FindPage extends \Rcm\Api\Repository\Page\FindPage
 
         $pageCmsResource = $pageCmsResources[0];
 
-        return $this->rcmPageFromZrcmsPageContainerCmsResource->__invoke(
+        return $this->rcmPageFromZrcmsPageCmsResource->__invoke(
             $pageCmsResource
         );
     }

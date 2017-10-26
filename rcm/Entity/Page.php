@@ -4,10 +4,10 @@ namespace ZrcmsRcmCompatibility\Rcm\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Rcm\Page\PageTypes\PageTypes;
-use Zrcms\ContentCore\Page\Fields\FieldsPageContainerVersion;
-use Zrcms\ContentCore\Page\Model\PageContainerCmsResource;
-use Zrcms\ContentCore\Page\Model\PageContainerCmsResourcePublishHistory;
-use Zrcms\ContentCore\Page\Model\PageContainerVersion;
+use Zrcms\ContentCore\Page\Fields\FieldsPageVersion;
+use Zrcms\ContentCore\Page\Model\PageCmsResource;
+use Zrcms\ContentCore\Page\Model\PageCmsResourcePublishHistory;
+use Zrcms\ContentCore\Page\Model\PageVersion;
 use Zrcms\ContentCore\Page\Model\PageTemplateCmsResource;
 
 /**
@@ -17,42 +17,42 @@ use Zrcms\ContentCore\Page\Model\PageTemplateCmsResource;
 class Page extends \Rcm\Entity\Page
 {
     /**
-     * @param PageContainerCmsResource                    $pageCmsResource
-     * @param Site                                        $site
-     * @param PageContainerCmsResourcePublishHistory|null $lastPublished
-     * @param string                                      $pageType
+     * @param PageCmsResource                    $pageCmsResource
+     * @param Site                               $site
+     * @param PageCmsResourcePublishHistory|null $lastPublished
+     * @param string                             $pageType
      */
     public function __construct(
-        PageContainerCmsResource $pageCmsResource,
+        PageCmsResource $pageCmsResource,
         Site $site,
         $lastPublished = null,
         $pageType = PageTypes::NORMAL
     ) {
-        /** @var PageContainerVersion $pageContainerVersion */
-        $pageContainerVersion = $pageCmsResource->getContentVersion();
+        /** @var PageVersion $pageVersion */
+        $pageVersion = $pageCmsResource->getContentVersion();
 
         $this->pageId = $pageCmsResource->getId();
 
         $this->name = ltrim($pageCmsResource->getPath(), '/');
 
-        $this->author = $pageContainerVersion->getCreatedByUserId();
+        $this->author = $pageVersion->getCreatedByUserId();
 
         if($lastPublished) {
             $this->lastPublished = $lastPublished->getCreatedDateObject();
         }
 
-        $this->pageLayout = $pageContainerVersion->getProperty(
-            FieldsPageContainerVersion::LAYOUT,
+        $this->pageLayout = $pageVersion->getProperty(
+            FieldsPageVersion::LAYOUT,
             null
         );
 
         $this->siteLayoutOverride = $this->pageLayout;
 
-        $this->pageTitle = $pageContainerVersion->getTitle();
+        $this->pageTitle = $pageVersion->getTitle();
 
-        $this->description = $pageContainerVersion->getDescription();
+        $this->description = $pageVersion->getDescription();
 
-        $this->keywords = $pageContainerVersion->getKeywords();
+        $this->keywords = $pageVersion->getKeywords();
 
         $this->publishedRevision = null;
 
@@ -79,16 +79,16 @@ class Page extends \Rcm\Entity\Page
         $this->parent = null;
         $this->parentId = null;
 
-        $this->createdDate = $pageContainerVersion->getCreatedDateObject();
+        $this->createdDate = $pageVersion->getCreatedDateObject();
 
-        $this->createdByUserId = $pageContainerVersion->getCreatedByUserId();
+        $this->createdByUserId = $pageVersion->getCreatedByUserId();
 
-        $this->createdReason = $pageContainerVersion->getCreatedReason();
+        $this->createdReason = $pageVersion->getCreatedReason();
 
-        $this->modifiedDate = $pageContainerVersion->getCreatedDateObject();
+        $this->modifiedDate = $pageVersion->getCreatedDateObject();
 
-        $this->modifiedByUserId = $pageContainerVersion->getCreatedByUserId();
+        $this->modifiedByUserId = $pageVersion->getCreatedByUserId();
 
-        $this->modifiedReason = $pageContainerVersion->getCreatedReason();
+        $this->modifiedReason = $pageVersion->getCreatedReason();
     }
 }

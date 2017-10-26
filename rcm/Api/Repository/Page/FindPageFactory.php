@@ -4,8 +4,8 @@ namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Page;
 
 use Interop\Container\ContainerInterface;
 use Zrcms\ContentCore\Page\Api\Repository\FindPageTemplateCmsResourcesBy;
-use Zrcms\ContentCore\Page\Api\Repository\FindPageContainerCmsResourcesBy;
-use ZrcmsRcmCompatibility\RcmAdapter\RcmPageFromZrcmsPageContainerCmsResource;
+use Zrcms\ContentCore\Page\Api\Repository\FindPageCmsResourcesBy;
+use ZrcmsRcmCompatibility\RcmAdapter\RcmPageFromZrcmsPageCmsResource;
 
 /**
  * @deprecated BC ONLY
@@ -20,9 +20,9 @@ class FindPageFactory
     public function __invoke($serviceContainer)
     {
         return new FindPage(
-            $serviceContainer->get(FindPageContainerCmsResourcesBy::class),
+            $serviceContainer->get(FindPageCmsResourcesBy::class),
             $serviceContainer->get(FindPageTemplateCmsResourcesBy::class),
-            $serviceContainer->get(RcmPageFromZrcmsPageContainerCmsResource::class)
+            $serviceContainer->get(RcmPageFromZrcmsPageCmsResource::class)
         );
     }
 }
