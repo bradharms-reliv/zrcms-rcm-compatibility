@@ -2,29 +2,27 @@
 
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Country;
 
-use Doctrine\ORM\EntityManager;
-use Rcm\Entity\Country;
+use Zrcms\ContentCore\Basic\Api\Repository\FindBasicComponent;
+use Zrcms\ContentCountry\Model\CountriesComponent;
+use ZrcmsRcmCompatibility\Rcm\Entity\Country;
 
 /**
- * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
 class FindCountryByIso2 extends \Rcm\Api\Repository\Country\FindCountryByIso2
 {
     /**
-     * @var \Rcm\Repository\Country
+     * @var FindBasicComponent
      */
-    protected $repository;
+    protected $findBasicComponent;
 
     /**
-     * @param EntityManager $entityManager
+     * @param FindBasicComponent $findBasicComponent
      */
     public function __construct(
-        EntityManager $entityManager
+        FindBasicComponent $findBasicComponent
     ) {
-        $this->repository = $entityManager->getRepository(
-            Country::class
-        );
+        $this->findBasicComponent = $findBasicComponent;
     }
 
     /**
@@ -37,6 +35,29 @@ class FindCountryByIso2 extends \Rcm\Api\Repository\Country\FindCountryByIso2
         string $iso2,
         array $options = []
     ) {
-        return $this->repository->findOneBy(['iso2' => $iso2]);
+        /** @var CountriesComponent $countriesComponent */
+        $countriesComponent = $this->findBasicComponent->__invoke(
+            'zrcms-countries'
+        );
+
+        $zrcmsCountries = $countriesComponent->getCountries();
+
+        $zrcmsMatchCountry = null;
+
+        foreach ($zrcmsCountries as $zrcmsCountry) {
+            if ($zrcmsCountry->getIso2() === $iso2) {
+                $zrcmsMatchCountry = $zrcmsCountry;
+            }
+        }
+
+        if ($zrcmsMatchCountry === null) {
+            return null;
+        }
+
+        return new Country(
+            $zrcmsMatchCountry,
+            $countriesComponent->getCreatedByUserId(),
+            $countriesComponent->getCreatedReason()
+        );
     }
 }

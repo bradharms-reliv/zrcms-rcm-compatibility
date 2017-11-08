@@ -21,6 +21,9 @@ class ModuleConfig
                     CurrentRequest::class
                     => CurrentRequestFactory::class,
 
+                    FieldMapSite::class
+                    => FieldMapSiteFactory::class,
+
                     GetRcmConfig::class
                     => GetRcmConfigFactory::class,
 

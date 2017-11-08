@@ -2,11 +2,10 @@
 
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Country;
 
-use Doctrine\ORM\EntityManager;
 use Interop\Container\ContainerInterface;
+use Zrcms\ContentCore\Basic\Api\Repository\FindBasicComponent;
 
 /**
- * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
 class FindCountryByIso2Factory
@@ -19,7 +18,7 @@ class FindCountryByIso2Factory
     public function __invoke($serviceContainer)
     {
         return new FindCountryByIso2(
-            $serviceContainer->get(EntityManager::class)
+            $serviceContainer->get(FindBasicComponent::class)
         );
     }
 }
