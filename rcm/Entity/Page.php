@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Rcm\Page\PageTypes\PageTypes;
 use Zrcms\ContentCore\Page\Fields\FieldsPageVersion;
 use Zrcms\ContentCore\Page\Model\PageCmsResource;
-use Zrcms\ContentCore\Page\Model\PageCmsResourcePublishHistory;
+use Zrcms\ContentCore\Page\Model\PageCmsResourceHistory;
 use Zrcms\ContentCore\Page\Model\PageVersion;
 use Zrcms\ContentCore\Page\Model\PageTemplateCmsResource;
 
@@ -19,7 +19,7 @@ class Page extends \Rcm\Entity\Page
     /**
      * @param PageCmsResource                    $pageCmsResource
      * @param Site                               $site
-     * @param PageCmsResourcePublishHistory|null $lastPublished
+     * @param PageCmsResourceHistory|null $lastPublished
      * @param string                             $pageType
      */
     public function __construct(

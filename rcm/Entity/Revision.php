@@ -4,7 +4,7 @@ namespace ZrcmsRcmCompatibility\Rcm\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Zrcms\Content\Model\Action;
-use Zrcms\Content\Model\CmsResourcePublishHistory;
+use Zrcms\Content\Model\CmsResourceHistory;
 use Zrcms\Content\Model\ContentVersion;
 
 /**
@@ -15,7 +15,7 @@ class Revision extends \Rcm\Entity\Revision
 {
     public function __construct(
         ContentVersion $contentVersion,
-        CmsResourcePublishHistory $lastPublishAction,
+        CmsResourceHistory $lastPublishAction,
         string $md5
     ) {
         $this->revisionId = $contentVersion->getId();
