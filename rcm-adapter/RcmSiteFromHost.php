@@ -2,18 +2,12 @@
 
 namespace ZrcmsRcmCompatibility\RcmAdapter;
 
-use Zrcms\ContentCore\Basic\Api\Repository\FindBasicComponent;
 use Zrcms\ContentCore\Site\Api\Repository\FindSiteCmsResourceByHost;
-use Zrcms\ContentCore\Site\Fields\FieldsSiteVersion;
-use Zrcms\ContentCountry\Model\CountriesComponent;
-use Zrcms\ContentLanguage\Model\LanguagesComponent;
-use ZrcmsRcmCompatibility\Rcm\Entity\Country;
-use ZrcmsRcmCompatibility\Rcm\Entity\Language;
 use ZrcmsRcmCompatibility\Rcm\Entity\Site;
 
 /**
  * @deprecated BC ONLY
- * @author James Jervis - https://github.com/jerv13
+ * @author     James Jervis - https://github.com/jerv13
  */
 class RcmSiteFromHost
 {

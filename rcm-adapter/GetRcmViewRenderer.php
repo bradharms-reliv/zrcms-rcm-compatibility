@@ -2,7 +2,6 @@
 
 namespace ZrcmsRcmCompatibility\RcmAdapter;
 
-use Doctrine\Common\Util\Debug;
 use Psr\Container\ContainerInterface;
 use Zend\ServiceManager\Config;
 use Zend\ServiceManager\ServiceManager;
