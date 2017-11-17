@@ -63,7 +63,7 @@ class Site extends \Rcm\Entity\Site
 
         $this->setTheme(
             $siteVersion->getProperty(
-                FieldsSiteVersion::TITLE
+                FieldsSiteVersion::THEME_NAME
             )
         );
 
