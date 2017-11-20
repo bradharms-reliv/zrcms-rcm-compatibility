@@ -14,6 +14,7 @@ use ZrcmsRcmCompatibility\Rcm\Api\Repository\Page\FindPageFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Setting\FindSettingByNameFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Site\FindOneSiteFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Site\FindSiteFactory;
+use ZrcmsRcmCompatibility\Rcm\Api\Repository\Site\SetThemeFactory;
 use ZrcmsRcmCompatibility\Rcm\Factory\CmsPermissionsChecksFactory;
 use ZrcmsRcmCompatibility\Rcm\Factory\SessionManagerFactory;
 use ZrcmsRcmCompatibility\Rcm\Service\CurrentSiteFactory;
@@ -56,6 +57,9 @@ class ModuleConfig
                 \Rcm\Api\Repository\Language\FindLanguageByIso6392t::class
                 => FindLanguageByIso6392tFactory::class,
 
+                \Rcm\Api\Repository\Page\FindPage::class
+                => FindPageFactory::class,
+
                 \Rcm\Api\Repository\Setting\FindSettingByName::class
                 => FindSettingByNameFactory::class,
 
@@ -65,11 +69,11 @@ class ModuleConfig
                 \Rcm\Api\Repository\Site\FindSite::class
                 => FindSiteFactory::class,
 
+                \Rcm\Api\Repository\Site\SetTheme::class
+                => SetThemeFactory::class,
+
                 \Rcm\Api\GetSiteByRequest::class
                 => GetSiteByRequestFactory::class,
-
-                \Rcm\Api\Repository\Page\FindPage::class
-                => FindPageFactory::class,
 
                 /* Service ============================= */
                 \Rcm\Service\CurrentSite::class

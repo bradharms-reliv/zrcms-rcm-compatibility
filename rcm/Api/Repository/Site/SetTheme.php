@@ -2,10 +2,7 @@
 
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Site;
 
-use Doctrine\ORM\EntityManager;
-use Rcm\Entity\Site;
-use Zrcms\Content\Api\Action\PublishCmsResource;
-use Zrcms\Content\Api\Action\UnpublishCmsResource;
+use Zrcms\ContentCore\Site\Api\CmsResource\UpsertSiteCmsResource;
 use Zrcms\ContentCore\Site\Api\Repository\FindSiteCmsResource;
 use Zrcms\ContentCore\Site\Fields\FieldsSiteVersion;
 use Zrcms\ContentCore\Site\Model\SiteCmsResource;
@@ -17,18 +14,18 @@ use Zrcms\ContentCore\Site\Model\SiteVersionBasic;
 class SetTheme
 {
     protected $findSiteCmsResource;
+    protected $upsertSiteCmsResource;
 
     /**
-     * @param FindSiteCmsResource  $findSiteCmsResource
-     * @param PublishCmsResource   $publishCmsResource
-     * @param UnpublishCmsResource $unpublishCmsResource
+     * @param FindSiteCmsResource   $findSiteCmsResource
+     * @param UpsertSiteCmsResource $upsertSiteCmsResource
      */
     public function __construct(
         FindSiteCmsResource $findSiteCmsResource,
-        PublishCmsResource $publishCmsResource,
-        UnpublishCmsResource $unpublishCmsResource
+        UpsertSiteCmsResource $upsertSiteCmsResource
     ) {
         $this->findSiteCmsResource = $findSiteCmsResource;
+        $this->upsertSiteCmsResource = $upsertSiteCmsResource;
     }
 
     /**
@@ -66,7 +63,10 @@ class SetTheme
             $modifiedReason
         );
 
-        $site->setModifiedByUserId($modifiedUserId, $modifiedReason);
-        $this->em->flush($site);
+        $this->upsertSiteCmsResource->__invoke(
+            $siteCmsResource,
+            $modifiedUserId,
+            $modifiedReason
+        );
     }
 }

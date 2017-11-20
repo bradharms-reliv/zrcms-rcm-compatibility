@@ -2,8 +2,9 @@
 
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Site;
 
-use Doctrine\ORM\EntityManager;
 use Interop\Container\ContainerInterface;
+use Zrcms\ContentCore\Site\Api\CmsResource\UpsertSiteCmsResource;
+use Zrcms\ContentCore\Site\Api\Repository\FindSiteCmsResource;
 
 /**
  * @deprecated BC ONLY
@@ -18,7 +19,8 @@ class SetThemeFactory
     public function __invoke($serviceContainer)
     {
         return new SetTheme(
-            $serviceContainer->get(EntityManager::class)
+            $serviceContainer->get(FindSiteCmsResource::class),
+            $serviceContainer->get(UpsertSiteCmsResource::class)
         );
     }
 }
