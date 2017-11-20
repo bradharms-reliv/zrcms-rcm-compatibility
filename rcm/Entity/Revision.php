@@ -24,7 +24,7 @@ class Revision extends \Rcm\Entity\Revision
 
         $this->publishedDate = $lastPublishAction->getCreatedDate();
 
-        $this->published = $lastPublishAction->getAction() == Action::PUBLISH_CMS_RESOURCE ? true : false;
+        $this->published = $lastPublishAction->getAction() == 'published' ? true : false;
 
         $this->md5 = $md5;
 
