@@ -3,7 +3,7 @@
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Site;
 
 use Zrcms\ContentCore\Site\Api\CmsResource\UpsertSiteCmsResource;
-use Zrcms\ContentCore\Site\Api\Repository\FindSiteCmsResource;
+use Zrcms\ContentCore\Site\Api\CmsResource\FindSiteCmsResource;
 use Zrcms\ContentCore\Site\Fields\FieldsSiteVersion;
 use Zrcms\ContentCore\Site\Model\SiteCmsResource;
 use Zrcms\ContentCore\Site\Model\SiteVersionBasic;

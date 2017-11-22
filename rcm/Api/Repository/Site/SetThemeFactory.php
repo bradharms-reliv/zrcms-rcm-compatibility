@@ -4,7 +4,7 @@ namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Site;
 
 use Interop\Container\ContainerInterface;
 use Zrcms\ContentCore\Site\Api\CmsResource\UpsertSiteCmsResource;
-use Zrcms\ContentCore\Site\Api\Repository\FindSiteCmsResource;
+use Zrcms\ContentCore\Site\Api\CmsResource\FindSiteCmsResource;
 
 /**
  * @deprecated BC ONLY

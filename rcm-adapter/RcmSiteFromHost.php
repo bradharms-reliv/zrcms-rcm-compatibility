@@ -2,7 +2,7 @@
 
 namespace ZrcmsRcmCompatibility\RcmAdapter;
 
-use Zrcms\ContentCore\Site\Api\Repository\FindSiteCmsResourceByHost;
+use Zrcms\ContentCore\Site\Api\CmsResource\FindSiteCmsResourceByHost;
 use ZrcmsRcmCompatibility\Rcm\Entity\Site;
 
 /**

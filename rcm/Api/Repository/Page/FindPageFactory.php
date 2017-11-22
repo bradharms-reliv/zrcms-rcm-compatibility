@@ -3,8 +3,8 @@
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Page;
 
 use Interop\Container\ContainerInterface;
-use Zrcms\ContentCore\Page\Api\Repository\FindPageTemplateCmsResourcesBy;
-use Zrcms\ContentCore\Page\Api\Repository\FindPageCmsResourcesBy;
+use Zrcms\ContentCore\Page\Api\CmsResource\FindPageTemplateCmsResourcesBy;
+use Zrcms\ContentCore\Page\Api\CmsResource\FindPageCmsResourcesBy;
 use ZrcmsRcmCompatibility\RcmAdapter\RcmPageFromZrcmsPageCmsResource;
 
 /**

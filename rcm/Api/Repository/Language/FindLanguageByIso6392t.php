@@ -4,7 +4,7 @@ namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Language;
 
 use Rcm\Entity\Language;
 use Zrcms\Content\Model\Trackable;
-use Zrcms\ContentCore\Basic\Api\Repository\FindBasicComponent;
+use Zrcms\ContentCore\Basic\Api\Component\FindBasicComponent;
 use Zrcms\ContentLanguage\Model\LanguagesComponent;
 
 /**

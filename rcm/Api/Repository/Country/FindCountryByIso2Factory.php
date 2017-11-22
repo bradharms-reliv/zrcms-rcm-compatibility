@@ -3,7 +3,7 @@
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Country;
 
 use Interop\Container\ContainerInterface;
-use Zrcms\ContentCore\Basic\Api\Repository\FindBasicComponent;
+use Zrcms\ContentCore\Basic\Api\Component\FindBasicComponent;
 
 /**
  * @deprecated BC ONLY

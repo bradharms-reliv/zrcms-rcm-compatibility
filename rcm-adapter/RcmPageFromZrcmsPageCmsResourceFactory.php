@@ -3,7 +3,7 @@
 namespace ZrcmsRcmCompatibility\RcmAdapter;
 
 use Psr\Container\ContainerInterface;
-use Zrcms\ContentCore\Site\Api\Repository\FindSiteCmsResource;
+use Zrcms\ContentCore\Site\Api\CmsResource\FindSiteCmsResource;
 
 /**
  * @author James Jervis - https://github.com/jerv13

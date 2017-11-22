@@ -2,7 +2,7 @@
 
 namespace ZrcmsRcmCompatibility\RcmAdapter;
 
-use Zrcms\ContentCore\Basic\Api\Repository\FindBasicComponent;
+use Zrcms\ContentCore\Basic\Api\Component\FindBasicComponent;
 use Zrcms\ContentCore\Site\Fields\FieldsSiteVersion;
 use Zrcms\ContentCore\Site\Model\SiteCmsResource;
 use Zrcms\ContentCountry\Model\CountriesComponent;

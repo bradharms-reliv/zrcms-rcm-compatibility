@@ -3,7 +3,7 @@
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Site;
 
 use Rcm\Entity\Site;
-use Zrcms\ContentCore\Site\Api\Repository\FindSiteCmsResourcesBy;
+use Zrcms\ContentCore\Site\Api\CmsResource\FindSiteCmsResourcesBy;
 use ZrcmsRcmCompatibility\RcmAdapter\FieldMap;
 use ZrcmsRcmCompatibility\RcmAdapter\RcmSiteFromZrcmsSiteCmsResource;
 
