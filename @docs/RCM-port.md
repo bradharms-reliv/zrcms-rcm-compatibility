@@ -242,7 +242,7 @@ Milestones
     
 ##### EventManger and events ported to Middleware
 
-- [x] Logout -> Zrcms\HttpExpressive\Middleware\LogOut
+- [x] Logout -> Zrcms\HttpViewRender\Middleware\LogOut
 
 - issue with RcmUser\Acl\Service\AuthorizeService (416) $this->getEventManager()->trigger(
     
