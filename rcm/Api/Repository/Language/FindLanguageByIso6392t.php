@@ -3,8 +3,8 @@
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Language;
 
 use Rcm\Entity\Language;
+use Zrcms\Content\Api\Component\FindComponent;
 use Zrcms\Content\Model\Trackable;
-use Zrcms\ContentCore\Basic\Api\Component\FindBasicComponent;
 use Zrcms\ContentLanguage\Model\LanguagesComponent;
 
 /**
@@ -13,17 +13,17 @@ use Zrcms\ContentLanguage\Model\LanguagesComponent;
 class FindLanguageByIso6392t extends \Rcm\Api\Repository\Language\FindLanguageByIso6392t
 {
     /**
-     * @var FindBasicComponent
+     * @var FindComponent
      */
-    protected $findBasicComponent;
+    protected $findComponent;
 
     /**
-     * @param FindBasicComponent $findBasicComponent
+     * @param FindComponent $findComponent
      */
     public function __construct(
-        FindBasicComponent $findBasicComponent
+        FindComponent $findComponent
     ) {
-        $this->findBasicComponent = $findBasicComponent;
+        $this->findComponent = $findComponent;
     }
 
     /**
@@ -37,7 +37,8 @@ class FindLanguageByIso6392t extends \Rcm\Api\Repository\Language\FindLanguageBy
         array $options = []
     ) {
         /** @var LanguagesComponent $component */
-        $component = $this->findBasicComponent->__invoke(
+        $component = $this->findComponent->__invoke(
+            'basic',
             'zrcms-languages'
         );
 

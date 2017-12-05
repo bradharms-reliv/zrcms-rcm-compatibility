@@ -2,7 +2,7 @@
 
 namespace ZrcmsRcmCompatibility\RcmAdapter;
 
-use Zrcms\ContentCore\Basic\Api\Component\FindBasicComponent;
+use Zrcms\Content\Api\Component\FindComponent;
 use Zrcms\ContentCore\Site\Fields\FieldsSiteVersion;
 use Zrcms\ContentCore\Site\Model\SiteCmsResource;
 use Zrcms\ContentCountry\Model\CountriesComponent;
@@ -18,12 +18,12 @@ use ZrcmsRcmCompatibility\Rcm\Entity\Site;
 class RcmSiteFromZrcmsSiteCmsResource
 {
     /**
-     * @param FindBasicComponent $findBasicComponent
+     * @param FindComponent $findComponent
      */
     public function __construct(
-        FindBasicComponent $findBasicComponent
+        FindComponent $findComponent
     ) {
-        $this->findBasicComponent = $findBasicComponent;
+        $this->findComponent = $findComponent;
     }
 
     /**
@@ -43,7 +43,8 @@ class RcmSiteFromZrcmsSiteCmsResource
         );
 
         /** @var CountriesComponent $countriesComponent */
-        $countriesComponent = $this->findBasicComponent->__invoke(
+        $countriesComponent = $this->findComponent->__invoke(
+            'basic',
             'zrcms-countries'
         );
 
@@ -60,7 +61,8 @@ class RcmSiteFromZrcmsSiteCmsResource
         );
 
         /** @var LanguagesComponent $languagesComponent */
-        $languagesComponent = $this->findBasicComponent->__invoke(
+        $languagesComponent = $this->findComponent->__invoke(
+            'basic',
             'zrcms-languages'
         );
 

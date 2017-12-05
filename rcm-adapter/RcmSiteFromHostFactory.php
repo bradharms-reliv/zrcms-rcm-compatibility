@@ -3,7 +3,6 @@
 namespace ZrcmsRcmCompatibility\RcmAdapter;
 
 use Psr\Container\ContainerInterface;
-use Zrcms\ContentCore\Basic\Api\Component\FindBasicComponent;
 use Zrcms\ContentCore\Site\Api\CmsResource\FindSiteCmsResourceByHost;
 
 /**

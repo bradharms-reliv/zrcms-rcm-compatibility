@@ -3,7 +3,7 @@
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Language;
 
 use Interop\Container\ContainerInterface;
-use Zrcms\ContentCore\Basic\Api\Component\FindBasicComponent;
+use Zrcms\Content\Api\Component\FindComponent;
 
 /**
  * @deprecated BC ONLY
@@ -18,7 +18,7 @@ class FindLanguageByIso6392tFactory
     public function __invoke($serviceContainer)
     {
         return new FindLanguageByIso6392t(
-            $serviceContainer->get(FindBasicComponent::class)
+            $serviceContainer->get(FindComponent::class)
         );
     }
 }

@@ -3,6 +3,7 @@
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Country;
 
 use Interop\Container\ContainerInterface;
+use Zrcms\Content\Api\Component\FindComponent;
 use Zrcms\ContentCore\Basic\Api\Component\FindBasicComponent;
 
 /**
@@ -18,7 +19,7 @@ class FindCountryByIso2Factory
     public function __invoke($serviceContainer)
     {
         return new FindCountryByIso2(
-            $serviceContainer->get(FindBasicComponent::class)
+            $serviceContainer->get(FindComponent::class)
         );
     }
 }

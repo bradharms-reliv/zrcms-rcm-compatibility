@@ -2,7 +2,7 @@
 
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Country;
 
-use Zrcms\ContentCore\Basic\Api\Component\FindBasicComponent;
+use Zrcms\Content\Api\Component\FindComponent;
 use Zrcms\ContentCountry\Model\CountriesComponent;
 use ZrcmsRcmCompatibility\Rcm\Entity\Country;
 
@@ -12,17 +12,17 @@ use ZrcmsRcmCompatibility\Rcm\Entity\Country;
 class FindCountryByIso2 extends \Rcm\Api\Repository\Country\FindCountryByIso2
 {
     /**
-     * @var FindBasicComponent
+     * @var FindComponent
      */
-    protected $findBasicComponent;
+    protected $findComponent;
 
     /**
-     * @param FindBasicComponent $findBasicComponent
+     * @param FindComponent $findComponent
      */
     public function __construct(
-        FindBasicComponent $findBasicComponent
+        FindComponent $findComponent
     ) {
-        $this->findBasicComponent = $findBasicComponent;
+        $this->findComponent = $findComponent;
     }
 
     /**
@@ -36,7 +36,8 @@ class FindCountryByIso2 extends \Rcm\Api\Repository\Country\FindCountryByIso2
         array $options = []
     ) {
         /** @var CountriesComponent $countriesComponent */
-        $countriesComponent = $this->findBasicComponent->__invoke(
+        $countriesComponent = $this->findComponent->__invoke(
+            'basic',
             'zrcms-countries'
         );
 

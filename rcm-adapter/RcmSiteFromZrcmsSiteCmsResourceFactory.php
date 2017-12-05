@@ -3,7 +3,7 @@
 namespace ZrcmsRcmCompatibility\RcmAdapter;
 
 use Psr\Container\ContainerInterface;
-use Zrcms\ContentCore\Basic\Api\Component\FindBasicComponent;
+use Zrcms\Content\Api\Component\FindComponent;
 
 /**
  * @deprecated
@@ -20,7 +20,7 @@ class RcmSiteFromZrcmsSiteCmsResourceFactory
         $serviceContainer
     ) {
         return new RcmSiteFromZrcmsSiteCmsResource(
-            $serviceContainer->get(FindBasicComponent::class)
+            $serviceContainer->get(FindComponent::class)
         );
     }
 }
