@@ -4,7 +4,6 @@ namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Country;
 
 use Interop\Container\ContainerInterface;
 use Zrcms\Content\Api\Component\FindComponent;
-use Zrcms\ContentCore\Basic\Api\Component\FindBasicComponent;
 
 /**
  * @deprecated BC ONLY
