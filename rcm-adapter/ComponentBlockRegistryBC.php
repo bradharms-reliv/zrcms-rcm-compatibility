@@ -12,6 +12,7 @@ use Zrcms\ContentCore\Block\Fields\FieldsBlockComponentConfig;
 class ComponentBlockRegistryBC
 {
     const DEFAULT_COMPONENT_REGISTRY_KEY = 'zrcms-components';
+
     /**
      * @param array  $appConfig
      * @param string $configFile I.E. __DIR__ . '/autoload/zrcms-blocks-bc.php'
@@ -58,7 +59,8 @@ class ComponentBlockRegistryBC
 
         foreach ($appConfig['rcmPlugin'] as $rcmPluginName => $rcmPluginConfig) {
             $appConfig[$componentRegistryKey]['block.' . $rcmPluginName] = ComponentBlockRegistryBC::getBcPluginConfig(
-                $rcmPluginName
+                $rcmPluginName,
+                $rcmPluginConfig
             );
         }
 
@@ -81,7 +83,10 @@ class ComponentBlockRegistryBC
         $componentRegistry = [];
 
         foreach ($appConfig['rcmPlugin'] as $rcmPluginName => $rcmPluginConfig) {
-            $componentRegistry['block.' . $rcmPluginName] = ComponentBlockRegistryBC::getBcPluginConfig($rcmPluginName);
+            $componentRegistry['block.' . $rcmPluginName] = ComponentBlockRegistryBC::getBcPluginConfig(
+                $rcmPluginName,
+                $rcmPluginConfig
+            );
         }
 
         return $componentRegistry;
@@ -89,20 +94,31 @@ class ComponentBlockRegistryBC
 
     /**
      * @param string $rcmPluginName
+     * @param array  $rcmPluginConfig
+     * @param array  $componentRegistryEntry
      *
      * @return array
      */
     public static function getBcPluginConfig(
-        string $rcmPluginName
-    ): array
-    {
-        $componentRegistryEntry = [];
+        string $rcmPluginName,
+        array $rcmPluginConfig,
+        array $componentRegistryEntry = []
+    ): array {
+        if (empty($rcmPluginConfig[FieldsBlockComponentConfig::TYPE])) {
+            $rcmPluginConfig[FieldsBlockComponentConfig::TYPE] = 'block';
+        }
+        // FIX for collisions
+        if ($rcmPluginConfig[FieldsBlockComponentConfig::TYPE] !== 'block') {
+            $componentRegistryEntry[FieldsBlockComponentConfig::CATEGORY] = $rcmPluginConfig[FieldsBlockComponentConfig::TYPE];
+            $componentRegistryEntry[FieldsBlockComponentConfig::TYPE] = 'block';
+        }
+
         $componentRegistryEntry[FieldsBlockComponentConfig::COMPONENT_CONFIG_READER]
             = ReadComponentConfigBlockBc::SERVICE_ALIAS;
         $componentRegistryEntry[FieldsBlockComponentConfig::CONFIG_LOCATION]
             = $rcmPluginName;
         $componentRegistryEntry[FieldsBlockComponentConfig::MODULE_DIRECTORY]
-            = "unknown";
+            = __DIR__;
         $componentRegistryEntry[FieldsBlockComponentConfig::NAME]
             = $rcmPluginName;
         $componentRegistryEntry[FieldsBlockComponentConfig::RENDERER]
