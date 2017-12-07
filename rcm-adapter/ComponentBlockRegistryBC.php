@@ -2,6 +2,8 @@
 
 namespace ZrcmsRcmCompatibility\RcmAdapter;
 
+use Zrcms\Core\Api\Component\ReadComponentConfig;
+use Zrcms\CoreApplication\Api\Component\ReadComponentConfigJsonFile;
 use Zrcms\CoreBlock\Api\Component\ReadComponentConfigBlockBc;
 use Zrcms\CoreBlock\Api\Render\RenderBlockBc;
 use Zrcms\CoreBlock\Fields\FieldsBlockComponentConfig;
@@ -89,6 +91,24 @@ class ComponentBlockRegistryBC
             );
         }
 
+        foreach ($appConfig['Rcm']['blocks'] as $rcmPluginBlockConfigDir) {
+
+            $rcmPluginBlockConfigDir = realpath($rcmPluginBlockConfigDir);
+            $rcmPluginConfigJson = file_get_contents(
+                realpath($rcmPluginBlockConfigDir . '/block.json')
+            );
+
+            $rcmPluginConfig = json_decode($rcmPluginConfigJson, true);
+            $rcmPluginName = $rcmPluginConfig['name'];
+
+            $componentRegistry['block.' . $rcmPluginName] = ComponentBlockRegistryBC::getBcPluginBlockConfig(
+                $rcmPluginName,
+                $rcmPluginConfig,
+                [],
+                $rcmPluginBlockConfigDir
+            );
+        }
+
         return $componentRegistry;
     }
 
@@ -96,11 +116,75 @@ class ComponentBlockRegistryBC
      * @param string $rcmPluginName
      * @param array  $rcmPluginConfig
      * @param array  $componentRegistryEntry
+     * @param string $moduleDirectory
      *
      * @return array
      */
     public static function getBcPluginConfig(
         string $rcmPluginName,
+        array $rcmPluginConfig,
+        array $componentRegistryEntry = [],
+        $moduleDirectory = __DIR__
+    ): array {
+        $componentRegistryEntry = self::fixTypeCategoryCollision(
+            $rcmPluginConfig,
+            $componentRegistryEntry
+        );
+
+        $componentRegistryEntry[FieldsBlockComponentConfig::COMPONENT_CONFIG_READER]
+            = ReadComponentConfigBlockBc::SERVICE_ALIAS;
+        $componentRegistryEntry[FieldsBlockComponentConfig::CONFIG_LOCATION]
+            = $rcmPluginName;
+        $componentRegistryEntry[FieldsBlockComponentConfig::MODULE_DIRECTORY]
+            = $moduleDirectory;
+        $componentRegistryEntry[FieldsBlockComponentConfig::NAME]
+            = $rcmPluginName;
+        $componentRegistryEntry[FieldsBlockComponentConfig::RENDERER]
+            = RenderBlockBc::SERVICE_ALIAS;
+
+        return $componentRegistryEntry;
+    }
+
+    /**
+     * @param string $rcmPluginName
+     * @param array  $rcmPluginConfig
+     * @param array  $componentRegistryEntry
+     * @param string $moduleDirectory
+     *
+     * @return array
+     */
+    public static function getBcPluginBlockConfig(
+        string $rcmPluginName,
+        array $rcmPluginConfig,
+        array $componentRegistryEntry = [],
+        $moduleDirectory = __DIR__
+    ): array {
+        $componentRegistryEntry = self::fixTypeCategoryCollision(
+            $rcmPluginConfig,
+            $componentRegistryEntry
+        );
+
+        $componentRegistryEntry[FieldsBlockComponentConfig::COMPONENT_CONFIG_READER]
+            = ReadComponentConfigJsonFile::SERVICE_ALIAS;
+        $componentRegistryEntry[FieldsBlockComponentConfig::CONFIG_LOCATION]
+            = $moduleDirectory . '/block.json';
+        $componentRegistryEntry[FieldsBlockComponentConfig::MODULE_DIRECTORY]
+            = $moduleDirectory;
+        $componentRegistryEntry[FieldsBlockComponentConfig::NAME]
+            = $rcmPluginName;
+        $componentRegistryEntry[FieldsBlockComponentConfig::RENDERER]
+            = RenderBlockBc::SERVICE_ALIAS;
+
+        return $componentRegistryEntry;
+    }
+
+    /**
+     * @param array $rcmPluginConfig
+     * @param array $componentRegistryEntry
+     *
+     * @return array
+     */
+    public static function fixTypeCategoryCollision(
         array $rcmPluginConfig,
         array $componentRegistryEntry = []
     ): array {
@@ -109,20 +193,10 @@ class ComponentBlockRegistryBC
         }
         // FIX for collisions
         if ($rcmPluginConfig[FieldsBlockComponentConfig::TYPE] !== 'block') {
-            $componentRegistryEntry[FieldsBlockComponentConfig::CATEGORY] = $rcmPluginConfig[FieldsBlockComponentConfig::TYPE];
+            $componentRegistryEntry[FieldsBlockComponentConfig::CATEGORY]
+                = $rcmPluginConfig[FieldsBlockComponentConfig::TYPE];
             $componentRegistryEntry[FieldsBlockComponentConfig::TYPE] = 'block';
         }
-
-        $componentRegistryEntry[FieldsBlockComponentConfig::COMPONENT_CONFIG_READER]
-            = ReadComponentConfigBlockBc::SERVICE_ALIAS;
-        $componentRegistryEntry[FieldsBlockComponentConfig::CONFIG_LOCATION]
-            = $rcmPluginName;
-        $componentRegistryEntry[FieldsBlockComponentConfig::MODULE_DIRECTORY]
-            = __DIR__;
-        $componentRegistryEntry[FieldsBlockComponentConfig::NAME]
-            = $rcmPluginName;
-        $componentRegistryEntry[FieldsBlockComponentConfig::RENDERER]
-            = RenderBlockBc::SERVICE_ALIAS;
 
         return $componentRegistryEntry;
     }
