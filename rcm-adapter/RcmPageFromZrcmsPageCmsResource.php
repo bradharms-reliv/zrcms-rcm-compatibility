@@ -2,8 +2,8 @@
 
 namespace ZrcmsRcmCompatibility\RcmAdapter;
 
-use Zrcms\ContentCore\Page\Model\PageCmsResource;
-use Zrcms\ContentCore\Site\Api\CmsResource\FindSiteCmsResource;
+use Zrcms\CorePage\Model\PageCmsResource;
+use Zrcms\CoreSite\Api\CmsResource\FindSiteCmsResource;
 use ZrcmsRcmCompatibility\Rcm\Entity\Page;
 
 /**

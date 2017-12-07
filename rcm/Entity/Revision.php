@@ -3,9 +3,9 @@
 namespace ZrcmsRcmCompatibility\Rcm\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Zrcms\Content\Model\Action;
-use Zrcms\Content\Model\CmsResourceHistory;
-use Zrcms\Content\Model\ContentVersion;
+use Zrcms\Core\Model\Action;
+use Zrcms\Core\Model\CmsResourceHistory;
+use Zrcms\Core\Model\ContentVersion;
 
 /**
  * @deprecated BC ONLY

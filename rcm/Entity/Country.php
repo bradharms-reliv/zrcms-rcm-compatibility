@@ -9,7 +9,7 @@ namespace ZrcmsRcmCompatibility\Rcm\Entity;
 class Country extends \Rcm\Entity\Country
 {
     public function __construct(
-        \Zrcms\ContentCountry\Model\Country $country,
+        \Zrcms\CoreCountry\Model\Country $country,
         string $createdByUserId,
         string $createdReason
     ) {

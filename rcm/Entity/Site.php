@@ -4,8 +4,8 @@ namespace ZrcmsRcmCompatibility\Rcm\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Rcm\Entity\Domain;
-use Zrcms\ContentCore\Site\Fields\FieldsSiteVersion;
-use Zrcms\ContentCore\Site\Model\SiteCmsResource;
+use Zrcms\CoreSite\Fields\FieldsSiteVersion;
+use Zrcms\CoreSite\Model\SiteCmsResource;
 
 /**
  * @deprecated BC ONLY

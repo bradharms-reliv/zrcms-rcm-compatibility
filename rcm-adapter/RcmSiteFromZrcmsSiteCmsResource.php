@@ -2,11 +2,11 @@
 
 namespace ZrcmsRcmCompatibility\RcmAdapter;
 
-use Zrcms\Content\Api\Component\FindComponent;
-use Zrcms\ContentCore\Site\Fields\FieldsSiteVersion;
-use Zrcms\ContentCore\Site\Model\SiteCmsResource;
-use Zrcms\ContentCountry\Model\CountriesComponent;
-use Zrcms\ContentLanguage\Model\LanguagesComponent;
+use Zrcms\Core\Api\Component\FindComponent;
+use Zrcms\CoreSite\Fields\FieldsSiteVersion;
+use Zrcms\CoreSite\Model\SiteCmsResource;
+use Zrcms\CoreCountry\Model\CountriesComponent;
+use Zrcms\CoreLanguage\Model\LanguagesComponent;
 use ZrcmsRcmCompatibility\Rcm\Entity\Country;
 use ZrcmsRcmCompatibility\Rcm\Entity\Language;
 use ZrcmsRcmCompatibility\Rcm\Entity\Site;

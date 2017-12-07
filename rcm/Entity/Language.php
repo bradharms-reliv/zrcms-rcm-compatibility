@@ -9,12 +9,12 @@ namespace ZrcmsRcmCompatibility\Rcm\Entity;
 class Language extends \Rcm\Entity\Language
 {
     /**
-     * @param \Zrcms\ContentLanguage\Model\Language $language
+     * @param \Zrcms\CoreLanguage\Model\Language $language
      * @param string                                $createdByUserId
      * @param string                                $createdReason
      */
     public function __construct(
-        \Zrcms\ContentLanguage\Model\Language $language,
+        \Zrcms\CoreLanguage\Model\Language $language,
         string $createdByUserId,
         string $createdReason
     ) {

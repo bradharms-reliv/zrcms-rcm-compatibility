@@ -2,9 +2,9 @@
 
 namespace ZrcmsRcmCompatibility\RcmAdapter;
 
-use Zrcms\ContentCore\Block\Api\Component\ReadComponentConfigBlockBc;
-use Zrcms\ContentCore\Block\Api\Render\RenderBlockBc;
-use Zrcms\ContentCore\Block\Fields\FieldsBlockComponentConfig;
+use Zrcms\CoreBlock\Api\Component\ReadComponentConfigBlockBc;
+use Zrcms\CoreBlock\Api\Render\RenderBlockBc;
+use Zrcms\CoreBlock\Fields\FieldsBlockComponentConfig;
 
 /**
  * @author James Jervis - https://github.com/jerv13

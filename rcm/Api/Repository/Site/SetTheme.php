@@ -2,11 +2,11 @@
 
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Site;
 
-use Zrcms\ContentCore\Site\Api\CmsResource\UpsertSiteCmsResource;
-use Zrcms\ContentCore\Site\Api\CmsResource\FindSiteCmsResource;
-use Zrcms\ContentCore\Site\Fields\FieldsSiteVersion;
-use Zrcms\ContentCore\Site\Model\SiteCmsResource;
-use Zrcms\ContentCore\Site\Model\SiteVersionBasic;
+use Zrcms\CoreSite\Api\CmsResource\UpsertSiteCmsResource;
+use Zrcms\CoreSite\Api\CmsResource\FindSiteCmsResource;
+use Zrcms\CoreSite\Fields\FieldsSiteVersion;
+use Zrcms\CoreSite\Model\SiteCmsResource;
+use Zrcms\CoreSite\Model\SiteVersionBasic;
 
 /**
  * @deprecated BC ONLY

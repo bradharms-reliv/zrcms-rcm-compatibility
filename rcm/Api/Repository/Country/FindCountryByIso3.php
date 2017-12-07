@@ -2,8 +2,8 @@
 
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Country;
 
-use Zrcms\Content\Api\Component\FindComponent;
-use Zrcms\ContentCountry\Model\CountriesComponent;
+use Zrcms\Core\Api\Component\FindComponent;
+use Zrcms\CoreCountry\Model\CountriesComponent;
 use ZrcmsRcmCompatibility\Rcm\Entity\Country;
 
 /**

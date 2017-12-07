@@ -3,7 +3,7 @@
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Language;
 
 use Interop\Container\ContainerInterface;
-use Zrcms\Content\Api\Component\FindComponent;
+use Zrcms\Core\Api\Component\FindComponent;
 
 /**
  * @deprecated BC ONLY

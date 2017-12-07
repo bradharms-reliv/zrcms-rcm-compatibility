@@ -3,7 +3,7 @@
 namespace ZrcmsRcmCompatibility\Rcm\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Zrcms\ContentCore\Site\Model\SiteCmsResource;
+use Zrcms\CoreSite\Model\SiteCmsResource;
 
 /**
  * @deprecated BC ONLY

@@ -4,11 +4,11 @@ namespace ZrcmsRcmCompatibility\Rcm\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Rcm\Page\PageTypes\PageTypes;
-use Zrcms\ContentCore\Page\Fields\FieldsPageVersion;
-use Zrcms\ContentCore\Page\Model\PageCmsResource;
-use Zrcms\ContentCore\Page\Model\PageCmsResourceHistory;
-use Zrcms\ContentCore\Page\Model\PageVersion;
-use Zrcms\ContentCore\Page\Model\PageTemplateCmsResource;
+use Zrcms\CorePage\Fields\FieldsPageVersion;
+use Zrcms\CorePage\Model\PageCmsResource;
+use Zrcms\CorePage\Model\PageCmsResourceHistory;
+use Zrcms\CorePage\Model\PageVersion;
+use Zrcms\CorePage\Model\PageTemplateCmsResource;
 
 /**
  * @deprecated BC ONLY

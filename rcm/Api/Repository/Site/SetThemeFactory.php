@@ -3,8 +3,8 @@
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Site;
 
 use Interop\Container\ContainerInterface;
-use Zrcms\ContentCore\Site\Api\CmsResource\UpsertSiteCmsResource;
-use Zrcms\ContentCore\Site\Api\CmsResource\FindSiteCmsResource;
+use Zrcms\CoreSite\Api\CmsResource\UpsertSiteCmsResource;
+use Zrcms\CoreSite\Api\CmsResource\FindSiteCmsResource;
 
 /**
  * @deprecated BC ONLY

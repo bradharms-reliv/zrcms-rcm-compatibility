@@ -3,7 +3,7 @@
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Site;
 
 use Interop\Container\ContainerInterface;
-use Zrcms\ContentCore\Site\Api\CmsResource\FindSiteCmsResource;
+use Zrcms\CoreSite\Api\CmsResource\FindSiteCmsResource;
 use ZrcmsRcmCompatibility\RcmAdapter\RcmSiteFromZrcmsSiteCmsResource;
 
 /**
