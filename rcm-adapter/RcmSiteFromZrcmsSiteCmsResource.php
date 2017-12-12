@@ -31,6 +31,7 @@ class RcmSiteFromZrcmsSiteCmsResource
      * @param array           $options
      *
      * @return Site
+     * @throws \Zrcms\Core\Exception\TrackingInvalid
      */
     public function __invoke(
         SiteCmsResource $siteCmsResource,
@@ -38,7 +39,7 @@ class RcmSiteFromZrcmsSiteCmsResource
     ) {
         $zrSiteVersion = $siteCmsResource->getContentVersion();
 
-        $countryIso3 = $zrSiteVersion->getProperty(
+        $countryIso3 = $zrSiteVersion->findProperty(
             FieldsSiteVersion::COUNTRY_ISO3
         );
 
@@ -56,7 +57,7 @@ class RcmSiteFromZrcmsSiteCmsResource
             $countriesComponent->getCreatedReason()
         );
 
-        $languageIso6392t = $zrSiteVersion->getProperty(
+        $languageIso6392t = $zrSiteVersion->findProperty(
             FieldsSiteVersion::LANGUAGE_ISO_939_2T
         );
 

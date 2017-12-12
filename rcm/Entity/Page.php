@@ -6,9 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Rcm\Page\PageTypes\PageTypes;
 use Zrcms\CorePage\Fields\FieldsPageVersion;
 use Zrcms\CorePage\Model\PageCmsResource;
-use Zrcms\CorePage\Model\PageCmsResourceHistory;
-use Zrcms\CorePage\Model\PageVersion;
 use Zrcms\CorePage\Model\PageTemplateCmsResource;
+use Zrcms\CorePage\Model\PageVersion;
 
 /**
  * @deprecated BC ONLY
@@ -17,10 +16,12 @@ use Zrcms\CorePage\Model\PageTemplateCmsResource;
 class Page extends \Rcm\Entity\Page
 {
     /**
-     * @param PageCmsResource                    $pageCmsResource
-     * @param Site                               $site
-     * @param PageCmsResourceHistory|null $lastPublished
-     * @param string                             $pageType
+     * @param PageCmsResource $pageCmsResource
+     * @param Site            $site
+     * @param null            $lastPublished
+     * @param string          $pageType
+     *
+     * @throws \Zrcms\Core\Exception\TrackingInvalid
      */
     public function __construct(
         PageCmsResource $pageCmsResource,
@@ -37,11 +38,11 @@ class Page extends \Rcm\Entity\Page
 
         $this->author = $pageVersion->getCreatedByUserId();
 
-        if($lastPublished) {
+        if ($lastPublished) {
             $this->lastPublished = $lastPublished->getCreatedDateObject();
         }
 
-        $this->pageLayout = $pageVersion->getProperty(
+        $this->pageLayout = $pageVersion->findProperty(
             FieldsPageVersion::LAYOUT,
             null
         );

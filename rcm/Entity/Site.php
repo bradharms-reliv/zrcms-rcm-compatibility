@@ -13,6 +13,13 @@ use Zrcms\CoreSite\Model\SiteCmsResource;
  */
 class Site extends \Rcm\Entity\Site
 {
+    /**
+     * @param SiteCmsResource $siteCmsResource
+     * @param Country         $country
+     * @param Language        $language
+     *
+     * @throws \Zrcms\Core\Exception\TrackingInvalid
+     */
     public function __construct(
         SiteCmsResource $siteCmsResource,
         Country $country,
@@ -21,12 +28,12 @@ class Site extends \Rcm\Entity\Site
         $siteVersion = $siteCmsResource->getContentVersion();
 
         $this->setFavIcon(
-            $siteVersion->getProperty(
+            $siteVersion->findProperty(
                 FieldsSiteVersion::FAVICON
             )
         );
         $this->setLoginPage(
-            $siteVersion->getProperty(
+            $siteVersion->findProperty(
                 FieldsSiteVersion::LOGIN_PAGE
             )
         );
@@ -54,7 +61,7 @@ class Site extends \Rcm\Entity\Site
             $siteCmsResource->getId()
         );
         $this->setSiteTitle(
-            $siteVersion->getProperty(
+            $siteVersion->findProperty(
                 FieldsSiteVersion::TITLE
             )
         );
@@ -62,7 +69,7 @@ class Site extends \Rcm\Entity\Site
         $this->setStatus(Site::STATUS_ACTIVE);
 
         $this->setTheme(
-            $siteVersion->getProperty(
+            $siteVersion->findProperty(
                 FieldsSiteVersion::THEME_NAME
             )
         );
