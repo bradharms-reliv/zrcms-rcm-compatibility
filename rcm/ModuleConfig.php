@@ -26,8 +26,6 @@ use ZrcmsRcmCompatibility\Rcm\Service\SiteServiceFactory;
 class ModuleConfig
 {
     /**
-     * __invoke
-     *
      * @return array
      */
     public function __invoke()

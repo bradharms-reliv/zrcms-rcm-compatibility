@@ -7,8 +7,6 @@ namespace ZrcmsRcmCompatibility;
 class ModulesConfig
 {
     /**
-     * __invoke
-     *
      * @return array
      */
     public function __invoke()
