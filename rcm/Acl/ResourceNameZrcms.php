@@ -6,9 +6,9 @@ use Rcm\Acl\ResourceName;
 
 /**
  * @deprecated BC ONLY
- * @todo Page types do not exist anymore and pageNames contain slashes
+ * @todo       Page types do not exist anymore and pageNames contain slashes
  *
- * @author James Jervis - https://github.com/jerv13
+ * @author     James Jervis - https://github.com/jerv13
  */
 class ResourceNameZrcms implements ResourceName
 {
@@ -93,7 +93,8 @@ class ResourceNameZrcms implements ResourceName
     {
         $resources = explode('.', $resourceId);
 
-        return ($this->isSitesResourceId($resourceId) && !empty($resources[2]) && $resources[2] === self::RESOURCE_PAGES);
+        return ($this->isSitesResourceId($resourceId) && !empty($resources[2])
+            && $resources[2] === self::RESOURCE_PAGES);
     }
 
     /**
@@ -129,11 +130,13 @@ class ResourceNameZrcms implements ResourceName
     /**
      * Turns page path into resource path
      * /page/example => .page.example
+     *
      * @param $pageName
      *
      * @return string
      */
-    protected function preparePageName($pageName) {
+    protected function preparePageName($pageName)
+    {
         return str_replace('/', '.', $pageName);
     }
 }

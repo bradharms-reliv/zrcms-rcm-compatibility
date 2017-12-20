@@ -1,6 +1,7 @@
 <?php
 
 namespace ZrcmsRcmCompatibility;
+
 /**
  * @author James Jervis - https://github.com/jerv13
  */
