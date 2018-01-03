@@ -30,8 +30,10 @@ class GetRcmPluginController
     /**
      * @param $pluginName
      *
-     * @return PluginInterface|BaseController
+     * @return mixed|BaseController
      * @throws \Exception
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function __invoke($pluginName)
     {
@@ -49,7 +51,7 @@ class GetRcmPluginController
 
         if (!$serviceManager->has($pluginName)) {
             return new BaseController(
-                $this->serviceManager->get('Config'),
+                $this->serviceManager->get('config'),
                 $pluginName,
                 $this->serviceManager
             );

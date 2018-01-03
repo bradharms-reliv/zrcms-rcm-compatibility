@@ -11,14 +11,14 @@ use Psr\Container\ContainerInterface;
 class GetRcmConfigFactory
 {
     /**
-     * @param ContainerInterface $serviceContainer
+     * @param $serviceContainer
      *
      * @return GetRcmConfig
      */
     public function __invoke(
         $serviceContainer
     ) {
-        $config = $serviceContainer->get('Config');
+        $config = $serviceContainer->get('config');
         return new GetRcmConfig($config);
     }
 }

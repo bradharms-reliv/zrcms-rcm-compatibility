@@ -2,6 +2,8 @@
 
 namespace ZrcmsRcmCompatibility\RcmAdapter;
 
+use Zrcms\Json\Json;
+
 /**
  * @deprecated BC ONLY
  * @author     James Jervis - https://github.com/jerv13
@@ -40,7 +42,7 @@ abstract class FieldMapAbstract
         foreach ($rcmFieldValues as $rcmField => $value) {
             if (!array_key_exists($rcmField, $this->fieldMap)) {
                 throw new \Exception(
-                    'RCM field: (' . $rcmField . ') has not been mapped for field' . json_encode($rcmField)
+                    'RCM field: (' . $rcmField . ') has not been mapped for field' . Json::encode($rcmField)
                 );
             }
 
