@@ -49,7 +49,7 @@ class RcmSiteFromZrcmsSiteCmsResource
             'zrcms-countries'
         );
 
-        $zrCountry = $countriesComponent->getCountry($countryIso3);
+        $zrCountry = $countriesComponent->findCountry($countryIso3);
 
         $country = new Country(
             $zrCountry,
@@ -67,7 +67,7 @@ class RcmSiteFromZrcmsSiteCmsResource
             'zrcms-languages'
         );
 
-        $zrLanguage = $languagesComponent->getLanguage($languageIso6392t);
+        $zrLanguage = $languagesComponent->findLanguage($languageIso6392t);
 
         $language = new Language(
             $zrLanguage,

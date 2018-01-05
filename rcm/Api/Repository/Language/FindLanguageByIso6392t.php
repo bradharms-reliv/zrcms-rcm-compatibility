@@ -42,7 +42,7 @@ class FindLanguageByIso6392t extends \Rcm\Api\Repository\Language\FindLanguageBy
             'zrcms-languages'
         );
 
-        $zrcmsLanguage = $component->getLanguage(
+        $zrcmsLanguage = $component->findLanguage(
             $iso639_2t
         );
 

@@ -2,16 +2,17 @@
 
 namespace ZrcmsRcmCompatibility\Rcm;
 
-use Rcm\Api\Repository\Country\FindCountryByIso2;
 use Rcm\Module;
 use ZrcmsRcmCompatibility\Rcm\Acl\ResourceNameZrcmsFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\GetSiteByRequestFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Country\FindCountryByIso2Factory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Country\FindCountryByIso3Factory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Domain\FindDomainByNameFactory;
+use ZrcmsRcmCompatibility\Rcm\Api\Repository\Domain\FindDomainsWithSubDomainFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Language\FindLanguageByIso6392tFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Page\FindPageFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Setting\FindSettingByNameFactory;
+use ZrcmsRcmCompatibility\Rcm\Api\Repository\Site\CreateSiteFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Site\FindOneSiteFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Site\FindSiteFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Site\SetThemeFactory;
@@ -55,11 +56,17 @@ class ModuleConfig
                 \Rcm\Api\Repository\Language\FindLanguageByIso6392t::class
                 => FindLanguageByIso6392tFactory::class,
 
+                \Rcm\Api\Repository\Domain\FindDomainsWithSubDomain::class
+                => FindDomainsWithSubDomainFactory::class,
+
                 \Rcm\Api\Repository\Page\FindPage::class
                 => FindPageFactory::class,
 
                 \Rcm\Api\Repository\Setting\FindSettingByName::class
                 => FindSettingByNameFactory::class,
+
+                \Rcm\Api\Repository\Site\CreateSite::class
+                => CreateSiteFactory::class,
 
                 \Rcm\Api\Repository\Site\FindOneSite::class
                 => FindOneSiteFactory::class,

@@ -13,7 +13,9 @@ class Domain extends \Rcm\Entity\Domain
 {
     /**
      * @param SiteCmsResource $siteCmsResource
-     * @param Site|null       $site
+     * @param Site            $site
+     *
+     * @throws \Zrcms\Core\Exception\TrackingInvalid
      */
     public function __construct(
         SiteCmsResource $siteCmsResource,

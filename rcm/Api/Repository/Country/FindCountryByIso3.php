@@ -41,7 +41,7 @@ class FindCountryByIso3 extends \Rcm\Api\Repository\Country\FindCountryByIso3
             'zrcms-countries'
         );
 
-        $zrCountry = $countriesComponent->getCountry($iso3);
+        $zrCountry = $countriesComponent->findCountry($iso3);
 
         return new Country(
             $zrCountry,
