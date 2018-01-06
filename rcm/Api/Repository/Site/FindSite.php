@@ -27,7 +27,8 @@ class FindSite extends \Rcm\Api\Repository\Site\FindSite
      * @param int   $id
      * @param array $options
      *
-     * @return null|Site
+     * @return null|Site|\ZrcmsRcmCompatibility\Rcm\Entity\Site
+     * @throws \Zrcms\Core\Exception\TrackingInvalid
      */
     public function __invoke(
         int $id,

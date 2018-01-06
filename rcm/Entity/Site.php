@@ -74,6 +74,12 @@ class Site extends \Rcm\Entity\Site
             )
         );
 
+        $this->setSiteLayout(
+            $siteVersion->findProperty(
+                FieldsSiteVersion::LAYOUT
+            )
+        );
+
         $domain = new \ZrcmsRcmCompatibility\Rcm\Entity\Domain(
             $siteCmsResource,
             $this
