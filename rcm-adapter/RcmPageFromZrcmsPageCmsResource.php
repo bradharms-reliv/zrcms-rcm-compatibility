@@ -7,10 +7,15 @@ use Zrcms\CoreSite\Api\CmsResource\FindSiteCmsResource;
 use ZrcmsRcmCompatibility\Rcm\Entity\Page;
 
 /**
- * @author James Jervis - https://github.com/jerv13
+ * @deprecated BC ONLY
+ * @author     James Jervis - https://github.com/jerv13
  */
 class RcmPageFromZrcmsPageCmsResource
 {
+    /**
+     * @param FindSiteCmsResource             $findSiteCmsResource
+     * @param RcmSiteFromZrcmsSiteCmsResource $rcmSiteFromZrcmsSiteCmsResource
+     */
     public function __construct(
         FindSiteCmsResource $findSiteCmsResource,
         RcmSiteFromZrcmsSiteCmsResource $rcmSiteFromZrcmsSiteCmsResource
@@ -24,6 +29,7 @@ class RcmPageFromZrcmsPageCmsResource
      * @param array           $options
      *
      * @return Page
+     * @throws \Zrcms\Core\Exception\TrackingInvalid
      */
     public function __invoke(
         PageCmsResource $pageCmsResource,

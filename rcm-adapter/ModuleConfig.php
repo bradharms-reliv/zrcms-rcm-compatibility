@@ -34,6 +34,9 @@ class ModuleConfig
                     RcmPageFromZrcmsPageCmsResource::class
                     => RcmPageFromZrcmsPageCmsResourceFactory::class,
 
+                    RcmPageRevisionsFromZrcmsPageCmsResourceHistoryList::class
+                    => RcmPageRevisionsFromZrcmsPageCmsResourceHistoryListFactory::class,
+
                     RcmSiteFromHost::class
                     => RcmSiteFromHostFactory::class,
 

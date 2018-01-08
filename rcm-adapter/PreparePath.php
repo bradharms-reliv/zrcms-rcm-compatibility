@@ -5,26 +5,31 @@ namespace ZrcmsRcmCompatibility\RcmAdapter;
 use Rcm\Page\PageTypes\PageTypes;
 
 /**
- * @author James Jervis - https://github.com/jerv13
+ * @deprecated BC ONLY
+ * @author     James Jervis - https://github.com/jerv13
  */
 class PreparePath
 {
     /**
-     * @param string $pagePath
-     * @param string $pageType
+     * @param string $rcmPagePath
+     * @param string $rcmPageType
      *
-     * @return string
+     * @return string ZRCMS Path
      */
-    public static function invoke(string $pagePath, string $pageType = PageTypes::NORMAL)
+    public static function invoke(string $rcmPagePath, string $rcmPageType = PageTypes::NORMAL)
     {
-        if (substr($pagePath, 0, 1) !== "/") {
-            $pagePath = '/' . $pagePath;
+        if ($rcmPagePath == 'index') {
+            $rcmPagePath = '/';
         }
 
-        if ($pageType !== PageTypes::NORMAL && $pageType !== PageTypes::TEMPLATE) {
-            $pagePath = '/' . $pageType . $pagePath;
+        if (substr($rcmPagePath, 0, 1) !== "/") {
+            $rcmPagePath = '/' . $rcmPagePath;
         }
 
-        return $pagePath;
+        if ($rcmPageType !== PageTypes::NORMAL && $rcmPageType !== PageTypes::TEMPLATE) {
+            $rcmPagePath = '/' . $rcmPageType . $rcmPagePath;
+        }
+
+        return $rcmPagePath;
     }
 }

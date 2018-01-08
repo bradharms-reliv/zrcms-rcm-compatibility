@@ -13,20 +13,25 @@ use Zrcms\Core\Model\ContentVersion;
  */
 class Revision extends \Rcm\Entity\Revision
 {
+    /**
+     * @param CmsResourceHistory $cmsResourceHistory
+     *
+     * @throws \Zrcms\Core\Exception\TrackingInvalid
+     */
     public function __construct(
-        ContentVersion $contentVersion,
-        CmsResourceHistory $lastPublishAction,
-        string $md5
+        CmsResourceHistory $cmsResourceHistory
     ) {
+        $contentVersion = $cmsResourceHistory->getContentVersion();
+
         $this->revisionId = $contentVersion->getId();
 
         $this->author = $contentVersion->getCreatedByUserId();
 
-        $this->publishedDate = $lastPublishAction->getCreatedDate();
+        $this->publishedDate = $cmsResourceHistory->getCreatedDate();
 
-        $this->published = $lastPublishAction->getAction() == 'published' ? true : false;
+        $this->published = $cmsResourceHistory->getAction() == 'published' ? true : false;
 
-        $this->md5 = $md5;
+        $this->md5 = 'no-md5';
 
         $this->pluginWrappers = new ArrayCollection();
 
@@ -36,10 +41,10 @@ class Revision extends \Rcm\Entity\Revision
 
         $this->createdReason = $contentVersion->getCreatedReason();
 
-        $this->modifiedDate = $lastPublishAction->getCreatedDateObject();
+        $this->modifiedDate = $cmsResourceHistory->getCreatedDateObject();
 
-        $this->modifiedByUserId = $lastPublishAction->getCreatedByUserId();
+        $this->modifiedByUserId = $cmsResourceHistory->getCreatedByUserId();
 
-        $this->modifiedReason = $lastPublishAction->getCreatedReason();
+        $this->modifiedReason = $cmsResourceHistory->getCreatedReason();
     }
 }

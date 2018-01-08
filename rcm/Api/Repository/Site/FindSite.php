@@ -38,6 +38,10 @@ class FindSite extends \Rcm\Api\Repository\Site\FindSite
             $id
         );
 
+        if (empty($siteCmsResource)) {
+            return null;
+        }
+
         return $this->rcmSiteFromZrcmsSiteCmsResource->__invoke($siteCmsResource);
     }
 }
