@@ -4,9 +4,7 @@ namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Page;
 
 use Rcm\Entity\Page;
 use Rcm\Page\PageTypes\PageTypes;
-use Zrcms\CorePage\Api\CmsResource\FindPageCmsResourceBySitePath;
 use Zrcms\CorePage\Api\CmsResource\FindPageCmsResourcesBy;
-use Zrcms\CorePage\Api\CmsResource\FindPageTemplateCmsResourceBySitePath;
 use Zrcms\CorePage\Api\CmsResource\FindPageTemplateCmsResourcesBy;
 use ZrcmsRcmCompatibility\RcmAdapter\PreparePath;
 use ZrcmsRcmCompatibility\RcmAdapter\RcmPageFromZrcmsPageCmsResource;

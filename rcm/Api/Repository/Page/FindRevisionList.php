@@ -8,7 +8,6 @@ use ZrcmsRcmCompatibility\RcmAdapter\PreparePath;
 use ZrcmsRcmCompatibility\RcmAdapter\RcmPageRevisionsFromZrcmsPageCmsResourceHistoryList;
 
 /**
- * @todo       CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
 class FindRevisionList

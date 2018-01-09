@@ -8,7 +8,6 @@ use Zrcms\CorePage\Api\CmsResourceHistory\FindPageCmsResourceHistoryBy;
 use ZrcmsRcmCompatibility\RcmAdapter\RcmPageRevisionsFromZrcmsPageCmsResourceHistoryList;
 
 /**
- * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
 class FindRevisionListFactory
