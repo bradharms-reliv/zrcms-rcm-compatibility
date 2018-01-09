@@ -2,12 +2,13 @@
 
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Page;
 
-use Doctrine\ORM\EntityManager;
 use Interop\Container\ContainerInterface;
-use Rcm\Api\Repository\Site\FindSite;
+use Zrcms\CorePage\Api\CmsResource\FindPageCmsResource;
+use Zrcms\CorePage\Api\CmsResource\UpsertPageCmsResource;
+use Zrcms\CoreSite\Api\CmsResource\FindSiteCmsResource;
+use ZrcmsRcmCompatibility\RcmAdapter\RcmPageFromZrcmsPageCmsResource;
 
 /**
- * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
 class CopyPageFactory
@@ -16,14 +17,16 @@ class CopyPageFactory
      * @param ContainerInterface $serviceContainer
      *
      * @return CopyPage
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new CopyPage(
-            $serviceContainer->get(EntityManager::class),
-            $serviceContainer->get(FindSite::class),
-            $serviceContainer->get(FindPageById::class),
-            $serviceContainer->get(AssertCanCreateSitePage::class)
+            $serviceContainer->get(FindSiteCmsResource::class),
+            $serviceContainer->get(FindPageCmsResource::class),
+            $serviceContainer->get(UpsertPageCmsResource::class),
+            $serviceContainer->get(RcmPageFromZrcmsPageCmsResource::class)
         );
     }
 }

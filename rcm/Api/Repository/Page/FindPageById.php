@@ -2,41 +2,50 @@
 
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Page;
 
-use Doctrine\ORM\EntityManager;
-use Rcm\Entity\Page;
+use Zrcms\CorePageDoctrine\Api\CmsResource\FindPageCmsResource;
+use ZrcmsRcmCompatibility\RcmAdapter\RcmPageFromZrcmsPageCmsResource;
 
 /**
- * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
-class FindPageById
+class FindPageById extends \Rcm\Api\Repository\Page\FindPageById
 {
-    /**
-     * @var \Rcm\Repository\Page
-     */
-    protected $repository;
+    protected $findPageCmsResource;
+    protected $rcmPageFromZrcmsPageCmsResource;
 
     /**
-     * @param EntityManager $entityManager
+     * @param FindPageCmsResource $findPageCmsResource
      */
     public function __construct(
-        EntityManager $entityManager
+        FindPageCmsResource $findPageCmsResource,
+        RcmPageFromZrcmsPageCmsResource $rcmPageFromZrcmsPageCmsResource
     ) {
-        $this->repository = $entityManager->getRepository(
-            Page::class
-        );
+        $this->findPageCmsResource = $findPageCmsResource;
+        $this->rcmPageFromZrcmsPageCmsResource = $rcmPageFromZrcmsPageCmsResource;
     }
 
     /**
-     * @param int   $id
+     * @param       $id
      * @param array $options
      *
-     * @return null|Page
+     * @return null|\ZrcmsRcmCompatibility\Rcm\Entity\Page
+     * @throws \Zrcms\Core\Exception\TrackingInvalid
      */
     public function __invoke(
         $id,
         array $options = []
     ) {
-        return $this->repository->find($id);
+        $pageCmsResource = $this->findPageCmsResource->__invoke(
+            $id,
+            $options
+        );
+
+        if (empty($pageCmsResource)) {
+            return null;
+        }
+
+        return $this->rcmPageFromZrcmsPageCmsResource->__invoke(
+            $pageCmsResource
+        );
     }
 }

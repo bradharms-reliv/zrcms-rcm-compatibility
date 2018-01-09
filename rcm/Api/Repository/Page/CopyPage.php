@@ -2,56 +2,60 @@
 
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Page;
 
-use Doctrine\ORM\EntityManager;
 use Rcm\Api\Repository\Options;
-use Rcm\Api\Repository\Site\FindSite;
 use Rcm\Entity\Page;
-use Rcm\Entity\Site;
 use Rcm\Exception\InvalidArgumentException;
 use Rcm\Exception\PageNotFoundException;
-use Rcm\Exception\RuntimeException;
 use Rcm\Exception\SiteNotFoundException;
+use Zrcms\CorePage\Api\CmsResource\FindPageCmsResource;
+use Zrcms\CorePage\Api\CmsResource\UpsertPageCmsResource;
+use Zrcms\CorePage\Fields\FieldsPageVersion;
+use Zrcms\CorePage\Model\PageCmsResourceBasic;
+use Zrcms\CorePage\Model\PageVersion;
+use Zrcms\CorePage\Model\PageVersionBasic;
+use Zrcms\CoreSite\Api\CmsResource\FindSiteCmsResource;
+use Zrcms\Param\Param;
+use ZrcmsRcmCompatibility\RcmAdapter\PreparePath;
+use ZrcmsRcmCompatibility\RcmAdapter\RcmPageFromZrcmsPageCmsResource;
 
 /**
- * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
-class CopyPage
+class CopyPage extends \Rcm\Api\Repository\Page\CopyPage
 {
-    const OPTION_PAGE_REVISION_ID = 'pageRevisionId';
     const OPTION_PUBLISH_NEW_PAGE = 'publishNewPage';
-    const OPTION_DO_FLUSH = 'doFlush';
 
-    protected $entityManager;
-    protected $findSite;
-    protected $findPageById;
-    protected $assertCanCreateSitePage;
+    protected $findSiteCmsResource;
+    protected $findPageCmsResource;
+    protected $upsertPageCmsResource;
 
     /**
-     * @param EntityManager           $entityManager
-     * @param FindSite                $findSite
-     * @param FindPageById            $findPageById
-     * @param AssertCanCreateSitePage $assertCanCreateSitePage
+     * @param FindSiteCmsResource             $findSiteCmsResource
+     * @param FindPageCmsResource             $findPageCmsResource
+     * @param UpsertPageCmsResource           $upsertPageCmsResource
+     * @param RcmPageFromZrcmsPageCmsResource $rcmPageFromZrcmsPageCmsResource
      */
     public function __construct(
-        EntityManager $entityManager,
-        FindSite $findSite,
-        FindPageById $findPageById,
-        AssertCanCreateSitePage $assertCanCreateSitePage
+        FindSiteCmsResource $findSiteCmsResource,
+        FindPageCmsResource $findPageCmsResource,
+        UpsertPageCmsResource $upsertPageCmsResource,
+        RcmPageFromZrcmsPageCmsResource $rcmPageFromZrcmsPageCmsResource
     ) {
-        $this->entityManager = $entityManager;
-        $this->findSite = $findSite;
-        $this->findPageById = $findPageById;
-        $this->assertCanCreateSitePage = $assertCanCreateSitePage;
+        $this->findSiteCmsResource = $findSiteCmsResource;
+        $this->findPageCmsResource = $findPageCmsResource;
+        $this->upsertPageCmsResource = $upsertPageCmsResource;
+        $this->rcmPageFromZrcmsPageCmsResource = $rcmPageFromZrcmsPageCmsResource;
     }
 
     /**
-     * @param int|string $destinationSiteId
-     * @param int|string $pageToCopyId
-     * @param array      $pageData
-     * @param array      $options
+     * @param       $destinationSiteId
+     * @param       $pageToCopyId
+     * @param array $pageData
+     * @param array $options
      *
      * @return Page
+     * @throws \Throwable
+     * @throws \Zrcms\Param\Exception\ParamException
      */
     public function __invoke(
         $destinationSiteId,
@@ -59,28 +63,130 @@ class CopyPage
         array $pageData,
         array $options = []
     ): Page {
-        $pageRevisionId = Options::get(
-            $options,
-            static::OPTION_PAGE_REVISION_ID,
-            null
+        $destinationSite = $this->findSiteCmsResource->__invoke(
+            $destinationSiteId
         );
+
+        if (empty($destinationSite)) {
+            throw new SiteNotFoundException(
+                'Destination site not found with ID: ' . $destinationSiteId
+            );
+        }
+
+        $pageCmsResourceToCopy = $this->findPageCmsResource->__invoke(
+            $pageToCopyId
+        );
+
+        if (empty($pageToCopy)) {
+            throw new PageNotFoundException(
+                'Page to copy not found with ID: ' . $pageToCopyId
+            );
+        }
+
+        $properties = $this->buildProperties(
+            $pageData,
+            $destinationSiteId,
+            $pageCmsResourceToCopy->getContentVersion()
+        );
+
+        $createdByUserId = Param::getRequired(
+            $pageData,
+            'createdByUserId'
+        );
+
+        $createdReason = Param::get(
+            $pageData,
+            'createdReason',
+            'Copy page in ' . get_class($this)
+        );
+
         $publishNewPage = Options::get(
             $options,
             static::OPTION_PUBLISH_NEW_PAGE,
             false
         );
 
-        $doFlush = Options::get(
-            $options,
-            static::OPTION_DO_FLUSH,
-            true
+        $newPageContentVersion = new PageVersionBasic(
+            null,
+            $properties,
+            $createdByUserId,
+            $createdReason
         );
 
+        $newPageCmsResource = new PageCmsResourceBasic(
+            null,
+            $publishNewPage,
+            $newPageContentVersion,
+            $createdByUserId,
+            $createdReason
+        );
+
+        $newPageCmsResource = $this->upsertPageCmsResource->__invoke(
+            $newPageCmsResource,
+            $createdByUserId,
+            $createdReason
+        );
+
+        return $this->rcmPageFromZrcmsPageCmsResource->__invoke(
+            $newPageCmsResource
+        );
+    }
+
+    /**
+     * @param array       $rcmPageData
+     * @param string      $destinationSiteId
+     * @param PageVersion $pageVersionToCopy
+     *
+     * @return array
+     */
+    protected function buildProperties(
+        array $rcmPageData,
+        string $destinationSiteId,
+        PageVersion $pageVersionToCopy
+    ): array {
         if (empty($pageData['name'])) {
             throw new InvalidArgumentException(
                 'Missing needed information (name) to create page copy.'
             );
         }
+
+        $path = PreparePath::invoke($pageData['name']);
+        unset($pageData['name']);
+
+        $pageVersionProperties = [];
+
+        $pageVersionProperties[FieldsPageVersion::SITE_CMS_RESOURCE_ID] = $destinationSiteId;
+        $pageVersionProperties[FieldsPageVersion::PATH] = $path;
+        $pageVersionProperties[FieldsPageVersion::TITLE] = Param::get(
+            $rcmPageData,
+            FieldsPageVersion::TITLE,
+            $pageVersionToCopy->getTitle()
+        );
+        $pageVersionProperties[FieldsPageVersion::DESCRIPTION] = Param::get(
+            $rcmPageData,
+            FieldsPageVersion::DESCRIPTION,
+            $pageVersionToCopy->getDescription()
+        );
+        $pageVersionProperties[FieldsPageVersion::KEYWORDS] = Param::get(
+            $rcmPageData,
+            FieldsPageVersion::KEYWORDS,
+            $pageVersionToCopy->getKeywords()
+        );
+        $pageVersionProperties[FieldsPageVersion::LAYOUT] = Param::get(
+            $rcmPageData,
+            FieldsPageVersion::LAYOUT,
+            $pageVersionToCopy->findProperty(FieldsPageVersion::LAYOUT)
+        );
+        $pageVersionProperties[FieldsPageVersion::CONTAINERS_DATA] = Param::get(
+            $rcmPageData,
+            FieldsPageVersion::CONTAINERS_DATA,
+            $pageVersionToCopy->getContainersData()
+        );
+        $pageVersionProperties[FieldsPageVersion::RENDER_TAGS_GETTER] = Param::get(
+            $rcmPageData,
+            FieldsPageVersion::RENDER_TAGS_GETTER,
+            $pageVersionToCopy->findProperty(FieldsPageVersion::RENDER_TAGS_GETTER)
+        );
 
         if (empty($pageData['createdByUserId'])) {
             throw new InvalidArgumentException(
@@ -91,100 +197,5 @@ class CopyPage
         if (empty($pageData['createdReason'])) {
             $pageData['createdReason'] = 'Copy page in ' . get_class($this);
         }
-
-        if (empty($pageData['author'])) {
-            throw new InvalidArgumentException(
-                'Missing needed information (author) to create page copy.'
-            );
-        }
-
-        // Values cannot be changed
-        unset($pageData['pageId']);
-        unset($pageData['createdDate']);
-        unset($pageData['lastPublished']);
-
-        $destinationSite = $this->findSite->__invoke(
-            $destinationSiteId
-        );
-
-        if (empty($destinationSite)) {
-            throw new SiteNotFoundException(
-                'Destination site not found with ID: ' . $destinationSiteId
-            );
-        }
-
-        $pageData['site'] = $destinationSite;
-
-        $pageToCopy = $this->findPageById->__invoke(
-            $pageToCopyId
-        );
-
-        if (empty($pageToCopy)) {
-            throw new PageNotFoundException(
-                'Page to copy not found with ID: ' . $pageToCopyId
-            );
-        }
-
-        $clonedPage = $pageToCopy->newInstance(
-            $pageData['createdByUserId'],
-            $pageData['createdReason']
-        );
-        $clonedPage->populate($pageData);
-
-        /** @var Site $clonedPageSite */
-        $clonedPageSite = $clonedPage->getSite();
-
-        if (empty($clonedPageSite)) {
-            throw new RuntimeException(
-                'Cloned page site not found.'
-            );
-        }
-
-        $this->assertCanCreateSitePage->__invoke(
-            $clonedPageSite->getSiteId(),
-            $clonedPage->getName(),
-            $clonedPage->getPageType()
-        );
-
-        $revisionToUse = $clonedPage->getStagedRevision();
-
-        if (!empty($pageRevisionId)) {
-            $sourceRevision = $pageToCopy->getRevisionById($pageRevisionId);
-
-            if (empty($sourceRevision)) {
-                throw new PageNotFoundException(
-                    'Page revision not found.'
-                );
-            }
-
-            $revisionToUse = $sourceRevision->newInstance(
-                $pageData['createdByUserId'],
-                $pageData['createdReason']
-            );
-            $clonedPage->setRevisions([]);
-            $clonedPage->addRevision($revisionToUse);
-        }
-
-        if (empty($revisionToUse)) {
-            throw new RuntimeException(
-                'Page revision not found.'
-            );
-        }
-
-        if ($publishNewPage) {
-            $clonedPage->setPublishedRevision($revisionToUse);
-        } else {
-            $clonedPage->setStagedRevision($revisionToUse);
-        }
-
-        $destinationSite->addPage($clonedPage);
-
-        $this->entityManager->persist($clonedPage);
-
-        if ($doFlush) {
-            $this->entityManager->flush($clonedPage);
-        }
-
-        return $clonedPage;
     }
 }

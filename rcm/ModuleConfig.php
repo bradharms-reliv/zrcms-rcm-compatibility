@@ -2,7 +2,6 @@
 
 namespace ZrcmsRcmCompatibility\Rcm;
 
-use Rcm\Module;
 use ZrcmsRcmCompatibility\Rcm\Acl\ResourceNameZrcmsFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\GetSiteByRequestFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Country\FindCountryByIso2Factory;
@@ -10,6 +9,8 @@ use ZrcmsRcmCompatibility\Rcm\Api\Repository\Country\FindCountryByIso3Factory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Domain\FindDomainByNameFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Domain\FindDomainsWithSubDomainFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Language\FindLanguageByIso6392tFactory;
+use ZrcmsRcmCompatibility\Rcm\Api\Repository\Page\CopyPageFactory;
+use ZrcmsRcmCompatibility\Rcm\Api\Repository\Page\FindPageByIdFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Page\FindPageFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Page\FindRevisionListFactory;
 use ZrcmsRcmCompatibility\Rcm\Api\Repository\Setting\FindSettingByNameFactory;
@@ -32,7 +33,7 @@ class ModuleConfig
      */
     public function __invoke()
     {
-        $rcmModule = new Module();
+        $rcmModule = new \Rcm\Module();
         $rcmConfig = $rcmModule->getConfig();
 
         $dependencies = [
@@ -60,8 +61,14 @@ class ModuleConfig
                 \Rcm\Api\Repository\Domain\FindDomainsWithSubDomain::class
                 => FindDomainsWithSubDomainFactory::class,
 
+                \Rcm\Api\Repository\Page\CopyPage::class
+                => CopyPageFactory::class,
+
                 \Rcm\Api\Repository\Page\FindPage::class
                 => FindPageFactory::class,
+
+                \Rcm\Api\Repository\Page\FindPageById::class
+                => FindPageByIdFactory::class,
 
                 \Rcm\Api\Repository\Page\FindRevisionList::class
                 => FindRevisionListFactory::class,

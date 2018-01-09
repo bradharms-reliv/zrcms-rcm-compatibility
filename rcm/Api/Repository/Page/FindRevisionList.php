@@ -10,7 +10,7 @@ use ZrcmsRcmCompatibility\RcmAdapter\RcmPageRevisionsFromZrcmsPageCmsResourceHis
 /**
  * @deprecated BC ONLY
  */
-class FindRevisionList
+class FindRevisionList extends \Rcm\Api\Repository\Page\FindRevisionList
 {
     protected $findPageCmsResourceHistoryBy;
     protected $rcmPageRevisionsFromZrcmsPageCmsResourceHistoryList;

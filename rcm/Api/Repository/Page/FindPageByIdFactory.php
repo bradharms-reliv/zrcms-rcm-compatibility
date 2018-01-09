@@ -2,11 +2,11 @@
 
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Page;
 
-use Doctrine\ORM\EntityManager;
 use Interop\Container\ContainerInterface;
+use Zrcms\CorePage\Api\CmsResource\FindPageCmsResource;
+use ZrcmsRcmCompatibility\RcmAdapter\RcmPageFromZrcmsPageCmsResource;
 
 /**
- * @todo CONVERT THIS TO ZRCMS ADAPTER
  * @deprecated BC ONLY
  */
 class FindPageByIdFactory
@@ -15,11 +15,14 @@ class FindPageByIdFactory
      * @param ContainerInterface $serviceContainer
      *
      * @return FindPageById
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new FindPageById(
-            $serviceContainer->get(EntityManager::class)
+            $serviceContainer->get(FindPageCmsResource::class),
+            $serviceContainer->get(RcmPageFromZrcmsPageCmsResource::class)
         );
     }
 }
