@@ -15,8 +15,10 @@ class CopySiteFactory
      * @param ContainerInterface $serviceContainer
      *
      * @return CopySite
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new CopySite(
             $serviceContainer->get(EntityManager::class)

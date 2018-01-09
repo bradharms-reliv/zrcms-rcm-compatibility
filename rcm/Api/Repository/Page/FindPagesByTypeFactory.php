@@ -16,7 +16,7 @@ class FindPagesByTypeFactory
      *
      * @return FindPagesByType
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new FindPagesByType(
             $serviceContainer->get(EntityManager::class)

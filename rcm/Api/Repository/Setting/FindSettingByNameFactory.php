@@ -14,7 +14,7 @@ class FindSettingByNameFactory
      *
      * @return FindSettingByName
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new FindSettingByName();
     }

@@ -16,7 +16,7 @@ class FindAllSitesFactory
      *
      * @return FindAllSites
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new FindAllSites(
             $serviceContainer->get(EntityManager::class)

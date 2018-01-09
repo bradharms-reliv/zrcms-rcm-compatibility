@@ -15,7 +15,7 @@ class GetSiteIdByRequestFactory
      *
      * @return GetSiteIdByRequest
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new GetSiteIdByRequest(
             $serviceContainer->get(GetSiteByRequest::class)

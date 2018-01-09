@@ -16,7 +16,7 @@ class FindDomainsLikeFactory
      *
      * @return FindDomainsLike
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new FindDomainsLike(
             $serviceContainer->get(EntityManager::class)

@@ -16,7 +16,7 @@ class FindDomainByNameFactory
      *
      * @return FindDomainByName
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new FindDomainByName(
             $serviceContainer->get(FindSiteCmsResourceByHost::class),

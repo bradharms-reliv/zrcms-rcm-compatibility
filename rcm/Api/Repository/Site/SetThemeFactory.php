@@ -16,7 +16,7 @@ class SetThemeFactory
      *
      * @return SetTheme
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new SetTheme(
             $serviceContainer->get(FindSiteCmsResource::class),

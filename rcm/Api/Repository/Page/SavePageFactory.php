@@ -16,7 +16,7 @@ class SavePageFactory
      *
      * @return SavePage
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new SavePage(
             $serviceContainer->get(EntityManager::class)

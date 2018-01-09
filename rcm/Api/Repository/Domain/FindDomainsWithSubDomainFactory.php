@@ -16,7 +16,7 @@ class FindDomainsWithSubDomainFactory
      *
      * @return FindDomainsWithSubDomain
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new FindDomainsWithSubDomain(
             $serviceContainer->get(EntityManager::class),

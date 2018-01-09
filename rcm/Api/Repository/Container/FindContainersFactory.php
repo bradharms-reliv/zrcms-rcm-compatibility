@@ -16,7 +16,7 @@ class FindContainersFactory
      *
      * @return FindContainers
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new FindContainers(
             $serviceContainer->get(EntityManager::class)

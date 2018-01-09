@@ -15,7 +15,7 @@ class FindCountryByIso3Factory
      *
      * @return FindCountryByIso3
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new FindCountryByIso3(
             $serviceContainer->get(FindComponent::class)

@@ -16,7 +16,7 @@ class PageExistsFactory
      *
      * @return PageExists
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new PageExists(
             $serviceContainer->get(EntityManager::class)

@@ -15,7 +15,7 @@ class FindLanguageByIso6392tFactory
      *
      * @return FindLanguageByIso6392t
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new FindLanguageByIso6392t(
             $serviceContainer->get(FindComponent::class)

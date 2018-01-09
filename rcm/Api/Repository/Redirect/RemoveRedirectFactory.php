@@ -15,8 +15,10 @@ class RemoveRedirectFactory
      * @param ContainerInterface $serviceContainer
      *
      * @return RemoveRedirect
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new RemoveRedirect(
             $serviceContainer->get(EntityManager::class)

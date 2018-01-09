@@ -16,7 +16,7 @@ class FindAllSiteRedirectsFactory
      *
      * @return FindAllSiteRedirects
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new FindAllSiteRedirects(
             $serviceContainer->get(EntityManager::class)

@@ -16,7 +16,7 @@ class CreateRedirectFactory
      *
      * @return CreateRedirect
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new CreateRedirect(
             $serviceContainer->get(EntityManager::class)

@@ -16,7 +16,7 @@ class FindActiveSitesFactory
      *
      * @return FindActiveSites
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new FindActiveSites(
             $serviceContainer->get(EntityManager::class)

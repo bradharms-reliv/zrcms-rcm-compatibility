@@ -16,7 +16,7 @@ class FindLanguageByIso6391Factory
      *
      * @return FindLanguageByIso6391
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new FindLanguageByIso6391(
             $serviceContainer->get(EntityManager::class)

@@ -17,7 +17,7 @@ class FindPageFactory
      *
      * @return FindPage
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new FindPage(
             $serviceContainer->get(FindPageCmsResourcesBy::class),

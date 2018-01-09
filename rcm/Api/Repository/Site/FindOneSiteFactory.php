@@ -17,7 +17,7 @@ class FindOneSiteFactory
      *
      * @return FindOneSite
      */
-    public function __invoke($serviceContainer)
+    public function __invoke(ContainerInterface $serviceContainer)
     {
         return new FindOneSite(
             $serviceContainer->get(FindSiteCmsResourcesBy::class),
