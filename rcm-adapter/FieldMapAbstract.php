@@ -2,7 +2,7 @@
 
 namespace ZrcmsRcmCompatibility\RcmAdapter;
 
-use Zrcms\Json\Json;
+use Reliv\Json\Json;
 
 /**
  * @deprecated BC ONLY

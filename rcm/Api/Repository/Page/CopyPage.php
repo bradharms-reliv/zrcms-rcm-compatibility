@@ -7,6 +7,7 @@ use Rcm\Entity\Page;
 use Rcm\Exception\InvalidArgumentException;
 use Rcm\Exception\PageNotFoundException;
 use Rcm\Exception\SiteNotFoundException;
+use Reliv\ArrayProperties\Property;
 use Zrcms\CorePage\Api\CmsResource\FindPageCmsResource;
 use Zrcms\CorePage\Api\CmsResource\UpsertPageCmsResource;
 use Zrcms\CorePage\Fields\FieldsPageVersion;
@@ -14,7 +15,6 @@ use Zrcms\CorePage\Model\PageCmsResourceBasic;
 use Zrcms\CorePage\Model\PageVersion;
 use Zrcms\CorePage\Model\PageVersionBasic;
 use Zrcms\CoreSite\Api\CmsResource\FindSiteCmsResource;
-use Zrcms\Param\Param;
 use ZrcmsRcmCompatibility\RcmAdapter\PreparePath;
 use ZrcmsRcmCompatibility\RcmAdapter\RcmPageFromZrcmsPageCmsResource;
 
@@ -55,7 +55,7 @@ class CopyPage extends \Rcm\Api\Repository\Page\CopyPage
      *
      * @return Page
      * @throws \Throwable
-     * @throws \Zrcms\Param\Exception\ParamException
+     * @throws \Reliv\ArrayProperties\Exception\ArrayPropertyException
      */
     public function __invoke(
         $destinationSiteId,
@@ -89,12 +89,12 @@ class CopyPage extends \Rcm\Api\Repository\Page\CopyPage
             $pageCmsResourceToCopy->getContentVersion()
         );
 
-        $createdByUserId = Param::getRequired(
+        $createdByUserId = Property::getRequired(
             $pageData,
             'createdByUserId'
         );
 
-        $createdReason = Param::get(
+        $createdReason = Property::get(
             $pageData,
             'createdReason',
             'Copy page in ' . get_class($this)
@@ -157,32 +157,32 @@ class CopyPage extends \Rcm\Api\Repository\Page\CopyPage
 
         $pageVersionProperties[FieldsPageVersion::SITE_CMS_RESOURCE_ID] = $destinationSiteId;
         $pageVersionProperties[FieldsPageVersion::PATH] = $path;
-        $pageVersionProperties[FieldsPageVersion::TITLE] = Param::get(
+        $pageVersionProperties[FieldsPageVersion::TITLE] = Property::get(
             $rcmPageData,
             FieldsPageVersion::TITLE,
             $pageVersionToCopy->getTitle()
         );
-        $pageVersionProperties[FieldsPageVersion::DESCRIPTION] = Param::get(
+        $pageVersionProperties[FieldsPageVersion::DESCRIPTION] = Property::get(
             $rcmPageData,
             FieldsPageVersion::DESCRIPTION,
             $pageVersionToCopy->getDescription()
         );
-        $pageVersionProperties[FieldsPageVersion::KEYWORDS] = Param::get(
+        $pageVersionProperties[FieldsPageVersion::KEYWORDS] = Property::get(
             $rcmPageData,
             FieldsPageVersion::KEYWORDS,
             $pageVersionToCopy->getKeywords()
         );
-        $pageVersionProperties[FieldsPageVersion::LAYOUT] = Param::get(
+        $pageVersionProperties[FieldsPageVersion::LAYOUT] = Property::get(
             $rcmPageData,
             FieldsPageVersion::LAYOUT,
             $pageVersionToCopy->findProperty(FieldsPageVersion::LAYOUT)
         );
-        $pageVersionProperties[FieldsPageVersion::CONTAINERS_DATA] = Param::get(
+        $pageVersionProperties[FieldsPageVersion::CONTAINERS_DATA] = Property::get(
             $rcmPageData,
             FieldsPageVersion::CONTAINERS_DATA,
             $pageVersionToCopy->getContainersData()
         );
-        $pageVersionProperties[FieldsPageVersion::RENDER_TAGS_GETTER] = Param::get(
+        $pageVersionProperties[FieldsPageVersion::RENDER_TAGS_GETTER] = Property::get(
             $rcmPageData,
             FieldsPageVersion::RENDER_TAGS_GETTER,
             $pageVersionToCopy->findProperty(FieldsPageVersion::RENDER_TAGS_GETTER)
