@@ -4,7 +4,7 @@ namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Site;
 
 use Interop\Container\ContainerInterface;
 use Zrcms\CoreSite\Api\CmsResource\UpsertSiteCmsResource;
-use Zrcms\Locale\Api\LocaleFromCountryLanguage;
+use Zrcms\LocaleZrcms\Api\LocaleFromCountryLanguage;
 use ZrcmsRcmCompatibility\RcmAdapter\RcmSiteFromZrcmsSiteCmsResource;
 
 /**

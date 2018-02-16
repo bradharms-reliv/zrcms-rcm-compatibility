@@ -8,7 +8,7 @@ use Rcm\Tracking\Model\Tracking;
 use Zrcms\CoreSite\Api\CmsResource\UpsertSiteCmsResource;
 use Zrcms\CoreSite\Model\SiteCmsResourceBasic;
 use Zrcms\CoreSite\Model\SiteVersionBasic;
-use Zrcms\Locale\Api\LocaleFromCountryLanguage;
+use Zrcms\LocaleZrcms\Api\LocaleFromCountryLanguage;
 use ZrcmsRcmCompatibility\RcmAdapter\ConvertLayoutName;
 use ZrcmsRcmCompatibility\RcmAdapter\RcmSiteFromZrcmsSiteCmsResource;
 
