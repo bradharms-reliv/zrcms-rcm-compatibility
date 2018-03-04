@@ -6,6 +6,7 @@ use Rcm\Api\Repository\Options;
 use Rcm\Entity\Site;
 use Rcm\Tracking\Model\Tracking;
 use Zrcms\CoreSite\Api\CmsResource\UpsertSiteCmsResource;
+use Zrcms\CoreSite\Api\Content\InsertSiteVersion;
 use Zrcms\CoreSite\Model\SiteCmsResourceBasic;
 use Zrcms\CoreSite\Model\SiteVersionBasic;
 use Zrcms\LocaleZrcms\Api\LocaleFromCountryLanguage;
@@ -18,20 +19,24 @@ use ZrcmsRcmCompatibility\RcmAdapter\RcmSiteFromZrcmsSiteCmsResource;
 class CreateSite extends \Rcm\Api\Repository\Site\CreateSite
 {
     protected $localeFromCountryLanguage;
+    protected $insertSiteVersion;
     protected $upsertSiteCmsResource;
     protected $rcmSiteFromZrcmsSiteCmsResource;
 
     /**
      * @param LocaleFromCountryLanguage       $localeFromCountryLanguage
+     * @param InsertSiteVersion               $insertSiteVersion
      * @param UpsertSiteCmsResource           $upsertSiteCmsResource
      * @param RcmSiteFromZrcmsSiteCmsResource $rcmSiteFromZrcmsSiteCmsResource
      */
     public function __construct(
         LocaleFromCountryLanguage $localeFromCountryLanguage,
+        InsertSiteVersion $insertSiteVersion,
         UpsertSiteCmsResource $upsertSiteCmsResource,
         RcmSiteFromZrcmsSiteCmsResource $rcmSiteFromZrcmsSiteCmsResource
     ) {
         $this->localeFromCountryLanguage = $localeFromCountryLanguage;
+        $this->insertSiteVersion = $insertSiteVersion;
         $this->upsertSiteCmsResource = $upsertSiteCmsResource;
         $this->rcmSiteFromZrcmsSiteCmsResource = $rcmSiteFromZrcmsSiteCmsResource;
     }
@@ -62,6 +67,10 @@ class CreateSite extends \Rcm\Api\Repository\Site\CreateSite
             $createdReason
         );
 
+        $siteVersion = $this->insertSiteVersion->__invoke(
+            $siteVersion
+        );
+
         $status = Options::get(
             $properties,
             self::PROPERTY_STATUS,
@@ -80,6 +89,7 @@ class CreateSite extends \Rcm\Api\Repository\Site\CreateSite
 
         $siteCmsResource = $this->upsertSiteCmsResource->__invoke(
             $newSiteCmsResource,
+            $siteVersion->getId(),
             $createdByUserId,
             $createdReason
         );

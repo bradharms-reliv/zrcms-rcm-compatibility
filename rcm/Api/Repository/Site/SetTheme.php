@@ -2,8 +2,9 @@
 
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Site;
 
-use Zrcms\CoreSite\Api\CmsResource\UpsertSiteCmsResource;
 use Zrcms\CoreSite\Api\CmsResource\FindSiteCmsResource;
+use Zrcms\CoreSite\Api\CmsResource\UpsertSiteCmsResource;
+use Zrcms\CoreSite\Api\Content\InsertSiteVersion;
 use Zrcms\CoreSite\Fields\FieldsSiteVersion;
 use Zrcms\CoreSite\Model\SiteCmsResource;
 use Zrcms\CoreSite\Model\SiteVersionBasic;
@@ -14,17 +15,21 @@ use Zrcms\CoreSite\Model\SiteVersionBasic;
 class SetTheme
 {
     protected $findSiteCmsResource;
+    protected $insertSiteVersion;
     protected $upsertSiteCmsResource;
 
     /**
      * @param FindSiteCmsResource   $findSiteCmsResource
+     * @param InsertSiteVersion     $insertSiteVersion
      * @param UpsertSiteCmsResource $upsertSiteCmsResource
      */
     public function __construct(
         FindSiteCmsResource $findSiteCmsResource,
+        InsertSiteVersion $insertSiteVersion,
         UpsertSiteCmsResource $upsertSiteCmsResource
     ) {
         $this->findSiteCmsResource = $findSiteCmsResource;
+        $this->insertSiteVersion = $insertSiteVersion;
         $this->upsertSiteCmsResource = $upsertSiteCmsResource;
     }
 
@@ -35,6 +40,8 @@ class SetTheme
      * @param string $modifiedReason
      *
      * @return void
+     * @throws \Zrcms\Core\Exception\CmsResourceNotExists
+     * @throws \Zrcms\Core\Exception\ContentVersionNotExists
      */
     public function __invoke(
         string $siteId,
@@ -57,6 +64,10 @@ class SetTheme
             $modifiedReason
         );
 
+        $newSiteVersion = $this->insertSiteVersion->__invoke(
+            $newSiteVersion
+        );
+
         $siteCmsResource->setContentVersion(
             $newSiteVersion,
             $modifiedUserId,
@@ -65,6 +76,7 @@ class SetTheme
 
         $this->upsertSiteCmsResource->__invoke(
             $siteCmsResource,
+            $newSiteVersion->getId(),
             $modifiedUserId,
             $modifiedReason
         );
