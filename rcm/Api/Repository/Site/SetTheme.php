@@ -75,7 +75,8 @@ class SetTheme
         );
 
         $this->upsertSiteCmsResource->__invoke(
-            $siteCmsResource,
+            $siteCmsResource->getId(),
+            $siteCmsResource->isPublished(),
             $newSiteVersion->getId(),
             $modifiedUserId,
             $modifiedReason

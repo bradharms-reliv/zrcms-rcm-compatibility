@@ -79,16 +79,9 @@ class CreateSite extends \Rcm\Api\Repository\Site\CreateSite
 
         $published = ($status === Site::STATUS_ACTIVE);
 
-        $newSiteCmsResource = new SiteCmsResourceBasic(
+        $siteCmsResource = $this->upsertSiteCmsResource->__invoke(
             null,
             $published,
-            $siteVersion,
-            $createdByUserId,
-            $createdReason
-        );
-
-        $siteCmsResource = $this->upsertSiteCmsResource->__invoke(
-            $newSiteCmsResource,
             $siteVersion->getId(),
             $createdByUserId,
             $createdReason

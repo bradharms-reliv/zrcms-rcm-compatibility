@@ -12,7 +12,6 @@ use Zrcms\CorePage\Api\CmsResource\FindPageCmsResource;
 use Zrcms\CorePage\Api\CmsResource\UpsertPageCmsResource;
 use Zrcms\CorePage\Api\Content\InsertPageVersion;
 use Zrcms\CorePage\Fields\FieldsPageVersion;
-use Zrcms\CorePage\Model\PageCmsResourceBasic;
 use Zrcms\CorePage\Model\PageVersion;
 use Zrcms\CorePage\Model\PageVersionBasic;
 use Zrcms\CoreSite\Api\CmsResource\FindSiteCmsResource;
@@ -123,16 +122,9 @@ class CopyPage extends \Rcm\Api\Repository\Page\CopyPage
             $newPageContentVersion
         );
 
-        $newPageCmsResource = new PageCmsResourceBasic(
+        $newPageCmsResource = $this->upsertPageCmsResource->__invoke(
             null,
             $publishNewPage,
-            $newPageContentVersion,
-            $createdByUserId,
-            $createdReason
-        );
-
-        $newPageCmsResource = $this->upsertPageCmsResource->__invoke(
-            $newPageCmsResource,
             $newPageContentVersion->getId(),
             $createdByUserId,
             $createdReason
