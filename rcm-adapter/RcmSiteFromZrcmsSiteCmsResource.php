@@ -3,7 +3,9 @@
 namespace ZrcmsRcmCompatibility\RcmAdapter;
 
 use Zrcms\Core\Api\Component\FindComponent;
+use Zrcms\CoreCountry\Api\GetDefaultCountry;
 use Zrcms\CoreCountry\Model\CountriesComponent;
+use Zrcms\CoreLanguage\Api\GetDefaultLanguage;
 use Zrcms\CoreLanguage\Model\LanguagesComponent;
 use Zrcms\CoreSite\Fields\FieldsSiteVersion;
 use Zrcms\CoreSite\Model\SiteCmsResource;
@@ -18,12 +20,18 @@ use ZrcmsRcmCompatibility\Rcm\Entity\Site;
 class RcmSiteFromZrcmsSiteCmsResource
 {
     /**
-     * @param FindComponent $findComponent
+     * @param FindComponent      $findComponent
+     * @param GetDefaultCountry  $getDefaultCountry
+     * @param GetDefaultLanguage $getDefaultLanguage
      */
     public function __construct(
-        FindComponent $findComponent
+        FindComponent $findComponent,
+        GetDefaultCountry $getDefaultCountry,
+        GetDefaultLanguage $getDefaultLanguage
     ) {
         $this->findComponent = $findComponent;
+        $this->getDefaultCountry = $getDefaultCountry;
+        $this->getDefaultLanguage = $getDefaultLanguage;
     }
 
     /**
@@ -31,6 +39,7 @@ class RcmSiteFromZrcmsSiteCmsResource
      * @param array           $options
      *
      * @return Site
+     * @throws \Exception
      * @throws \Zrcms\Core\Exception\TrackingInvalid
      */
     public function __invoke(
@@ -51,6 +60,10 @@ class RcmSiteFromZrcmsSiteCmsResource
 
         $zrCountry = $countriesComponent->findCountry($countryIso3);
 
+        if (empty($zrCountry)) {
+            $zrCountry = $this->getDefaultCountry->__invoke();
+        }
+
         $country = new Country(
             $zrCountry,
             $countriesComponent->getCreatedByUserId(),
@@ -68,6 +81,10 @@ class RcmSiteFromZrcmsSiteCmsResource
         );
 
         $zrLanguage = $languagesComponent->findLanguage($languageIso6392t);
+
+        if (empty($zrLanguage)) {
+            $zrLanguage = $this->getDefaultLanguage->__invoke();
+        }
 
         $language = new Language(
             $zrLanguage,
