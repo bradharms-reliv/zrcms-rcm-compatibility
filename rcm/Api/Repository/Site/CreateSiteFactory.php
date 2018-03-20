@@ -3,7 +3,7 @@
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Site;
 
 use Interop\Container\ContainerInterface;
-use Zrcms\CoreSite\Api\CmsResource\UpsertSiteCmsResource;
+use Zrcms\CoreSite\Api\CmsResource\CreateSiteCmsResource;
 use Zrcms\CoreSite\Api\Content\InsertSiteVersion;
 use Zrcms\LocaleZrcms\Api\LocaleFromCountryLanguage;
 use ZrcmsRcmCompatibility\RcmAdapter\RcmSiteFromZrcmsSiteCmsResource;
@@ -25,7 +25,7 @@ class CreateSiteFactory
         return new CreateSite(
             $serviceContainer->get(LocaleFromCountryLanguage::class),
             $serviceContainer->get(InsertSiteVersion::class),
-            $serviceContainer->get(UpsertSiteCmsResource::class),
+            $serviceContainer->get(CreateSiteCmsResource::class),
             $serviceContainer->get(RcmSiteFromZrcmsSiteCmsResource::class)
         );
     }

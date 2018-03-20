@@ -3,7 +3,7 @@
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Site;
 
 use Zrcms\CoreSite\Api\CmsResource\FindSiteCmsResource;
-use Zrcms\CoreSite\Api\CmsResource\UpsertSiteCmsResource;
+use Zrcms\CoreSite\Api\CmsResource\UpdateSiteCmsResource;
 use Zrcms\CoreSite\Api\Content\InsertSiteVersion;
 use Zrcms\CoreSite\Fields\FieldsSiteVersion;
 use Zrcms\CoreSite\Model\SiteCmsResource;
@@ -16,21 +16,21 @@ class SetTheme
 {
     protected $findSiteCmsResource;
     protected $insertSiteVersion;
-    protected $upsertSiteCmsResource;
+    protected $updateSiteCmsResource;
 
     /**
      * @param FindSiteCmsResource   $findSiteCmsResource
      * @param InsertSiteVersion     $insertSiteVersion
-     * @param UpsertSiteCmsResource $upsertSiteCmsResource
+     * @param UpdateSiteCmsResource $updateSiteCmsResource
      */
     public function __construct(
         FindSiteCmsResource $findSiteCmsResource,
         InsertSiteVersion $insertSiteVersion,
-        UpsertSiteCmsResource $upsertSiteCmsResource
+        UpdateSiteCmsResource $updateSiteCmsResource
     ) {
         $this->findSiteCmsResource = $findSiteCmsResource;
         $this->insertSiteVersion = $insertSiteVersion;
-        $this->upsertSiteCmsResource = $upsertSiteCmsResource;
+        $this->updateSiteCmsResource = $updateSiteCmsResource;
     }
 
     /**
@@ -74,7 +74,7 @@ class SetTheme
             $modifiedReason
         );
 
-        $this->upsertSiteCmsResource->__invoke(
+        $this->updateSiteCmsResource->__invoke(
             $siteCmsResource->getId(),
             $siteCmsResource->isPublished(),
             $newSiteVersion->getId(),

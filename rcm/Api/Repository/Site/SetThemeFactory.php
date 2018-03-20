@@ -3,7 +3,7 @@
 namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Site;
 
 use Interop\Container\ContainerInterface;
-use Zrcms\CoreSite\Api\CmsResource\UpsertSiteCmsResource;
+use Zrcms\CoreSite\Api\CmsResource\UpdateSiteCmsResource;
 use Zrcms\CoreSite\Api\CmsResource\FindSiteCmsResource;
 
 /**
@@ -20,7 +20,7 @@ class SetThemeFactory
     {
         return new SetTheme(
             $serviceContainer->get(FindSiteCmsResource::class),
-            $serviceContainer->get(UpsertSiteCmsResource::class)
+            $serviceContainer->get(UpdateSiteCmsResource::class)
         );
     }
 }

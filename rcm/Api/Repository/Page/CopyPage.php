@@ -9,7 +9,7 @@ use Rcm\Exception\PageNotFoundException;
 use Rcm\Exception\SiteNotFoundException;
 use Reliv\ArrayProperties\Property;
 use Zrcms\CorePage\Api\CmsResource\FindPageCmsResource;
-use Zrcms\CorePage\Api\CmsResource\UpsertPageCmsResource;
+use Zrcms\CorePage\Api\CmsResource\CreatePageCmsResource;
 use Zrcms\CorePage\Api\Content\InsertPageVersion;
 use Zrcms\CorePage\Fields\FieldsPageVersion;
 use Zrcms\CorePage\Model\PageVersion;
@@ -28,27 +28,27 @@ class CopyPage extends \Rcm\Api\Repository\Page\CopyPage
     protected $findSiteCmsResource;
     protected $findPageCmsResource;
     protected $insertPageVersion;
-    protected $upsertPageCmsResource;
+    protected $createPageCmsResource;
     protected $rcmPageFromZrcmsPageCmsResource;
 
     /**
      * @param FindSiteCmsResource             $findSiteCmsResource
      * @param FindPageCmsResource             $findPageCmsResource
      * @param InsertPageVersion               $insertPageVersion
-     * @param UpsertPageCmsResource           $upsertPageCmsResource
+     * @param CreatePageCmsResource           $createPageCmsResource
      * @param RcmPageFromZrcmsPageCmsResource $rcmPageFromZrcmsPageCmsResource
      */
     public function __construct(
         FindSiteCmsResource $findSiteCmsResource,
         FindPageCmsResource $findPageCmsResource,
         InsertPageVersion $insertPageVersion,
-        UpsertPageCmsResource $upsertPageCmsResource,
+        CreatePageCmsResource $createPageCmsResource,
         RcmPageFromZrcmsPageCmsResource $rcmPageFromZrcmsPageCmsResource
     ) {
         $this->findSiteCmsResource = $findSiteCmsResource;
         $this->findPageCmsResource = $findPageCmsResource;
         $this->insertPageVersion = $insertPageVersion;
-        $this->upsertPageCmsResource = $upsertPageCmsResource;
+        $this->createPageCmsResource = $createPageCmsResource;
         $this->rcmPageFromZrcmsPageCmsResource = $rcmPageFromZrcmsPageCmsResource;
     }
 
@@ -122,7 +122,7 @@ class CopyPage extends \Rcm\Api\Repository\Page\CopyPage
             $newPageContentVersion
         );
 
-        $newPageCmsResource = $this->upsertPageCmsResource->__invoke(
+        $newPageCmsResource = $this->createPageCmsResource->__invoke(
             null,
             $publishNewPage,
             $newPageContentVersion->getId(),

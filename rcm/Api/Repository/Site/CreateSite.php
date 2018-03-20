@@ -5,9 +5,8 @@ namespace ZrcmsRcmCompatibility\Rcm\Api\Repository\Site;
 use Rcm\Api\Repository\Options;
 use Rcm\Entity\Site;
 use Rcm\Tracking\Model\Tracking;
-use Zrcms\CoreSite\Api\CmsResource\UpsertSiteCmsResource;
+use Zrcms\CoreSite\Api\CmsResource\CreateSiteCmsResource;
 use Zrcms\CoreSite\Api\Content\InsertSiteVersion;
-use Zrcms\CoreSite\Model\SiteCmsResourceBasic;
 use Zrcms\CoreSite\Model\SiteVersionBasic;
 use Zrcms\LocaleZrcms\Api\LocaleFromCountryLanguage;
 use ZrcmsRcmCompatibility\RcmAdapter\ConvertLayoutName;
@@ -20,24 +19,24 @@ class CreateSite extends \Rcm\Api\Repository\Site\CreateSite
 {
     protected $localeFromCountryLanguage;
     protected $insertSiteVersion;
-    protected $upsertSiteCmsResource;
+    protected $createSiteCmsResource;
     protected $rcmSiteFromZrcmsSiteCmsResource;
 
     /**
      * @param LocaleFromCountryLanguage       $localeFromCountryLanguage
      * @param InsertSiteVersion               $insertSiteVersion
-     * @param UpsertSiteCmsResource           $upsertSiteCmsResource
+     * @param CreateSiteCmsResource           $createSiteCmsResource
      * @param RcmSiteFromZrcmsSiteCmsResource $rcmSiteFromZrcmsSiteCmsResource
      */
     public function __construct(
         LocaleFromCountryLanguage $localeFromCountryLanguage,
         InsertSiteVersion $insertSiteVersion,
-        UpsertSiteCmsResource $upsertSiteCmsResource,
+        CreateSiteCmsResource $createSiteCmsResource,
         RcmSiteFromZrcmsSiteCmsResource $rcmSiteFromZrcmsSiteCmsResource
     ) {
         $this->localeFromCountryLanguage = $localeFromCountryLanguage;
         $this->insertSiteVersion = $insertSiteVersion;
-        $this->upsertSiteCmsResource = $upsertSiteCmsResource;
+        $this->createSiteCmsResource = $createSiteCmsResource;
         $this->rcmSiteFromZrcmsSiteCmsResource = $rcmSiteFromZrcmsSiteCmsResource;
     }
 
@@ -79,7 +78,7 @@ class CreateSite extends \Rcm\Api\Repository\Site\CreateSite
 
         $published = ($status === Site::STATUS_ACTIVE);
 
-        $siteCmsResource = $this->upsertSiteCmsResource->__invoke(
+        $siteCmsResource = $this->createSiteCmsResource->__invoke(
             null,
             $published,
             $siteVersion->getId(),
