@@ -2,7 +2,7 @@
   "name": "zrcms/rcm-compatibility",
   "description": "ZRCMS to RCM Compatibility Adapter",
   "type": "library",
-  "license": "BSD-3-Clause",
+  "license": "ISC",
   "keywords": [
     "reliv",
     "content",
